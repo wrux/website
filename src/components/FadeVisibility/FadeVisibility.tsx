@@ -10,7 +10,7 @@ const FadeVisibility: FC<{ children: ReactElement }> = ({ children }) => {
     <Box
       ref={ref}
       opacity={isOnScreen ? 1 : 0}
-      transition="opacity 500ms ease-out"
+      transition="opacity 666ms ease-out"
     >
       {children}
     </Box>

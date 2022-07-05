@@ -43,7 +43,7 @@ const Home: NextPage = () => {
           as="header"
           position="relative"
           w={{ base: '100vw', md: 'min(25ch, 33vw)' }}
-          bg="accent"
+          bg="black"
         >
           <Box
             display="flex"
@@ -56,7 +56,8 @@ const Home: NextPage = () => {
               md: init ? 'calc(0vw + min(25ch, 33vw))' : '100vw',
             }}
             maxH="100vh"
-            bg="accent"
+            bg="black"
+            color="white"
             transition={{ md: 'width 500ms ease-out' }}
             zIndex={100}
           >
@@ -115,6 +116,7 @@ const Home: NextPage = () => {
                     key={link.href}
                     href={link.href}
                     target="_blank"
+                    rel="nofollow noreferer"
                     fontSize="lgFluid"
                   >
                     {link.label}
