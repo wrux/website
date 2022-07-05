@@ -8,6 +8,7 @@ import {
   Link,
   Stack,
   Text,
+  VisuallyHidden,
   VStack,
 } from '@chakra-ui/react';
 import { FadeVisibility, Job, Panel } from 'components';
@@ -121,6 +122,7 @@ const Home: NextPage = () => {
                     fontSize="lgFluid"
                   >
                     {link.label}
+                    <VisuallyHidden>(opens in new tab)</VisuallyHidden>
                   </Link>
                 ))}
               </Stack>
