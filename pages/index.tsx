@@ -87,7 +87,7 @@ const Home: NextPage = () => {
             </FadeVisibility>
             <FadeVisibility>
               <Text variant="focus" maxW="40ch">
-                {`I'm Callum, a Frontend Engineer from Oxford, England. I love
+                {`I'm Callum, a Frontend Engineer from the United Kingdom. I love
               anything frontend, but have a focus on design systems,
               accessibility and browser performance.`}
               </Text>
