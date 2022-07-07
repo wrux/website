@@ -4,16 +4,16 @@ const Panel: ComponentStyleConfig = {
   baseStyle: {
     p: 'min(16rem, 10vw)',
     bg: 'offwhite',
-    color: 'secondary',
+    color: 'dark',
   },
   variants: {
     primary: {
       bgColor: 'primary',
-      color: 'black',
+      color: 'dark',
     },
     secondary: {
       bgColor: 'secondary',
-      color: 'offwhite',
+      color: 'white',
     },
   },
 };
