@@ -7,10 +7,11 @@ import {
   Heading,
   Link,
   Text,
+  useBreakpointValue,
   VisuallyHidden,
   VStack,
 } from '@chakra-ui/react';
-import { FadeVisibility, Job, NewTabIcon, Panel } from 'components';
+import { FadeVisibility, Job, Logo, NewTabIcon, Panel } from 'components';
 import work from 'data/work';
 
 const links = [
@@ -22,6 +23,7 @@ const links = [
 
 const Home: NextPage = () => {
   const [init, setInit] = useState(false);
+  const logoSize = useBreakpointValue({ base: 32, md: init ? 32 : 128 });
 
   useEffect(() => {
     let timeout = setTimeout(() => setInit(true), 1000);
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
           name="description"
           content="I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, but have a focus on design systems, accessibility and browser performance."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
 
       <Flex direction={{ base: 'column', md: 'row' }} bg="primary" minH="100vh">
@@ -69,7 +71,11 @@ const Home: NextPage = () => {
               fontSize={{ base: 'baseFluid', md: 'smFluid' }}
               letterSpacing="0.0125em"
             >
-              WRUX
+              <Logo
+                color="primary"
+                size={logoSize}
+                transition="width 500ms ease-out, height 500ms ease-out"
+              />
             </Text>
           </Box>
         </Box>
