@@ -23,7 +23,8 @@ const links = [
 
 const Home: NextPage = () => {
   const [init, setInit] = useState(false);
-  const logoSize = useBreakpointValue({ base: 32, md: init ? 32 : 128 });
+  const logoSize = 32;
+  // const logoSize = useBreakpointValue({ base: 32, md: init ? 32 : 128 });
 
   useEffect(() => {
     let timeout = setTimeout(() => setInit(true), 1000);
