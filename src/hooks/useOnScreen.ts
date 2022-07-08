@@ -1,15 +1,15 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 
-const useOnScreen = (
-  ref: MutableRefObject<HTMLDivElement>,
-  rootMargin = '0px'
-) => {
+const useOnScreen = (ref: MutableRefObject<HTMLDivElement>) => {
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIntersecting(entry.isIntersecting),
-      { rootMargin }
+      {
+        threshold: 0.75,
+        rootMargin: '0px',
+      }
     );
     if (!ref.current) return;
     const reference = ref.current;

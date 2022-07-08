@@ -6,13 +6,13 @@ const Heading: ComponentStyleConfig = {
   },
   variants: {
     h1: {
-      fontSize: 'xlFluid',
+      fontSize: { base: 'lgFluid', md: 'xlFluid' },
       fontWeight: 'bold',
       lineHeight: 1.1,
       letterSpacing: '-0.025em',
     },
     h2: {
-      fontSize: 'lgFluid',
+      fontSize: { base: 'mdFluid', md: 'lgFluid' },
       fontWeight: 'normal',
       lineHeight: 1.1,
     },

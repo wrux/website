@@ -6,12 +6,12 @@ import {
   Flex,
   Heading,
   Link,
-  Stack,
   Text,
+  useBreakpointValue,
   VisuallyHidden,
   VStack,
 } from '@chakra-ui/react';
-import { FadeVisibility, Job, Panel } from 'components';
+import { FadeVisibility, Job, Logo, NewTabIcon, Panel } from 'components';
 import work from 'data/work';
 
 const links = [
@@ -23,6 +23,8 @@ const links = [
 
 const Home: NextPage = () => {
   const [init, setInit] = useState(false);
+  const logoSize = 32;
+  // const logoSize = useBreakpointValue({ base: 32, md: init ? 32 : 128 });
 
   useEffect(() => {
     let timeout = setTimeout(() => setInit(true), 1000);
@@ -35,9 +37,9 @@ const Home: NextPage = () => {
         <title>Callum Bonnyman, Frontend Eengineer | WRUX.com</title>
         <meta
           name="description"
-          content="I'm Callum, a Frontend Engineer from Oxford, England. I love anything frontend, but have a focus on design systems, accessibility and browser performance."
+          content="I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, but have a focus on design systems, accessibility and browser performance."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
 
       <Flex direction={{ base: 'column', md: 'row' }} bg="primary" minH="100vh">
@@ -45,7 +47,7 @@ const Home: NextPage = () => {
           as="header"
           position="relative"
           w={{ base: '100vw', md: 'min(25ch, 33vw)' }}
-          bg="black"
+          bg="dark"
         >
           <Box
             display="flex"
@@ -58,7 +60,7 @@ const Home: NextPage = () => {
               md: init ? 'calc(0vw + min(25ch, 33vw))' : '100vw',
             }}
             maxH="100vh"
-            bg="black"
+            bg="dark"
             color="white"
             transition={{ md: 'width 500ms ease-out' }}
             zIndex={100}
@@ -67,10 +69,14 @@ const Home: NextPage = () => {
               px={{ base: 'min(16rem, 10vw)', md: 8 }}
               py={8}
               fontWeight="bold"
-              fontSize="smFluid"
+              fontSize={{ base: 'baseFluid', md: 'smFluid' }}
               letterSpacing="0.0125em"
             >
-              WRUX
+              <Logo
+                color="primary"
+                size={logoSize}
+                transition="width 500ms ease-out, height 500ms ease-out"
+              />
             </Text>
           </Box>
         </Box>
@@ -88,7 +94,7 @@ const Home: NextPage = () => {
             </FadeVisibility>
             <FadeVisibility>
               <Text variant="focus" maxW="40ch">
-                {`I'm Callum, a Frontend Engineer from Oxford, England. I love
+                {`I'm Callum, a Frontend Engineer from the United Kingdom. I love
               anything frontend, but have a focus on design systems,
               accessibility and browser performance.`}
               </Text>
@@ -109,9 +115,14 @@ const Home: NextPage = () => {
               Links
             </Heading>
             <FadeVisibility>
-              <Stack
-                direction={{ base: 'column', md: 'row' }}
-                spacing={{ base: 8, md: 10 }}
+              <Box
+                sx={{
+                  '> *': {
+                    mr: 8,
+                    display: 'inline-block',
+                    breakInside: 'avoid',
+                  },
+                }}
               >
                 {links.map((link) => (
                   <Link
@@ -119,13 +130,21 @@ const Home: NextPage = () => {
                     href={link.href}
                     target="_blank"
                     rel="nofollow noreferer"
-                    fontSize="lgFluid"
+                    display="inline-flex"
+                    alignItems="baseline"
+                    fontSize={{ base: 'mdFluid', md: 'lgFluid' }}
                   >
                     {link.label}
+                    <NewTabIcon
+                      ml={2}
+                      boxSize="0.4em"
+                      color="dark"
+                      aria-hidden
+                    />
                     <VisuallyHidden>(opens in new tab)</VisuallyHidden>
                   </Link>
                 ))}
-              </Stack>
+              </Box>
             </FadeVisibility>
           </Panel>
         </Flex>

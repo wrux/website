@@ -4,7 +4,7 @@ import { useOnScreen } from 'hooks';
 
 const FadeVisibility: FC<{ children: ReactElement }> = ({ children }) => {
   const ref = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>;
-  const isOnScreen = useOnScreen(ref, '-10%');
+  const isOnScreen = useOnScreen(ref);
 
   return (
     <Box
