@@ -1,23 +1,19 @@
 export const links = [
   {
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet nisl nec quam aliquet pulvinar et vel mi. Phasellus nec rutrum tortor. Aliquam erat volutpat.',
+    description: `My GitHub profile with various public repositories including the source
+      code for <a href="https://github.com/wrux/website" target="_blank" rel="nofollow noreferer" class="link">this website<span class="sr-only"> (opens in new tab)</span></a> built with AstroJS and Tailwind.`,
     href: 'https://github.com/wrux',
     name: 'Github',
     newTab: true,
     text: 'View my Github profile',
   },
   {
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet nisl nec quam aliquet pulvinar et vel mi. Phasellus nec rutrum tortor. Aliquam erat volutpat.',
     href: 'https://www.linkedin.com/in/callum-bonnyman',
     name: 'LinkedIn',
     newTab: true,
     text: 'View my LinkedIn profile',
   },
   {
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet nisl nec quam aliquet pulvinar et vel mi. Phasellus nec rutrum tortor. Aliquam erat volutpat.',
     href: 'https://www.instagram.com/etocallum/',
     name: 'Instagram',
     newTab: true,
@@ -25,7 +21,7 @@ export const links = [
   },
   {
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet nisl nec quam aliquet pulvinar et vel mi. Phasellus nec rutrum tortor. Aliquam erat volutpat.',
+      'My personal travel blog from many Countries all around the world. Sadly there has not been much to write about recently.',
     href: 'https://bloke.blog/',
     name: 'Blog',
     newTab: true,
