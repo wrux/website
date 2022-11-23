@@ -1,7 +1,7 @@
 ---
 import { Picture } from '@astrojs/image/components';
 
-import { jobs, links } from '../data';
+import { description, jobs, links } from '../data';
 
 import Layout from '../layouts/Layout.astro';
 import MainGrid from '../layouts/MainGrid.astro';
@@ -9,8 +9,6 @@ import Jobs from '../components/Jobs.astro';
 import Links from '../components/Links.astro';
 import Logo from '../components/Logo.astro';
 import Panel from '../components/Panel.astro';
-
-const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, focusing on design systems, accessibility and browser performance.`;
 ---
 
 <Layout
@@ -21,7 +19,7 @@ const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I 
     <MainGrid>
       <div slot="side">
         <Picture
-          class="me"
+          class="mb-6 md:ml-auto max-w-[10rem] md:max-w-[18rem] rounded-lg"
           src="/assets/callum-bonnyman.jpeg"
           widths={[160, 300, 600]}
           sizes="(max-width: 767px) 160px, 300px"
@@ -60,25 +58,9 @@ const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I 
 </Layout>
 
 <style is:global>
-  .me {
-    @apply mb-6;
-
-    max-width: 10rem;
-    border-radius: 1rem;
-  }
-
-  @screen md {
-    .me {
-      margin-left: auto;
-      max-width: 180rem;
-    }
-  }
-
   .section-heading {
     @apply mb-8 text-left md:text-right;
 
-    position: sticky;
-    top: 0;
     line-height: 1;
     z-index: 200;
   }
