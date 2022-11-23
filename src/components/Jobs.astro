@@ -1,4 +1,6 @@
 ---
+import Paragraph from '../components/Paragraph.astro';
+
 export interface Props {
   jobs: Array<Job>;
 }
@@ -15,12 +17,18 @@ const { jobs } = Astro.props;
       {
         jobs.map((job) => (
           <article class="job space-y-1">
-            <h3 class="job__heading job__item c-h3">
+            <Paragraph
+              as="h3"
+              className="job__heading job__item"
+              textStyle="h3"
+            >
               {job.title}
               <sup>({job.tenure})</sup>
-            </h3>
-            <p class="job__item c-p-lg">{job.company}</p>
-            <p class="job__item c-p">{job.location}</p>
+            </Paragraph>
+            <Paragraph className="job__item" textStyle="p-lg">
+              {job.company}
+            </Paragraph>
+            <Paragraph className="job__item">{job.location}</Paragraph>
           </article>
         ))
       }
