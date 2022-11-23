@@ -46,11 +46,12 @@ const { description, title } = Astro.props;
     color: theme(colors.secondary);
     text-decoration: underline;
     text-underline-position: under;
-  }
 
-  .link:hover,
-  .link:focus {
-    text-decoration: none;
+    &:hover,
+    &:focus {
+      color: theme(colors.dark);
+      text-decoration: none;
+    }
   }
 
   [data-work-item] {

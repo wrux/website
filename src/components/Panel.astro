@@ -21,20 +21,20 @@ const { as: As = 'section', className, variant = 'dark' } = Astro.props;
 <style scoped>
   .panel {
     padding-block: min(16rem, 10vw);
-  }
 
-  .panel--dark {
-    background-color: theme(colors.dark);
-    color: white;
-  }
+    &--dark {
+      background-color: theme(colors.dark);
+      color: white;
+    }
 
-  .panel--secondary {
-    background-color: theme(colors.secondary);
-    color: white;
-  }
+    &--secondary {
+      background-color: theme(colors.secondary);
+      color: white;
+    }
 
-  .panel--offwhite {
-    background-color: theme(colors.offwhite);
-    color: theme(colors.dark);
+    &--offwhite {
+      background-color: theme(colors.offwhite);
+      color: theme(colors.dark);
+    }
   }
 </style>
