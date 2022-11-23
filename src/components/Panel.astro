@@ -2,13 +2,15 @@
 export interface Props {
   as?: string;
   className?: string;
-	variant?: 'dark' | 'primary' | 'secondary' | 'offwhite';
+  variant?: 'dark' | 'primary' | 'secondary' | 'offwhite';
 }
 
 const { as: As = 'section', className, variant = 'dark' } = Astro.props;
 ---
 
-<As class:list={['wrapper panel', `panel--${variant}`, className]}>
+<As
+  class:list={['wrapper panel overflow-hidden', `panel--${variant}`, className]}
+>
   <slot />
 </As>
 
