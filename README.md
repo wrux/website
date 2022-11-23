@@ -1,7 +1,9 @@
 # Website for wrux.com
 
-Quick and simple website for [![wrux.com](https://wrux.com/) to test out the
-basics of AstroJS. Feel free to fork this project or take code as you please.
+Quick and simple website for [wrux.com](https://wrux.com) to test out the
+basics of AstroJS.
+
+Feel free to fork this project or take code as you please.
 
 ## 🧞 Commands
 
