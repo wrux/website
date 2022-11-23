@@ -1,14 +1,6 @@
 ---
 import ExternalLink from '../components/ExternalLink.astro';
 
-export type Link = {
-  description?: string;
-  href: string;
-  name: string;
-  newTab?: boolean;
-  text: string;
-};
-
 export interface Props {
   links: Array<Link>;
 }

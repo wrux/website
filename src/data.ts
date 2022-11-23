@@ -1,4 +1,33 @@
-export const links = [
+export const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, focusing on design systems, accessibility and browser performance.`;
+
+export const jobs: Array<Job> = [
+  {
+    company: 'Transom Design',
+    location: 'Seattle, USA',
+    tenure: '2022 - Present',
+    title: 'Design System Engineer',
+  },
+  {
+    company: 'DEPT®',
+    location: 'London, United Kingdom',
+    tenure: '2021 - 2022',
+    title: 'Frontend Engineer',
+  },
+  {
+    company: 'netzstrategen',
+    location: 'Barcelona, Spain',
+    tenure: '2019 - 2021',
+    title: 'Frontend Developer',
+  },
+  {
+    company: 'LFA Machines',
+    location: 'Oxford, United Kingdom',
+    tenure: '2014 - 2019',
+    title: 'Full Stack Developer',
+  },
+];
+
+export const links: Array<Link> = [
   {
     description: `My GitHub profile with various public repositories, including the  source
       code for <a href="https://github.com/wrux/website" target="_blank" rel="nofollow noreferer" class="link">this website<span class="sr-only"> (opens in new tab)</span></a> built with AstroJS and Tailwind.`,
@@ -26,32 +55,5 @@ export const links = [
     name: 'Blog',
     newTab: true,
     text: 'Check out my blog',
-  },
-];
-
-export const jobs = [
-  {
-    company: 'Transom Design',
-    location: 'Seattle, USA',
-    tenure: '2022 - Present',
-    title: 'Design System Engineer',
-  },
-  {
-    company: 'DEPT®',
-    location: 'London, United Kingdom',
-    tenure: '2021 - 2022',
-    title: 'Frontend Engineer',
-  },
-  {
-    company: 'netzstrategen',
-    location: 'Barcelona, Spain',
-    tenure: '2019 - 2021',
-    title: 'Frontend Developer',
-  },
-  {
-    company: 'LFA Machines',
-    location: 'Oxford, United Kingdom',
-    tenure: '2014 - 2019',
-    title: 'Full Stack Developer',
   },
 ];
