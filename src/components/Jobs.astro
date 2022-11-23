@@ -63,7 +63,7 @@ const { jobs } = Astro.props;
     border-radius: 50%;
     background-color: var(--timeline-color);
     border: var(--timeline-element-border) solid theme(colors.secondary);
-    outline: 2px solid var(--timeline-color);
+    box-shadow: 0px 0px 0px 2px var(--timeline-color);
     z-index: 100;
     content: '';
     transform: translateY(0.4em);
@@ -76,7 +76,7 @@ const { jobs } = Astro.props;
    */
   .job:last-of-type .job__heading:after {
     position: absolute;
-    top: calc(100% - var(--timeline-element-width));
+    top: var(--timeline-element-width);
     right: 100%;
     display: block;
     width: 100%;

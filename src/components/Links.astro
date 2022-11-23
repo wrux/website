@@ -17,10 +17,10 @@ const { links } = Astro.props;
 ---
 
 <nav slot="main" class="flex flex-col gap-16">
-  <ul class="space-y-16">
+  <ul class="space-y-8 md:space-y-16">
     {
       links.map((link) => (
-        <li class="space-y-4">
+        <li class="space-y-2 md:space-y-4">
           <p class="c-p-lg">{link.name}</p>
           {link.description && (
             <div class="max-w-prose">

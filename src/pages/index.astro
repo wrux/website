@@ -29,7 +29,7 @@ import Panel from '../components/Panel.astro';
   <main>
     <Panel variant="secondary">
       <MainGrid>
-        <h2 slot="side" class="c-h2 mb-6 section-heading">Work</h2>
+        <h2 slot="side" class="c-h2 section-heading">Work</h2>
         <Jobs slot="main" jobs={jobs} />
       </MainGrid>
     </Panel>
@@ -42,17 +42,13 @@ import Panel from '../components/Panel.astro';
   </main>
 </Layout>
 
-<style scoped>
+<style is:global>
   .section-heading {
+    @apply mb-8 text-left md:text-right;
+
     position: sticky;
     top: 0;
     line-height: 1;
     z-index: 200;
-  }
-
-  @layer md {
-    .section-heading {
-      text-align: right;
-    }
   }
 </style>
