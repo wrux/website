@@ -29,25 +29,30 @@ import Panel from '../components/Panel.astro';
   <main>
     <Panel variant="secondary">
       <MainGrid>
-        <h2
-          slot="side"
-          class="c-h2 md:text-right sticky top-0 leading-1 z-[200]"
-        >
-          Work
-        </h2>
+        <h2 slot="side" class="c-h2 mb-6 section-heading">Work</h2>
         <Jobs slot="main" jobs={jobs} />
       </MainGrid>
     </Panel>
     <Panel variant="offwhite">
-      <MainGrid>
-        <h2
-          slot="side"
-          class="c-h2 md:text-right sticky top-0 leading-1 z-[200]"
-        >
-          Links
-        </h2>
+      <MainGrid className="items-baseline">
+        <h2 slot="side" class="c-h2 section-heading">Links</h2>
         <Links slot="main" links={links} />
       </MainGrid>
     </Panel>
   </main>
 </Layout>
+
+<style scoped>
+  .section-heading {
+    position: sticky;
+    top: 0;
+    line-height: 1;
+    z-index: 200;
+  }
+
+  @layer md {
+    .section-heading {
+      text-align: right;
+    }
+  }
+</style>
