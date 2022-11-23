@@ -1,14 +1,9 @@
 ---
 import { Picture } from '@astrojs/image/components';
 
-import { description, jobs, links } from '../data';
-
-import Layout from '../layouts/Layout.astro';
-import MainGrid from '../layouts/MainGrid.astro';
-import Jobs from '../components/Jobs.astro';
-import Links from '../components/Links.astro';
-import Logo from '../components/Logo.astro';
-import Panel from '../components/Panel.astro';
+import { Jobs, Links, Logo, Panel, Paragraph } from 'components';
+import { description, jobs, links } from 'data';
+import { Layout, MainGrid } from 'layouts';
 ---
 
 <Layout
@@ -33,10 +28,14 @@ import Panel from '../components/Panel.astro';
       </div>
       <div slot="main">
         <Logo className="mb-16 text-primary text-step-2" />
-        <h1 class="c-h1 mb-4 leading-none">Callum Bonnyman</h1>
-        <h2 class="c-overline mb-8 text-primary">Frontend Engineer</h2>
+        <Paragraph as="h1" className="mb-4 leading-none" textStyle="h1">
+          Callum Bonnyman
+        </Paragraph>
+        <Paragraph as="h2" className="mb-8 text-primary" textStyle="overline">
+          Frontend Engineer
+        </Paragraph>
         <div class="max-w-prose">
-          <p class="c-h4">{description}</p>
+          <Paragraph textStyle="h4">{description}</Paragraph>
         </div>
       </div>
     </MainGrid>
@@ -44,13 +43,27 @@ import Panel from '../components/Panel.astro';
   <main>
     <Panel variant="secondary">
       <MainGrid>
-        <h2 slot="side" class="c-h2 section-heading">Work</h2>
+        <Paragraph
+          slot="side"
+          as="h2"
+          className="section-heading"
+          textStyle="h2"
+        >
+          Work
+        </Paragraph>
         <Jobs slot="main" jobs={jobs} />
       </MainGrid>
     </Panel>
     <Panel variant="offwhite">
       <MainGrid className="items-baseline">
-        <h2 slot="side" class="c-h2 section-heading">Links</h2>
+        <Paragraph
+          slot="side"
+          as="h2"
+          className="section-heading"
+          textStyle="h2"
+        >
+          Links
+        </Paragraph>
         <Links slot="main" links={links} />
       </MainGrid>
     </Panel>

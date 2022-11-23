@@ -43,6 +43,10 @@ const textStyles = ({ theme }) => ({
 
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    // Don't purge typography classes
+    { pattern: /^c-/ },
+  ],
   theme: {
     extend: {
       colors: {

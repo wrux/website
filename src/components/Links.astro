@@ -1,5 +1,5 @@
 ---
-import ExternalLink from '../components/ExternalLink.astro';
+import { ExternalLink, Paragraph } from 'components';
 
 export interface Props {
   links: Array<Link>;
@@ -13,10 +13,10 @@ const { links } = Astro.props;
     {
       links.map((link) => (
         <li class="space-y-2 md:space-y-4">
-          <p class="c-p-lg">{link.name}</p>
+          <Paragraph textStyle="p-lg">{link.name}</Paragraph>
           {link.description && (
             <div class="max-w-prose">
-              <p class="c-p" set:html={link.description} />
+              <Paragraph set:html={link.description} />
             </div>
           )}
           <ExternalLink href={link.href} newTab={link.newTab}>
