@@ -42,8 +42,11 @@ const { jobs } = Astro.props;
   }}
 >
   .job {
+    position: relative;
+
     &__heading {
       position: relative;
+      z-index: 100;
 
       &:before {
         position: absolute;
@@ -64,19 +67,28 @@ const { jobs } = Astro.props;
       }
     }
 
-    /**
-     * Insert something over the top of the last job point in the timeline with
-     * the same colour as the background to hide the fact that the timeline does
-     * not stop at the last item
-     */
-    &:last-of-type .job__heading:after {
+    &:first-of-type:before {
+      position: absolute;
+      bottom: calc(
+        100% - var(--timeline-element-width) + var(--timeline-element-border)
+      );
+      right: 100%;
+      display: block;
+      width: 100%;
+      height: 100vh;
+      background-color: theme(colors.secondary);
+      content: '';
+      z-index: 50;
+    }
+
+    &:last-of-type:after {
       position: absolute;
       top: var(--timeline-element-width);
       right: 100%;
       display: block;
       width: 100%;
       height: 100vh;
-      background: theme(colors.secondary);
+      background-color: theme(colors.secondary);
       content: '';
       z-index: 50;
     }
@@ -114,7 +126,7 @@ const { jobs } = Astro.props;
     const jobStackTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: document.querySelector('.jobs'),
-        start: 'top 50%',
+        start: 'top 40%',
         end: 'bottom 30%',
         scrub: 1,
       },
@@ -133,8 +145,9 @@ const { jobs } = Astro.props;
       const jobTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: item,
+          markers: true,
           start: 'top 80%',
-          end: 'bottom 65%',
+          end: 'bottom 60%',
           scrub: 1,
         },
       });
