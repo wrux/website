@@ -20,8 +20,9 @@ const { description, title } = Astro.props;
     <meta name="description" content={description} />
     <script
       defer
+      data-api="/stats/api/event"
       data-domain="wrux.com"
-      src="https://plausible.io/js/plausible.js"
+      src="/stats/js/script.js"
     ></script>
   </head>
   <body class="bg-offwhite">
