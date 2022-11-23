@@ -1,0 +1,33 @@
+---
+import ExternalLink from '../components/ExternalLink.astro';
+
+export type Link = {
+  description?: string;
+  href: string;
+  name: string;
+  newTab?: boolean;
+  text: string;
+}
+
+export interface Props {
+  links: Array<Link>;
+}
+
+const { links } = Astro.props;
+---
+
+<nav slot="main" class="flex flex-col gap-16">
+  <ul class="space-y-16">
+    {links.map((link) => (
+      <li class="space-y-4">
+        <p class="c-p-lg">{link.name}</p>
+        {link.description && <p class="c-p max-w-prose">
+          {link.description}
+        </p>}
+        <ExternalLink href={link.href} newTab={link.newTab}>
+          {link.text}
+        </ExternalLink>
+      </li>
+    ))}
+  </ul>
+</nav>

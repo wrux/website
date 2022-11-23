@@ -1,0 +1,51 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-offwhite">
+    <slot />
+  </body>
+  <svg width="0" height="0" class="hidden">
+    <symbol viewBox="0 0 256 256" id="chevron">
+      <rect width="256" height="256" fill="none"></rect>
+      <polyline
+        points="96 48 176 128 96 208"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="16"></polyline>
+    </symbol>
+  </svg>
+</html>
+
+<style is:global>
+  /* @TODO: refactor and remove these */
+  .wrapper {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  [data-work-item] {
+    transform-origin: top left;
+  }
+</style>

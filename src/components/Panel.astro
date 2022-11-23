@@ -1,0 +1,34 @@
+---
+export interface Props {
+  as?: string;
+  className?: string;
+	variant?: 'dark' | 'primary' | 'secondary' | 'offwhite';
+}
+
+const { as: As = 'section', className, variant = 'dark' } = Astro.props;
+---
+
+<As class:list={['wrapper panel', `panel--${variant}`, className]}>
+  <slot />
+</As>
+
+<style scoped>
+  .panel {
+    padding-block: min(16rem, 10vw);
+  }
+
+  .panel--dark {
+    background-color: theme(colors.dark);
+    color: white;
+  }
+
+  .panel--secondary {
+    background-color: theme(colors.secondary);
+    color: white;
+  }
+
+  .panel--offwhite {
+    background-color: theme(colors.offwhite);
+    color: theme(colors.dark);
+  }
+</style>

@@ -1,0 +1,152 @@
+---
+export type Job = {
+  company: string;
+  location: string;
+  tenure: string;
+  title: string;
+}
+
+export interface Props {
+  jobs: Array<Job>;
+}
+
+const { jobs } = Astro.props;
+---
+
+<div class="jobs">
+  <div class="flex job-stack">
+    <div class="job-stack__timeline">
+      <div class="job-stack__line"></div>
+    </div>
+    <div class="job-stack__items flex flex-col gap-16">
+      {jobs.map((job) => (
+        <article class="job space-y-1" data-work>
+          <h3 class="job__heading c-h3" data-work-item>
+            {job.title}
+            <sup>({job.tenure})</sup>
+          </h3>
+          <p class="c-p-lg" data-work-item>{job.company}</p>
+          <p class="c-p" data-work-item>{job.location}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  :root {
+		--timeline-color: #fff;
+		--timeline-line-width: 8px;
+		--timeline-element-width: 1.5rem;
+		--timeline-element-border: 0.25rem;
+	}
+
+  .job__heading {
+    position: relative;
+  }
+
+  .job__heading:before {
+    position: absolute;
+    top: 50%;
+    right: calc(
+      100% + var(--timeline-element-width) + var(--timeline-line-width)
+    );
+    display: block;
+    width: var(--timeline-element-width);
+    height: var(--timeline-element-width);
+    border-radius: 50%;
+    background-color: var(--timeline-color);
+    border: var(--timeline-element-border) solid theme(colors.secondary);
+    outline: 2px solid var(--timeline-color);
+    z-index: 100;
+    content: '';
+    transform: translateY(-50%);
+  }
+
+  /**
+   * Insert something over the top of the last job point in the timeline with
+   * the same colour as the background to hide the fact that the timeline does
+   * not stop at the last item
+   */
+  .job:last-of-type .job__heading:after {
+    position: absolute;
+    top: calc(100% - var(--timeline-element-width));
+    right: 100%;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    background: theme(colors.secondary);
+    content: '';
+    z-index: 50;
+  }
+
+  .job-stack {
+    position: relative;
+  }
+
+  .job-stack__timeline {
+    width: 3rem;
+  }
+
+  .job-stack__line {
+    flex: 1;
+    position: relative;
+    top: 1rem;
+    left: 0;
+    display: block;
+    height: 100%;
+    width: var(--timeline-line-width);
+    border-radius: 9999px;
+    content: '';
+    background-color: var(--timeline-color);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+  const gsapMedia = gsap.matchMedia();
+
+  gsapMedia.add('(min-width: 768px)', () => {
+    const jobStackTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: document.querySelector('.jobs'),
+        start: 'top 50%',
+        end: 'bottom 30%',
+        scrub: 1,
+      },
+    });
+    jobStackTimeline
+      .addLabel('start')
+      .fromTo(
+        document.querySelector('.jobs .job-stack__line'),
+        { height: '0%' },
+        { height: '100%' }
+      );
+  });
+
+  gsapMedia.add('(min-width: 768px)', () => {
+    document.querySelectorAll('[data-work]')?.forEach((item) => {
+      const jobTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 80%',
+          end: 'bottom 65%',
+          scrub: 1,
+        },
+      });
+
+      jobTimeline
+        .addLabel('showAll')
+        .from(item.querySelectorAll('[data-work-item]'), {
+          y: '50%',
+          opacity: 0,
+          scale: 0.9,
+          skewY: '5deg',
+          stagger: 0.25,
+        });
+    });
+  });
+</script>
