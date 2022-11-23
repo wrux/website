@@ -1,4 +1,6 @@
 ---
+import { Picture } from '@astrojs/image/components';
+
 import { jobs, links } from '../data';
 
 import Layout from '../layouts/Layout.astro';
@@ -8,7 +10,7 @@ import Links from '../components/Links.astro';
 import Logo from '../components/Logo.astro';
 import Panel from '../components/Panel.astro';
 
-const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, but have a focus on design systems, accessibility and browser performance.`;
+const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, focusing on design systems, accessibility and browser performance.`;
 ---
 
 <Layout
@@ -17,6 +19,18 @@ const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I 
 >
   <Panel as="header" variant="dark">
     <MainGrid>
+      <div slot="side">
+        <Picture
+          class="me"
+          src="/assets/callum-bonnyman.jpeg"
+          widths={[160, 300, 600]}
+          sizes="(max-width: 767px) 160px, 300px"
+          aspectRatio="1:1"
+          loading="eager"
+          background="#00eacf"
+          alt="Callum Bonnyman"
+        />
+      </div>
       <div slot="main">
         <Logo className="mb-16 text-primary text-step-2" />
         <h1 class="c-h1 mb-4 leading-none">Callum Bonnyman</h1>
@@ -44,6 +58,20 @@ const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I 
 </Layout>
 
 <style is:global>
+  .me {
+    @apply mb-6;
+
+    max-width: 10rem;
+    border-radius: 1rem;
+  }
+
+  @screen md {
+    .me {
+      margin-left: auto;
+      max-width: 180rem;
+    }
+  }
+
   .section-heading {
     @apply mb-8 text-left md:text-right;
 
@@ -53,3 +81,16 @@ const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I 
     z-index: 200;
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+
+  gsap.matchMedia().add('(min-width: 768px)', () => {
+    gsap.from('.me', {
+      duration: 1,
+      y: '25%',
+      delay: 0.5,
+      opacity: 0,
+    });
+  });
+</script>
