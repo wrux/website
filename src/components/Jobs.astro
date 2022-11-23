@@ -14,17 +14,13 @@ const { jobs } = Astro.props;
     <div class="job-stack__items flex flex-col gap-16">
       {
         jobs.map((job) => (
-          <article class="job space-y-1" data-work>
-            <h3 class="job__heading c-h3" data-work-item>
+          <article class="job space-y-1">
+            <h3 class="job__heading job__item c-h3">
               {job.title}
               <sup>({job.tenure})</sup>
             </h3>
-            <p class="c-p-lg" data-work-item>
-              {job.company}
-            </p>
-            <p class="c-p" data-work-item>
-              {job.location}
-            </p>
+            <p class="job__item c-p-lg">{job.company}</p>
+            <p class="job__item c-p">{job.location}</p>
           </article>
         ))
       }
@@ -43,6 +39,10 @@ const { jobs } = Astro.props;
 >
   .job {
     position: relative;
+
+    &__item {
+      transform-origin: top left;
+    }
 
     &__heading {
       position: relative;
@@ -141,7 +141,7 @@ const { jobs } = Astro.props;
   });
 
   gsapMedia.add('(min-width: 768px)', () => {
-    document.querySelectorAll('[data-work]')?.forEach((item) => {
+    document.querySelectorAll('.job')?.forEach((item) => {
       const jobTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: item,
@@ -153,7 +153,7 @@ const { jobs } = Astro.props;
 
       jobTimeline
         .addLabel('showAll')
-        .from(item.querySelectorAll('[data-work-item]'), {
+        .from(item.querySelectorAll('.job__item'), {
           y: '50%',
           opacity: 0,
           scale: 0.9,
