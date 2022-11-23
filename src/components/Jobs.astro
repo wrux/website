@@ -118,23 +118,23 @@ const { jobs } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
   const gsapMedia = gsap.matchMedia();
 
-  gsapMedia.add('(min-width: 768px)', () => {
-    const jobStackTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: document.querySelector('.jobs'),
-        start: 'top 50%',
-        end: 'bottom 30%',
-        scrub: 1,
-      },
-    });
-    jobStackTimeline
-      .addLabel('start')
-      .fromTo(
-        document.querySelector('.jobs .job-stack__line'),
-        { height: '0%' },
-        { height: '100%' }
-      );
+  // gsapMedia.add('(min-width: 768px)', () => {
+  const jobStackTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: document.querySelector('.jobs'),
+      start: 'top 50%',
+      end: 'bottom 30%',
+      scrub: 1,
+    },
   });
+  jobStackTimeline
+    .addLabel('start')
+    .fromTo(
+      document.querySelector('.jobs .job-stack__line'),
+      { height: '0%' },
+      { height: '100%' }
+    );
+  // });
 
   gsapMedia.add('(min-width: 768px)', () => {
     document.querySelectorAll('[data-work]')?.forEach((item) => {
