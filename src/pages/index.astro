@@ -1,15 +1,9 @@
 ---
 import { Picture } from '@astrojs/image/components';
 
-import { description, jobs, links } from '../data';
-
-import Layout from '../layouts/Layout.astro';
-import MainGrid from '../layouts/MainGrid.astro';
-import Jobs from '../components/Jobs.astro';
-import Links from '../components/Links.astro';
-import Logo from '../components/Logo.astro';
-import Panel from '../components/Panel.astro';
-import Paragraph from '../components/Paragraph.astro';
+import { Jobs, Links, Logo, Panel, Paragraph } from 'components';
+import { description, jobs, links } from 'data';
+import { Layout, MainGrid } from 'layouts';
 ---
 
 <Layout
