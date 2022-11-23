@@ -1,0 +1,55 @@
+---
+import { jobs, links } from '../data';
+
+import Layout from '../layouts/Layout.astro';
+import MainGrid from '../layouts/MainGrid.astro';
+import Jobs from '../components/Jobs.astro';
+import Links from '../components/Links.astro';
+import Logo from '../components/Logo.astro';
+import Panel from '../components/Panel.astro';
+
+const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, but have a focus on design systems, accessibility and browser performance.`;
+---
+
+<Layout
+  title="Callum Bonnyman, Frontend Eengineer | wrux.com"
+  description={description}
+>
+  <Panel as="header" variant="dark">
+    <MainGrid>
+      <div slot="main">
+        <Logo className="mb-16 text-primary text-step-2" />
+        <h1 class="c-h1 mb-4 leading-none">Callum Bonnyman</h1>
+        <h2 class="c-overline mb-8 text-primary">Frontend Engineer</h2>
+        <div class="max-w-prose">
+          <p class="c-h4">{description}</p>
+        </div>
+      </div>
+    </MainGrid>
+  </Panel>
+  <main>
+    <Panel variant="secondary">
+      <MainGrid>
+        <h2 slot="side" class="c-h2 section-heading">Work</h2>
+        <Jobs slot="main" jobs={jobs} />
+      </MainGrid>
+    </Panel>
+    <Panel variant="offwhite">
+      <MainGrid className="items-baseline">
+        <h2 slot="side" class="c-h2 section-heading">Links</h2>
+        <Links slot="main" links={links} />
+      </MainGrid>
+    </Panel>
+  </main>
+</Layout>
+
+<style is:global>
+  .section-heading {
+    @apply mb-8 text-left md:text-right;
+
+    position: sticky;
+    top: 0;
+    line-height: 1;
+    z-index: 200;
+  }
+</style>

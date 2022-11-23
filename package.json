@@ -1,28 +1,22 @@
 {
-  "name": "wrux",
-  "version": "0.1.0",
+  "name": "@wrux/website",
+  "type": "module",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.2.1",
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "framer-motion": "^6.3.16",
-    "next": "12.2.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@astrojs/tailwind": "^2.1.2",
+    "astro": "^1.6.10",
+    "gsap": "^3.11.3",
+    "tailwindcss": "^3.2.4"
   },
   "devDependencies": {
-    "@types/node": "18.0.1",
-    "@types/react": "18.0.14",
-    "@types/react-dom": "18.0.5",
-    "eslint": "8.19.0",
-    "eslint-config-next": "12.2.0",
-    "typescript": "4.7.4"
+    "tailwindcss-typography": "^3.1.0"
   }
 }
