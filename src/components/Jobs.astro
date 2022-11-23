@@ -39,69 +39,74 @@ const { jobs } = Astro.props;
   </div>
 </div>
 
-<style scoped>
-  :root {
-    --timeline-color: #fff;
-    --timeline-line-width: 0.5rem;
-    --timeline-element-width: 1.5rem;
-    --timeline-element-border: 0.25rem;
+<style
+  scoped
+  define:vars={{
+    'timeline-color': '#fff',
+    'timeline-line-width': '0.5rem',
+    'timeline-element-width': '1.5rem',
+    'timeline-element-border': '0.25rem',
+  }}
+>
+  .job {
+    &__heading {
+      position: relative;
+
+      &:before {
+        position: absolute;
+        top: 0;
+        right: calc(
+          100% + var(--timeline-element-width) + var(--timeline-line-width)
+        );
+        display: block;
+        width: var(--timeline-element-width);
+        height: var(--timeline-element-width);
+        border-radius: 50%;
+        background-color: var(--timeline-color);
+        border: var(--timeline-element-border) solid theme(colors.secondary);
+        box-shadow: 0px 0px 0px 2px var(--timeline-color);
+        z-index: 100;
+        content: '';
+        transform: translateY(0.4em);
+      }
+    }
+
+    /**
+     * Insert something over the top of the last job point in the timeline with
+     * the same colour as the background to hide the fact that the timeline does
+     * not stop at the last item
+     */
+    &:last-of-type .job__heading:after {
+      position: absolute;
+      top: var(--timeline-element-width);
+      right: 100%;
+      display: block;
+      width: 100%;
+      height: 100vh;
+      background: theme(colors.secondary);
+      content: '';
+      z-index: 50;
+    }
   }
 
-  .job__heading {
-    position: relative;
-  }
+  .job-stack {
+    &__timeline {
+      flex-shrink: 0;
+      width: 3rem;
+    }
 
-  .job__heading:before {
-    position: absolute;
-    top: 0;
-    right: calc(
-      100% + var(--timeline-element-width) + var(--timeline-line-width)
-    );
-    display: block;
-    width: var(--timeline-element-width);
-    height: var(--timeline-element-width);
-    border-radius: 50%;
-    background-color: var(--timeline-color);
-    border: var(--timeline-element-border) solid theme(colors.secondary);
-    box-shadow: 0px 0px 0px 2px var(--timeline-color);
-    z-index: 100;
-    content: '';
-    transform: translateY(0.4em);
-  }
-
-  /**
-   * Insert something over the top of the last job point in the timeline with
-   * the same colour as the background to hide the fact that the timeline does
-   * not stop at the last item
-   */
-  .job:last-of-type .job__heading:after {
-    position: absolute;
-    top: var(--timeline-element-width);
-    right: 100%;
-    display: block;
-    width: 100%;
-    height: 100vh;
-    background: theme(colors.secondary);
-    content: '';
-    z-index: 50;
-  }
-
-  .job-stack__timeline {
-    flex-shrink: 0;
-    width: 3rem;
-  }
-
-  .job-stack__line {
-    flex: 1;
-    position: relative;
-    top: 1rem;
-    left: 0;
-    display: block;
-    height: 100%;
-    width: var(--timeline-line-width);
-    border-radius: 9999px;
-    content: '';
-    background-color: var(--timeline-color);
+    &__line {
+      flex: 1;
+      position: relative;
+      top: 1rem;
+      left: 0;
+      display: block;
+      height: 100%;
+      width: var(--timeline-line-width);
+      border-radius: 9999px;
+      content: '';
+      background-color: var(--timeline-color);
+    }
   }
 </style>
 
