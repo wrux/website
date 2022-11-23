@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: theme(colors.offwhite);
+  }
+
+  :focus {
+    box-shadow: none;
+    outline: 0.0625rem dashed;
+    outline-color: theme(colors.primary);
+    outline-offset: 0.125rem;
+  }
+}
+
+@layer components {
+  .layout {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    column-gap: 3rem;
+  }
+
+  .layout__heading {
+    @apply c-h2 md:text-right;
+
+    position: sticky;
+    top: theme(spacing.4);
+    line-height: 1;
+  }
+
+  .logo {
+    height: 1em;
+    width: 4.1842105263em;
+  }
+
+  .external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    font-size: theme('fontSize.step--1');
+    font-weight: theme('fontWeight.semibold');
+    color: theme(colors.secondary);
+    transition: all 333ms ease-in-out;
+  }
+
+  .external-link__indicator {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: row;
+    width: 1em;
+    height: 1em;
+    /* outline: 2px solid theme(colors.dark); */
+    /* background-color: theme(colors.secondary); */
+    border-radius: 100%;
+    color: currentColor;
+  }
+
+  .external-link__indicator svg {
+    flex: 1 0 auto;
+    display: block;
+    width: 1em;
+    height: 1em;
+    transition: transform 333ms ease-out;
+    /* outline: 1px solid blue; */
+    /* transform: rotate(-45deg); */
+  }
+
+  .external-link:hover,
+  .external-link:focus {
+    /* border-color: theme(colors.secondary); */
+    color: theme(colors.dark);
+  }
+
+  .external-link:hover svg,
+  .external-link:focus svg {
+    /* transform: translateX(100%) rotate(-45deg); */
+    transform: translateX(100%);
+  }
+}
+
+@layer utilities {
+  .panel {
+    padding-block: min(16rem, 10vw);
+  }
+
+  .panel--dark {
+    background-color: theme(colors.dark);
+    color: white;
+  }
+
+  .panel--secondary {
+    background-color: theme(colors.secondary);
+    color: white;
+  }
+
+  .panel--offwhite {
+    background-color: theme(colors.offwhite);
+    color: theme(colors.dark);
+  }
+
+  .wrapper {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  .icon {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+  }
+}
+
+[data-work-item] {
+  transform-origin: top left;
+}
