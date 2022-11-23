@@ -39,14 +39,15 @@ const { jobs } = Astro.props;
   </div>
 </div>
 
-<style scoped>
-  :root {
-    --timeline-color: #fff;
-    --timeline-line-width: 0.5rem;
-    --timeline-element-width: 1.5rem;
-    --timeline-element-border: 0.25rem;
-  }
-
+<style
+  scoped
+  define:vars={{
+    'timeline-color': '#fff',
+    'timeline-line-width': '0.5rem',
+    'timeline-element-width': '1.5rem',
+    'timeline-element-border': '0.25rem',
+  }}
+>
   .job__heading {
     position: relative;
   }

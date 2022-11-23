@@ -9,7 +9,11 @@ const { as: As = 'section', className, variant = 'dark' } = Astro.props;
 ---
 
 <As
-  class:list={['wrapper panel overflow-hidden', `panel--${variant}`, className]}
+  class:list={[
+    'px-4 md:px-6 lg:px-8 panel overflow-hidden',
+    `panel--${variant}`,
+    className,
+  ]}
 >
   <slot />
 </As>
