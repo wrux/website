@@ -14,7 +14,7 @@ const { jobs } = Astro.props;
 ---
 
 <div class="jobs">
-  <div class="flex job-stack">
+  <div class="job-stack flex pl-2.5 relative">
     <div class="job-stack__timeline">
       <div class="job-stack__line"></div>
     </div>
@@ -84,12 +84,6 @@ const { jobs } = Astro.props;
     background: theme(colors.secondary);
     content: '';
     z-index: 50;
-  }
-
-  .job-stack {
-    @apply pl-2.5 md:pl-0;
-
-    position: relative;
   }
 
   .job-stack__timeline {

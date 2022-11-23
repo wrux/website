@@ -1,6 +1,6 @@
 export const links = [
   {
-    description: `My GitHub profile with various public repositories including the source
+    description: `My GitHub profile with various public repositories, including the  source
       code for <a href="https://github.com/wrux/website" target="_blank" rel="nofollow noreferer" class="link">this website<span class="sr-only"> (opens in new tab)</span></a> built with AstroJS and Tailwind.`,
     href: 'https://github.com/wrux',
     name: 'Github',
@@ -21,7 +21,7 @@ export const links = [
   },
   {
     description:
-      'My personal travel blog from many Countries all around the world. Sadly there has not been much to write about recently.',
+      'My travel blog of experiences from many countries all around the world. Sadly there has not been much to write about recently.',
     href: 'https://bloke.blog/',
     name: 'Blog',
     newTab: true,
