@@ -23,7 +23,7 @@ const { jobs } = Astro.props;
             <span class="sr-only">Tenure:</span> {job.tenure}
           </span>
         </Paragraph>
-        <div class="flex flex-col gap-x-8 gap-y-4 lg:flex-row">
+        <div class="flex flex-col justify-between gap-x-8 gap-y-4 lg:flex-row">
           <Paragraph
             className="flex gap-1 align-baseline"
             textStyle={index === 0 ? 'p' : 'p-sm'}

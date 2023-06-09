@@ -15,4 +15,11 @@ declare global {
     newTab?: boolean;
     text: string;
   };
+
+  export type Project = {
+    description?: string;
+    href: string;
+    name: string;
+    image: string;
+  };
 }
