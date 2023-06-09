@@ -97,11 +97,13 @@ import { Layout } from 'layouts';
 
   <footer class="m-spacing">
     <div
-      class="container flex justify-between gap-8 mx-auto md:gap-12 lg:gap-16"
+      class="container flex flex-col items-center justify-between gap-8 mx-auto md:flex-row md:gap-12 lg:gap-16"
     >
-      <Logo className="mb-8 text-step-1" />
+      <Logo className="text-step-1" />
       <nav aria-label="Footer navigation">
-        <ul class="flex flex-wrap gap-8 c-p">
+        <ul
+          class="flex flex-col gap-8 text-center c-p md:flex-row md:flex-wrap"
+        >
           {
             links.map((link) => (
               <a
