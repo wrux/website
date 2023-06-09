@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon';
 import { Paragraph } from 'components';
 
 export interface Props {
@@ -29,20 +28,24 @@ const { jobs } = Astro.props;
             className="flex gap-1 align-baseline"
             textStyle={index === 0 ? 'p' : 'p-sm'}
           >
-            <Icon
-              class="h-[1em] w-[1em] translate-y-1/4"
-              name="ic:outline-business"
-            />
+            <svg viewBox="0 0 24 24" class="h-[1em] w-[1em] translate-y-1/4">
+              <path
+                fill="currentColor"
+                d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"
+              />
+            </svg>
             {job.company}
           </Paragraph>
           <Paragraph
             className="flex gap-1 align-baseline"
             textStyle={index === 0 ? 'p' : 'p-sm'}
           >
-            <Icon
-              class="h-[1em] w-[1em] translate-y-1/4"
-              name="ic:baseline-place"
-            />
+            <svg viewBox="0 0 24 24" class="h-[1em] w-[1em] translate-y-1/4">
+              <path
+                fill="currentColor"
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
+              />
+            </svg>
             {job.location}
           </Paragraph>
         </div>
