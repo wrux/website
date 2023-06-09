@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon';
 import { Paragraph } from 'components';
 
 export interface Props {
@@ -8,166 +9,44 @@ export interface Props {
 const { jobs } = Astro.props;
 ---
 
-<div class="jobs">
-  <div class="job-stack flex pl-2.5 relative">
-    <div class="job-stack__timeline">
-      <div class="job-stack__line"></div>
-    </div>
-    <div class="job-stack__items flex flex-col gap-16">
-      {
-        jobs.map((job) => (
-          <article class="job space-y-1">
-            <Paragraph
-              as="h3"
-              className="job__heading job__item"
-              textStyle="h3"
-            >
-              {job.title}
-              <sup>({job.tenure})</sup>
-            </Paragraph>
-            <Paragraph className="job__item" textStyle="p-lg">
-              {job.company}
-            </Paragraph>
-            <Paragraph className="job__item">{job.location}</Paragraph>
-          </article>
-        ))
-      }
-    </div>
-  </div>
+<div class="flex flex-col gap-16">
+  {
+    jobs.map((job, index) => (
+      <article class="space-y-4 text-left md:space-y-2">
+        <Paragraph
+          className="flex flex-col items-start gap-2 md:flex-row md:items-center"
+          as="h3"
+          textStyle={index === 0 ? 'h3' : 'h4'}
+        >
+          <span>{job.title}</span>
+          <span class="hidden h-[1px] flex-1 border-b border-b-white md:block" />
+          <span class="text-primary">
+            <span class="sr-only">Tenure:</span> {job.tenure}
+          </span>
+        </Paragraph>
+        <div class="flex flex-col gap-x-8 gap-y-4 lg:flex-row">
+          <Paragraph
+            className="flex gap-1 align-baseline"
+            textStyle={index === 0 ? 'p' : 'p-sm'}
+          >
+            <Icon
+              class="h-[1em] w-[1em] translate-y-1/4"
+              name="ic:outline-business"
+            />
+            {job.company}
+          </Paragraph>
+          <Paragraph
+            className="flex gap-1 align-baseline"
+            textStyle={index === 0 ? 'p' : 'p-sm'}
+          >
+            <Icon
+              class="h-[1em] w-[1em] translate-y-1/4"
+              name="ic:baseline-place"
+            />
+            {job.location}
+          </Paragraph>
+        </div>
+      </article>
+    ))
+  }
 </div>
-
-<style
-  scoped
-  define:vars={{
-    'timeline-color': '#fff',
-    'timeline-line-width': '0.5rem',
-    'timeline-element-width': '1.5rem',
-    'timeline-element-border': '0.25rem',
-  }}
->
-  .job {
-    position: relative;
-
-    &__item {
-      transform-origin: top left;
-    }
-
-    &__heading {
-      position: relative;
-      z-index: 100;
-
-      &:before {
-        position: absolute;
-        top: 0;
-        right: calc(
-          100% + var(--timeline-element-width) + var(--timeline-line-width)
-        );
-        display: block;
-        width: var(--timeline-element-width);
-        height: var(--timeline-element-width);
-        border-radius: 50%;
-        background-color: var(--timeline-color);
-        border: var(--timeline-element-border) solid theme(colors.secondary);
-        box-shadow: 0px 0px 0px 2px var(--timeline-color);
-        z-index: 100;
-        content: '';
-        transform: translateY(0.4em);
-      }
-    }
-
-    &:first-of-type:before {
-      position: absolute;
-      bottom: calc(
-        100% - var(--timeline-element-width) + var(--timeline-element-border)
-      );
-      right: 100%;
-      display: block;
-      width: 100%;
-      height: 100vh;
-      background-color: theme(colors.secondary);
-      content: '';
-      z-index: 50;
-    }
-
-    &:last-of-type:after {
-      position: absolute;
-      top: var(--timeline-element-width);
-      right: 100%;
-      display: block;
-      width: 100%;
-      height: 100vh;
-      background-color: theme(colors.secondary);
-      content: '';
-      z-index: 50;
-    }
-  }
-
-  .job-stack {
-    &__timeline {
-      flex-shrink: 0;
-      width: 3rem;
-    }
-
-    &__line {
-      flex: 1;
-      position: relative;
-      top: 1rem;
-      left: 0;
-      display: block;
-      height: 100%;
-      width: var(--timeline-line-width);
-      border-radius: 9999px;
-      content: '';
-      background-color: var(--timeline-color);
-    }
-  }
-</style>
-
-<script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-  const gsapMedia = gsap.matchMedia();
-
-  gsapMedia.add('(min-width: 768px)', () => {
-    const jobStackTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: document.querySelector('.jobs'),
-        start: 'top 40%',
-        end: 'bottom 30%',
-        scrub: 1,
-      },
-    });
-    jobStackTimeline
-      .addLabel('start')
-      .fromTo(
-        document.querySelector('.jobs .job-stack__line'),
-        { height: '0%' },
-        { height: '100%' }
-      );
-  });
-
-  gsapMedia.add('(min-width: 768px)', () => {
-    document.querySelectorAll('.job')?.forEach((item) => {
-      const jobTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 80%',
-          end: 'bottom 60%',
-          scrub: 1,
-        },
-      });
-
-      jobTimeline
-        .addLabel('showAll')
-        .from(item.querySelectorAll('.job__item'), {
-          y: '50%',
-          opacity: 0,
-          scale: 0.9,
-          skewY: '5deg',
-          stagger: 0.25,
-        });
-    });
-  });
-</script>

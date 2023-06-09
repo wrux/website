@@ -11,17 +11,3 @@ const { as: As = 'p', className, textStyle = 'p' } = Astro.props;
 <As class:list={[`paragraph c-${textStyle}`, className]}>
   <slot />
 </As>
-
-<style is:global>
-  .paragraph .link {
-    color: theme(colors.secondary);
-    text-decoration: underline;
-    text-underline-position: under;
-
-    &:hover,
-    &:focus {
-      color: theme(colors.dark);
-      text-decoration: none;
-    }
-  }
-</style>

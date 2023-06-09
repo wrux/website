@@ -27,19 +27,13 @@ const { description, title } = Astro.props;
     <script src="https://cdn.usefathom.com/script.js" data-site="HIFDIEQG" defer
     ></script>
   </head>
-  <body class="bg-offwhite">
+  <body class="text-white bg-black">
     <slot />
   </body>
-  <svg width="0" height="0" class="hidden">
-    <symbol viewBox="0 0 256 256" id="chevron">
-      <rect width="256" height="256" fill="none"></rect>
-      <polyline
-        points="96 48 176 128 96 208"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></polyline>
-    </symbol>
-  </svg>
 </html>
+
+<style is:global>
+  .link {
+    @apply text-primary underline decoration-current underline-offset-4 transition-colors hover:text-white hover:decoration-transparent;
+  }
+</style>

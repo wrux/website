@@ -33,12 +33,23 @@ const textStyles = ({ theme }) => ({
     letterSpacing: '0.125em',
     textTransform: 'uppercase',
   },
+  overlineSm: {
+    fontSize: theme('fontSize.step--2'),
+    fontWeight: theme('fontWeight.bold'),
+    lineHeight: 1,
+    letterSpacing: '0.125em',
+    textTransform: 'uppercase',
+  },
   pLg: {
     fontSize: theme('fontSize.step-1'),
     fontWeight: theme('fontWeight.normal'),
   },
   p: {
     fontSize: theme('fontSize.step--1'),
+    fontWeight: theme('fontWeight.normal'),
+  },
+  pSm: {
+    fontSize: theme('fontSize.step--2'),
     fontWeight: theme('fontWeight.normal'),
   },
 });
@@ -70,6 +81,13 @@ module.exports = {
         'step-3': 'clamp(2.27rem, calc(2.01rem + 1.29vw), 2.93rem)',
         'step-4': 'clamp(2.72rem, calc(2.36rem + 1.83vw), 3.66rem)',
         'step-5': 'clamp(3.27rem, calc(2.75rem + 2.56vw), 4.58rem)',
+      },
+      margin: {
+        spacing: 'min(12rem, 7.5vw)',
+        outer: 'clamp(1rem, 5vw, 2rem)',
+      },
+      height: {
+        'screen-dynamic': '100dvh',
       },
       textStyles,
     },
