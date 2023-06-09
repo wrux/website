@@ -83,8 +83,7 @@ module.exports = {
         'step-5': 'clamp(3.27rem, calc(2.75rem + 2.56vw), 4.58rem)',
       },
       margin: {
-        spacing: 'min(12rem, 7.5vw)',
-        outer: 'clamp(1rem, 5vw, 2rem)',
+        spacing: 'min(16rem, 10vh)',
       },
       height: {
         'screen-dynamic': '100dvh',

@@ -1,8 +1,8 @@
 ---
 import { Picture } from '@astrojs/image/components';
 
-import { Jobs, Logo, Paragraph } from 'components';
-import { description, jobs, links } from 'data';
+import { Jobs, Logo, Paragraph, Projects } from 'components';
+import { description, jobs, links, recentWork } from 'data';
 import { Layout } from 'layouts';
 ---
 
@@ -11,7 +11,7 @@ import { Layout } from 'layouts';
   description={description}
 >
   <header
-    class="container relative flex flex-col items-center justify-center max-w-full p-24 text-center screen-min h-screen-dynamic"
+    class="container relative flex flex-col items-center justify-center max-w-full p-8 text-center screen-min h-screen-dynamic md:p-16 lg:p-24"
   >
     <h1>
       <span class="sr-only">WRUX.com</span>
@@ -32,18 +32,25 @@ import { Layout } from 'layouts';
     </lottie-player>
   </header>
   <main>
+    <section class="w-full overflow-hidden mb-spacing">
+      <div class="container max-w-full text-center">
+        <Paragraph as="h2" textStyle="h2">Recent Work</Paragraph>
+      </div>
+      <Projects projects={recentWork} />
+    </section>
+
     <section class="my-spacing">
-      <div class="container mx-auto">
+      <div class="container max-w-4xl mx-auto">
         <div
-          class="flex flex-col items-center justify-center max-w-3xl p-8 mx-auto text-center bg-gray-900 md:p-16 lg:p-24"
+          class="flex flex-col items-center justify-center px-8 py-16 mx-auto text-center bg-gray-900 md:py-22 rounded-xl md:px-16 lg:px-20"
         >
           <Picture
-            class="mb-6 max-w-[10rem] rounded-full md:ml-auto md:max-w-[18rem]"
+            class="mb-6 max-w-[10rem] rounded-xl md:ml-auto md:max-w-[18rem]"
             src="/assets/callum-bonnyman.jpeg"
             widths={[160, 300, 600]}
             sizes="(max-width: 767px) 160px, 300px"
             aspectRatio="1:1"
-            loading="eager"
+            loading="lazy"
             background="#00eacf"
             alt="Callum Bonnyman"
             width={300}
@@ -78,7 +85,7 @@ import { Layout } from 'layouts';
     <section class="bg-gray-900 my-spacing">
       <div class="container mx-auto">
         <div
-          class="flex flex-col items-center justify-center max-w-3xl p-8 mx-auto text-center md:p-16 lg:p-24"
+          class="flex flex-col items-center justify-center max-w-3xl px-8 py-16 mx-auto text-center md:py-22 md:px-16 lg:px-20"
         >
           <div class="max-w-prose">
             <Paragraph textStyle="h4">
@@ -97,11 +104,13 @@ import { Layout } from 'layouts';
 
   <footer class="m-spacing">
     <div
-      class="container flex justify-between gap-8 mx-auto md:gap-12 lg:gap-16"
+      class="container flex flex-col items-center justify-between gap-8 mx-auto md:flex-row md:gap-12 lg:gap-16"
     >
-      <Logo className="mb-8 text-step-1" />
+      <Logo className="text-step-1" />
       <nav aria-label="Footer navigation">
-        <ul class="flex flex-wrap gap-8 c-p">
+        <ul
+          class="flex flex-col gap-8 text-center c-p md:flex-row md:flex-wrap"
+        >
           {
             links.map((link) => (
               <a

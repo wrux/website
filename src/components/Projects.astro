@@ -1,0 +1,57 @@
+---
+import { Picture } from '@astrojs/image/components';
+import { Paragraph } from 'components';
+
+export interface Props {
+  projects: Array<Project>;
+}
+
+const { projects } = Astro.props;
+---
+
+<div
+  class="flex max-w-[100vw] snap-x snap-mandatory scroll-px-4 gap-4 overflow-auto px-4 py-8 md:scroll-px-8 md:gap-8 md:p-8"
+>
+  {
+    projects.map((project) => (
+      <article class="group relative flex max-w-[75vw] flex-shrink-0 flex-grow basis-full snap-start flex-col overflow-hidden rounded-xl bg-gray-900 first:ml-auto last:mr-auto sm:w-[60vw] md:max-w-[40vw] lg:max-w-[27vw] xl:max-w-sm">
+        <div class="relative aspect-video flex-shrink-0 overflow-auto bg-gray-500 before:absolute before:inset-0 before:z-10 before:block before:bg-primary before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-50">
+          <Picture
+            class="block h-auto w-full object-top transition-transform duration-300 group-hover:scale-110"
+            src={project.image}
+            widths={[160, 320, 480, 768]}
+            sizes="(max-width: 767px) 160px, 300px"
+            aspectRatio="16:9"
+            loading="eager"
+            alt={`Preview of ${project.name}`}
+            width={384}
+            height={216}
+          />
+        </div>
+        <div class="flex flex-1 flex-shrink-0 flex-col px-8 py-6">
+          <Paragraph as="h3" className="mb-2" textStyle="p">
+            {project.name}
+          </Paragraph>
+          {project?.description && (
+            <Paragraph className="mb-2 line-clamp-3" textStyle="p-sm">
+              {project.description}
+            </Paragraph>
+          )}
+          {project.href && (
+            <Paragraph textStyle="p-sm mt-auto">
+              <a
+                href={project.href}
+                class="link z-50 before:absolute before:inset-0 before:z-40 before:block"
+                target="_blank"
+                rel="nofollow noreferer"
+              >
+                View Website
+                <span class="sr-only">(opens in new tab)</span>
+              </a>
+            </Paragraph>
+          )}
+        </div>
+      </article>
+    ))
+  }
+</div>

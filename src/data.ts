@@ -57,3 +57,41 @@ export const links: Array<Link> = [
     text: 'Check out my blog',
   },
 ];
+
+export const recentWork: Array<Project> = [
+  {
+    description:
+      'Built and managed the corporate site for Motorq.com using React, NextJS and Sanity CMS.',
+    href: 'https://motorq.com/',
+    name: 'Motorq',
+    image: '/assets/projects/motorq.png',
+  },
+  {
+    description:
+      'I built numerous satellite sites ontop of a custom design system and CMS shared across all projects.',
+    href: 'https://ethanstowellrestaurants.com/restaurants/quick',
+    name: 'Ethan Stowell Restaurant Satellite Sites',
+    image: '/assets/projects/esr.png',
+  },
+  {
+    description:
+      'Catalog website built with Tailwind, Typescript and CraftCMS.',
+    href: 'https://schweickert.de/',
+    name: 'Schweickert',
+    image: '/assets/projects/schweickert.png',
+  },
+  {
+    description:
+      'Catalog website for health care professionals built with WordPress.',
+    href: 'https://www.mental-aktiv.de/',
+    name: 'Mental Aktiv',
+    image: '/assets/projects/mental-aktiv.png',
+  },
+  {
+    description:
+      'Regional news website in Germany built on an enterprise news platform with over 100,000 articles.',
+    href: 'https://bnn.de/',
+    name: 'Badische Neueste Nachrichten',
+    image: '/assets/projects/bnn.png',
+  },
+];

@@ -26,6 +26,10 @@ const { description, title } = Astro.props;
     ></script>
     <script src="https://cdn.usefathom.com/script.js" data-site="HIFDIEQG" defer
     ></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+      defer
+    ></script>
   </head>
   <body class="text-white bg-black">
     <slot />
@@ -33,7 +37,13 @@ const { description, title } = Astro.props;
 </html>
 
 <style is:global>
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   .link {
-    @apply text-primary underline decoration-current underline-offset-4 transition-colors hover:text-white hover:decoration-transparent;
+    @apply text-primary underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent;
   }
 </style>
