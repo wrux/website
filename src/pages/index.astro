@@ -15,9 +15,13 @@ import { Layout } from 'layouts';
   >
     <h1>
       <span class="sr-only">WRUX.com</span>
-      <Logo className="mb-8 text-step-3" />
+      <Logo animated className="mb-8 text-step-3" />
     </h1>
-    <Paragraph as="h2" className="mb-8 text-primary" textStyle="overline-sm">
+    <Paragraph
+      as="h2"
+      className="animated-subheading mb-8 text-primary"
+      textStyle="overline-sm"
+    >
       Web Development Services
     </Paragraph>
     <lottie-player
@@ -142,9 +146,29 @@ import { Layout } from 'layouts';
 
   if (scrollIndicator) {
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(tryToShowIndicator, 250);
+      setTimeout(tryToShowIndicator, 1100);
     });
 
     window.addEventListener('scroll', tryToShowIndicator, { passive: true });
   }
 </script>
+
+<style scoped>
+  .animated-subheading {
+    animation-name: animateSubheadIn;
+    animation-duration: 300ms;
+    animation-delay: 1100ms;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
+
+  @keyframes animateSubheadIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+</style>

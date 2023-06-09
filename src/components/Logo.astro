@@ -1,47 +1,90 @@
 ---
 export interface Props {
+  animated?: boolean;
   className?: string;
 }
 
-const { className } = Astro.props;
+const { animated = false, className } = Astro.props;
 ---
 
 <svg
   viewBox="0 0 795 190"
   focusable="false"
-  class:list={['logo', className]}
+  class:list={['logo', { 'logo-animated': animated }, className]}
 >
-  <path
-    d="M284.2 64.6V185H337.4V76.1C337.4 55 347 48.6 368.8 48.6C375.969 48.6488 383.124 49.2506 390.2 50.4V3.59999C380.6 1.39999 368.5 0.399994 354.2 0.399994C307.4 0.399994 284.2 21.8 284.2 64.6Z"
-    fill="currentColor"
+  <path class="logo-element logo-1" d="M53.2 5H0V56H53.2V5Z" fill="currentColor"
   ></path>
   <path
-    d="M534.9 107.9C534.9 130.7 521.7 141.1 502 141.1C482.3 141.1 469.2 130.7 469.2 107.9V5H415.2V112.5C415.2 137.5 423.5 156.8 439.9 170C456.3 183.2 477.4 190 502 190C526.6 190 547.4 183.2 563.8 170C580.2 156.8 588.8 137.5 588.8 112.5V5H534.9V107.9Z"
-    fill="currentColor"
-  ></path>
-  <path
-    d="M662.8 5L703.5 60.6L703.1 61.1L662.8 5Z"
-    fill="currentColor"
-  ></path>
-  <path
-    d="M736.7 185L703.1 137.5L669.5 185H611.7L673.5 99.6L605.2 5H662.8L794.5 185H736.7Z"
-    fill="currentColor"
-  ></path>
-  <path d="M794.5 5H741.3V56H794.5V5Z" fill="currentColor"></path>
-  <path
-    d="M259.6 5L201.1 185H150.6L209.1 5H259.6Z"
-    fill="currentColor"
-  ></path>
-  <path
+    class="logo-element logo-2"
     d="M158.6 5L100.1 185H49.6L108.1 5H158.6Z"
-    fill="currentColor"
-  ></path>
-  <path d="M53.2 5H0V56H53.2V5Z" fill="currentColor"></path>
+    fill="currentColor"></path>
+  <path
+    class="logo-element logo-3"
+    d="M259.6 5L201.1 185H150.6L209.1 5H259.6Z"
+    fill="currentColor"></path>
+
+  <path
+    class="logo-element logo-4"
+    d="M284.2 64.6V185H337.4V76.1C337.4 55 347 48.6 368.8 48.6C375.969 48.6488 383.124 49.2506 390.2 50.4V3.59999C380.6 1.39999 368.5 0.399994 354.2 0.399994C307.4 0.399994 284.2 21.8 284.2 64.6Z"
+    fill="currentColor"></path>
+  <path
+    class="logo-element logo-5"
+    d="M534.9 107.9C534.9 130.7 521.7 141.1 502 141.1C482.3 141.1 469.2 130.7 469.2 107.9V5H415.2V112.5C415.2 137.5 423.5 156.8 439.9 170C456.3 183.2 477.4 190 502 190C526.6 190 547.4 183.2 563.8 170C580.2 156.8 588.8 137.5 588.8 112.5V5H534.9V107.9Z"
+    fill="currentColor"></path>
+  <path
+    class="logo-element logo-6"
+    d="M736.7 185L703.1 137.5L669.5 185H611.7L673.5 99.6L605.2 5H662.8L794.5 185H736.7Z"
+    fill="currentColor"></path>
+  <path
+    class="logo-element logo-7"
+    d="M794.5 5H741.3V56H794.5V5Z"
+    fill="currentColor"></path>
 </svg>
 
 <style scoped>
-.logo {
-  height: 1em;
-  width: 4.1842105263em;
-}
+  .logo {
+    height: 1em;
+    width: 4.1842105263em;
+  }
+
+  .logo-animated .logo-element {
+    animation-name: animateLogoIn;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+  }
+
+  .logo-1 {
+    animation-delay: 500ms;
+  }
+  .logo-2 {
+    animation-delay: 600ms;
+  }
+  .logo-3 {
+    animation-delay: 700ms;
+  }
+  .logo-4 {
+    animation-delay: 800ms;
+  }
+  .logo-5 {
+    animation-delay: 900ms;
+  }
+  .logo-6 {
+    animation-delay: 1000ms;
+  }
+  .logo-7 {
+    animation-delay: 1100ms;
+  }
+
+  @keyframes animateLogoIn {
+    0% {
+      opacity: 0;
+      transform: translateX(5rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0rem);
+    }
+  }
 </style>
