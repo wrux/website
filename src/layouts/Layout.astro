@@ -30,21 +30,6 @@ const { description, title } = Astro.props;
   <body class="text-white bg-black">
     <slot />
   </body>
-  <svg width="0" height="0" class="hidden">
-    <symbol viewBox="0 0 256 256" id="chevron">
-      <rect width="256" height="256" fill="none"></rect>
-      <polyline
-        points="96 48 176 128 96 208"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"></polyline>
-    </symbol>
-  </svg>
-  <script
-    src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
-  ></script>
 </html>
 
 <style is:global>
