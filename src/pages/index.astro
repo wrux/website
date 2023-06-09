@@ -11,7 +11,7 @@ import { Layout } from 'layouts';
   description={description}
 >
   <header
-    class="container relative flex flex-col items-center justify-center max-w-full p-8 text-center screen-min h-screen-dynamic md:p-16 lg:p-24"
+    class="screen-min container relative flex h-screen-dynamic max-w-full flex-col items-center justify-center p-8 text-center md:p-16 lg:p-24"
   >
     <h1>
       <span class="sr-only">WRUX.com</span>
@@ -22,7 +22,7 @@ import { Layout } from 'layouts';
     </Paragraph>
     <lottie-player
       id="scroll-indicator"
-      class="absolute w-16 h-16 transition-opacity duration-300 ease-in-out -translate-x-1/2 opacity-0 bottom-8 left-1/2"
+      class="absolute bottom-8 left-1/2 h-16 w-16 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-in-out"
       src="https://assets9.lottiefiles.com/packages/lf20_0msniqpo.json"
       background="transparent"
       speed="1"
@@ -32,7 +32,7 @@ import { Layout } from 'layouts';
     </lottie-player>
   </header>
   <main>
-    <section class="w-full overflow-hidden mb-spacing">
+    <section class="mb-spacing w-full overflow-hidden">
       <div class="container max-w-full text-center">
         <Paragraph as="h2" textStyle="h2">Recent Work</Paragraph>
       </div>
@@ -40,9 +40,9 @@ import { Layout } from 'layouts';
     </section>
 
     <section class="my-spacing">
-      <div class="container max-w-4xl mx-auto">
+      <div class="container mx-auto max-w-4xl">
         <div
-          class="flex flex-col items-center justify-center px-8 py-16 mx-auto text-center bg-gray-900 md:py-22 rounded-xl md:px-16 lg:px-20"
+          class="md:py-22 mx-auto flex flex-col items-center justify-center rounded-xl bg-gray-900 px-8 py-16 text-center md:px-16 lg:px-20"
         >
           <Picture
             class="mb-6 max-w-[10rem] rounded-xl md:ml-auto md:max-w-[18rem]"
@@ -74,7 +74,7 @@ import { Layout } from 'layouts';
     </section>
 
     <section class="m-spacing">
-      <div class="container max-w-3xl mx-auto">
+      <div class="container mx-auto max-w-3xl">
         <Paragraph slot="side" as="h2" className="mb-8" textStyle="h2">
           Work Experience
         </Paragraph>
@@ -82,10 +82,10 @@ import { Layout } from 'layouts';
       </div>
     </section>
 
-    <section class="bg-gray-900 my-spacing">
+    <section class="my-spacing bg-gray-900">
       <div class="container mx-auto">
         <div
-          class="flex flex-col items-center justify-center max-w-3xl px-8 py-16 mx-auto text-center md:py-22 md:px-16 lg:px-20"
+          class="md:py-22 mx-auto flex max-w-3xl flex-col items-center justify-center px-8 py-16 text-center md:px-16 lg:px-20"
         >
           <div class="max-w-prose">
             <Paragraph textStyle="h4">
@@ -104,24 +104,26 @@ import { Layout } from 'layouts';
 
   <footer class="m-spacing">
     <div
-      class="container flex flex-col items-center justify-between gap-8 mx-auto md:flex-row md:gap-12 lg:gap-16"
+      class="container mx-auto flex flex-col items-center justify-between gap-8 md:flex-row md:gap-12 lg:gap-16"
     >
       <Logo className="text-step-1" />
       <nav aria-label="Footer navigation">
         <ul
-          class="flex flex-col gap-8 text-center c-p md:flex-row md:flex-wrap"
+          class="c-p flex flex-col gap-8 text-center md:flex-row md:flex-wrap"
         >
           {
             links.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="nofollow noreferer"
-                class="link"
-              >
-                {link.name}
-                <span class="sr-only">(opens in new tab)</span>
-              </a>
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="nofollow noreferer"
+                  class="link"
+                >
+                  {link.name}
+                  <span class="sr-only">(opens in new tab)</span>
+                </a>
+              </li>
             ))
           }
         </ul>
