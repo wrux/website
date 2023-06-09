@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 const textStyles = ({ theme }) => ({
   heading: {
     fontFamily: theme('fontFamily.sans'),
@@ -56,7 +58,7 @@ module.exports = {
         offwhite: '#e5e5e5',
       },
       fontFamily: {
-        sans: 'Inter, sans-serif',
+        sans: ['InterVariable', 'Inter', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         // Fluid type: @link https://utopia.fyi/type/calculator?c=320,21,1.2,1140,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
