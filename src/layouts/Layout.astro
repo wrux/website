@@ -27,7 +27,7 @@ const { description, title } = Astro.props;
     <script src="https://cdn.usefathom.com/script.js" data-site="HIFDIEQG" defer
     ></script>
   </head>
-  <body class="bg-offwhite">
+  <body class="text-white bg-black">
     <slot />
   </body>
   <svg width="0" height="0" class="hidden">
@@ -42,4 +42,13 @@ const { description, title } = Astro.props;
         stroke-width="16"></polyline>
     </symbol>
   </svg>
+  <script
+    src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+  ></script>
 </html>
+
+<style is:global>
+  .link {
+    @apply text-primary underline decoration-current underline-offset-4 transition-colors hover:text-white hover:decoration-transparent;
+  }
+</style>

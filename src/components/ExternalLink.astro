@@ -30,9 +30,9 @@ const { className, href, newTab = false } = Astro.props;
     align-items: center;
     gap: 0.25em;
     cursor: pointer;
-    font-size: theme('fontSize.step--1');
+    font-size: theme('fontSize.step--2');
     font-weight: theme('fontWeight.semibold');
-    color: theme(colors.secondary);
+    color: theme(colors.primary);
     transition: all 333ms ease-in-out;
 
     &__indicator {
@@ -61,7 +61,7 @@ const { className, href, newTab = false } = Astro.props;
 
     &:hover,
     &:focus {
-      color: theme(colors.dark);
+      color: theme(colors.white);
 
       .external-link__icon {
         &:first-of-type,

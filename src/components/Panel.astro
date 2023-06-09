@@ -2,7 +2,7 @@
 export interface Props {
   as?: string;
   className?: string;
-  variant?: 'dark' | 'primary' | 'secondary' | 'offwhite';
+  variant?: 'black' | 'dark' | 'primary' | 'secondary' | 'offwhite' | 'white';
 }
 
 const { as: As = 'section', className, variant = 'dark' } = Astro.props;
@@ -10,7 +10,7 @@ const { as: As = 'section', className, variant = 'dark' } = Astro.props;
 
 <As
   class:list={[
-    'px-4 md:px-6 lg:px-8 panel overflow-hidden',
+    'px-4 md:px-6 lg:px-8 -ppanel overflow-hidden',
     `panel--${variant}`,
     className,
   ]}
@@ -20,7 +20,10 @@ const { as: As = 'section', className, variant = 'dark' } = Astro.props;
 
 <style scoped>
   .panel {
-    padding-block: min(16rem, 10vw);
+    &--black {
+      background-color: black;
+      color: white;
+    }
 
     &--dark {
       background-color: theme(colors.dark);
@@ -34,6 +37,11 @@ const { as: As = 'section', className, variant = 'dark' } = Astro.props;
 
     &--offwhite {
       background-color: theme(colors.offwhite);
+      color: theme(colors.dark);
+    }
+
+    &--white {
+      background-color: white;
       color: theme(colors.dark);
     }
   }
