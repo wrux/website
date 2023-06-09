@@ -15,7 +15,7 @@ const { projects } = Astro.props;
   {
     projects.map((project) => (
       <article class="group relative flex max-w-[75vw] flex-shrink-0 flex-grow basis-full snap-start flex-col overflow-hidden rounded-xl bg-gray-900 first:ml-auto last:mr-auto sm:w-[60vw] md:max-w-[40vw] lg:max-w-[27vw] xl:max-w-sm">
-        <div class="relative aspect-video flex-shrink-0 overflow-auto bg-gray-500 before:absolute before:inset-0 before:z-10 before:block before:bg-primary before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-50">
+        <div class="relative aspect-video flex-shrink-0 overflow-hidden bg-gray-500 before:absolute before:inset-0 before:z-10 before:block before:bg-primary before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-50">
           <Picture
             class="block h-auto w-full object-top transition-transform duration-300 group-hover:scale-110"
             src={project.image}
