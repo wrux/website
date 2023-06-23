@@ -68,6 +68,10 @@ module.exports = {
         dark: '#1f1f28',
         offwhite: '#e5e5e5',
       },
+      container: {
+        center: true,
+        padding: '2rem',
+      },
       fontFamily: {
         sans: ['InterVariable', 'Inter', ...defaultTheme.fontFamily.sans],
       },

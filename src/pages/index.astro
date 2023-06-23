@@ -12,7 +12,7 @@ import { Layout } from 'layouts';
 
   <main>
     <section class="my-spacing">
-      <div class="mx-auto text-center lg:max-w-4xl">
+      <div class="container text-center lg:max-w-4xl">
         <h1 class="c-h1 mb-4 leading-tight md:mb-8">
           Your Oxfordshire based Web Development Agency
         </h1>
@@ -35,15 +35,15 @@ import { Layout } from 'layouts';
     </section>
 
     <section class="md:py-22 my-spacing bg-dark py-16">
-      <div class="mx-auto text-center lg:max-w-6xl">
+      <div class="container text-center lg:max-w-6xl">
         <h2 class="c-h2 text-primary">Our services</h2>
         <p class="lg:mb-22 c-p-lg mb-8 md:mb-16">
           We offer a wide range of web development services
         </p>
-        <ul class="grid gap-8 md:gap-8 md:gap-x-16 md:gap-y-24 lg:grid-cols-3">
+        <ul class="grid justify-center gap-16 md:gap-y-24 lg:grid-cols-3">
           {
             services.map((service) => (
-              <li>
+              <li class="max-w-xl">
                 <svg class="mx-auto mb-6 h-12 w-12 text-primary">
                   <use href={`/assets/icons.svg#${service.icon}`} />
                 </svg>
@@ -59,7 +59,7 @@ import { Layout } from 'layouts';
     </section>
 
     <section class="my-spacing">
-      <div class="mx-auto lg:max-w-4xl">
+      <div class="container lg:max-w-4xl">
         <h1 class="c-h2">Our Approach</h1>
         <p class="c-h4">
           We take a creative and collaborative approach to web development. We
@@ -68,24 +68,25 @@ import { Layout } from 'layouts';
           We also offer ongoing support and maintenance, so you can be sure that
           your website is always up-to-date and secure.
         </p>
+        <p class="text-red-500">TODO: Style this section</p>
       </div>
     </section>
 
     <section class="my-spacing">
-      <div
-        class="container mx-auto grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-16"
-      >
-        <div>
-          <h2 class="c-h2">Contact us</h2>
-          <p class="c-h4">
-            If you are interested in learning more about our services, please
-            contact us today. We would be happy to discuss your needs and
-            provide you with a free consultation.
-          </p>
-        </div>
-        <div class="relative bg-dark px-8 py-16 lg:rounded-xl">
-          <div class="mx-auto max-w-sm">
-            <ContactForm />
+      <div class="mx-auto max-w-7xl lg:px-8">
+        <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-24">
+          <div class="container lg:px-0">
+            <h2 class="c-h2">Contact us</h2>
+            <p class="c-h4">
+              If you are interested in learning more about our services, please
+              contact us today. We would be happy to discuss your needs and
+              provide you with a free consultation.
+            </p>
+          </div>
+          <div class="relative bg-dark px-8 py-16 lg:rounded-xl">
+            <div class="mx-auto max-w-sm">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
