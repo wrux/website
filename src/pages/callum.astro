@@ -1,0 +1,139 @@
+---
+import { Picture } from '@astrojs/image/components';
+
+import { Jobs, Logo, Paragraph, SiteFooter } from 'components';
+import { description, jobs } from 'data';
+import { Layout } from 'layouts';
+---
+
+<Layout
+  title="Callum Bonnyman, Frontend Engineer | wrux.com"
+  description={description}
+>
+  <header
+    class="screen-min container relative flex h-screen-dynamic max-w-full flex-col items-center justify-center p-8 text-center md:p-16 lg:p-24"
+  >
+    <h1>
+      <span class="sr-only">WRUX.com</span>
+      <Logo animated className="mb-8 text-step-3" />
+    </h1>
+    <Paragraph
+      as="h2"
+      className="animated-subheading mb-8 text-primary"
+      textStyle="overline-sm"
+    >
+      Web Development Services
+    </Paragraph>
+    <lottie-player
+      id="scroll-indicator"
+      class="absolute bottom-8 left-1/2 h-16 w-16 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-in-out"
+      src="https://assets9.lottiefiles.com/packages/lf20_0msniqpo.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay
+    >
+    </lottie-player>
+  </header>
+  <main>
+    <section class="my-spacing">
+      <div class="mx-auto lg:max-w-4xl">
+        <div
+          class="md:py-22 mx-auto flex flex-col items-center justify-center bg-dark px-8 py-16 text-center md:px-16 lg:rounded-xl lg:px-20"
+        >
+          <Picture
+            class="mb-6 max-w-[10rem] rounded-xl md:ml-auto md:max-w-[18rem]"
+            src="/assets/callum-bonnyman.jpeg"
+            widths={[160, 300, 600]}
+            sizes="(max-width: 767px) 160px, 300px"
+            aspectRatio="1:1"
+            loading="lazy"
+            background="#00eacf"
+            alt="Callum Bonnyman"
+            width={300}
+            height={300}
+          />
+          <Paragraph as="h2" className="mb-4 leading-none" textStyle="h1">
+            Callum Bonnyman
+          </Paragraph>
+          <Paragraph
+            as="h2"
+            className="mb-8 text-secondary"
+            textStyle="overline"
+          >
+            Frontend Engineer
+          </Paragraph>
+          <div class="max-w-prose">
+            <Paragraph textStyle="h4">{description}</Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-8 my-spacing">
+      <div class="container mx-auto max-w-3xl">
+        <Paragraph slot="side" as="h2" className="mb-8" textStyle="h2">
+          Work Experience
+        </Paragraph>
+        <Jobs jobs={jobs} />
+      </div>
+    </section>
+
+    <section class="my-spacing bg-dark">
+      <div class="container mx-auto">
+        <div
+          class="md:py-22 mx-auto flex max-w-3xl flex-col items-center justify-center px-8 py-16 text-center md:px-16 lg:px-20"
+        >
+          <div class="max-w-prose">
+            <Paragraph textStyle="h4">
+              Feel free to
+              <a href="mailto:callum@wrux.com" class="link">contact me</a>
+              to discuss freelance work opportunities. I am an experienced frontend
+              developer with a proven track record of success. I am available to
+              work on a freelance basis and open to full time work.
+            </Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<script>
+  const scrollIndicator = document.getElementById('scroll-indicator');
+  const tryToShowIndicator = () =>
+    scrollIndicator?.classList.toggle(
+      'opacity-0',
+      (window.scrollY / window.outerHeight) * 100 > 20
+    );
+
+  if (scrollIndicator) {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(tryToShowIndicator, 1100);
+    });
+
+    window.addEventListener('scroll', tryToShowIndicator, { passive: true });
+  }
+</script>
+
+<style scoped>
+  .animated-subheading {
+    animation-name: animateSubheadIn;
+    animation-duration: 300ms;
+    animation-delay: 1100ms;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
+
+  @keyframes animateSubheadIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+</style>

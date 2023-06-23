@@ -58,6 +58,49 @@ export const links: Array<Link> = [
   },
 ];
 
+export const services: Array<{
+  description: string;
+  icon: string;
+  title: string;
+}> = [
+  {
+    description:
+      'We offer website design and development services that help businesses create a strong online presence.',
+    icon: 'code',
+    title: 'Website Design and Development',
+  },
+  {
+    title: 'E-commerce Development',
+    icon: 'commerce',
+    description:
+      'We offer e-commerce development services that help businesses create and manage successful online stores.',
+  },
+  {
+    title: 'Content Management Systems (CMS)',
+    icon: 'text',
+    description:
+      'We offer CMS services that help businesses  easily create, manage, and update their website content.',
+  },
+  {
+    title: 'Web Hosting',
+    icon: 'web',
+    description:
+      'We offer web hosting services that help businesses get their websites online and keep them running smoothly.',
+  },
+  {
+    title: 'Search Engine Optimisation (SEO)',
+    icon: 'search',
+    description:
+      "We offer SEO services that help businesses improve their website's visibility in search engines, resulting in more traffic and leads.",
+  },
+  {
+    title: 'Website Accessibility Compliance',
+    icon: 'accessibility',
+    description:
+      'We offer website accessibility compliance services that help businesses ensure their websites are accessible to people with disabilities, in accordance with the recommended guidelines.',
+  },
+];
+
 export const recentWork: Array<Project> = [
   {
     description:

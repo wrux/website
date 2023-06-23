@@ -84,6 +84,7 @@ module.exports = {
       },
       margin: {
         spacing: 'min(16rem, 10vh)',
+        'spacing-sm': 'min(8rem, 5vh)',
       },
       height: {
         'screen-dynamic': '100dvh',
