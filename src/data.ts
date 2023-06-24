@@ -138,3 +138,24 @@ export const recentWork: Array<Project> = [
     image: '/assets/projects/bnn.png',
   },
 ];
+
+export const approaches: Array<{
+  title: string;
+  summary: string;
+}> = [
+  {
+    summary:
+      'We take a creative and collaborative approach to web development. We work with you to understand your business needs, and then we design and develop a website that is tailored to your specific requirements.',
+    title: 'Creative and Collaborative',
+  },
+  {
+    summary:
+      'We offer ongoing support and maintenance, so you can be sure that your website is always up-to-date and secure.',
+    title: 'Ongoing Process',
+  },
+  {
+    summary:
+      'We offer various website audits to keep your website accessible, performant and up to date with your competitors SEO rankings.',
+    title: 'Audits',
+  },
+];

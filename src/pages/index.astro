@@ -1,6 +1,6 @@
 ---
 import { ContactForm, SiteFooter, SiteHeader } from 'components';
-import { description, services } from 'data';
+import { approaches, description, services } from 'data';
 import { Layout } from 'layouts';
 ---
 
@@ -59,16 +59,39 @@ import { Layout } from 'layouts';
     </section>
 
     <section class="my-spacing">
-      <div class="container lg:max-w-4xl">
-        <h1 class="c-h2">Our Approach</h1>
-        <p class="c-h4">
-          We take a creative and collaborative approach to web development. We
-          work with you to understand your needs and goals, and then we design
-          and develop a website that is tailored to your specific requirements.
-          We also offer ongoing support and maintenance, so you can be sure that
-          your website is always up-to-date and secure.
-        </p>
-        <p class="text-red-500">TODO: Style this section</p>
+      <div class="container lg:max-w-6xl">
+        <h2 class="c-h2 mb-8 text-center lg:mb-16">Our Approach</h2>
+        <div class="flex flex-col gap-16">
+          {
+            approaches.map((approach, index) => (
+              <div
+                class:list={[
+                  'flex flex-col gap-8 lg:gap-16',
+                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse',
+                ]}
+              >
+                <div class="grid max-w-md flex-1 place-items-center lg:max-w-[40%]">
+                  <div class="grid aspect-video w-full max-w-sm place-items-center bg-gray-900">
+                    ILLUSTRATION HERE
+                  </div>
+                </div>
+                <div class="flex-1 bg-dark px-8 lg:rounded-xl lg:py-16">
+                  <span
+                    aria-hidden
+                    class="mb-4 grid h-16 w-16 place-items-center rounded-full bg-secondary text-step-2 leading-none text-white"
+                  >
+                    {index + 1}
+                  </span>
+                  <h3 class="c-h3 mb-2">
+                    <span class="sr-only">Approach {index + 1}:</span>
+                    {approach.title}
+                  </h3>
+                  <p class="c-p">{approach.summary}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </section>
 
@@ -83,7 +106,7 @@ import { Layout } from 'layouts';
               provide you with a free consultation.
             </p>
           </div>
-          <div class="relative bg-dark px-8 lg:rounded-xl lg:py-16">
+          <div class="bg-dark px-8 lg:rounded-xl lg:py-16">
             <div class="mx-auto max-w-sm">
               <ContactForm />
             </div>
