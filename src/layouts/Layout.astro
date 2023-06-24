@@ -31,7 +31,7 @@ const { description, title } = Astro.props;
       defer
     ></script>
   </head>
-  <body class="text-white bg-black">
+  <body class="bg-white text-dark dark:bg-black dark:text-white">
     <slot />
   </body>
 </html>
@@ -44,6 +44,6 @@ const { description, title } = Astro.props;
   }
 
   .link {
-    @apply text-primary underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent;
+    @apply text-secondary underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent dark:text-primary;
   }
 </style>
