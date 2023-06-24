@@ -18,8 +18,8 @@ const { jobs } = Astro.props;
           textStyle={index === 0 ? 'h3' : 'h4'}
         >
           <span>{job.title}</span>
-          <span class="hidden h-[1px] flex-1 border-b border-b-dark dark:border-b-white md:block" />
-          <span class="text-secondary dark:text-primary">
+          <span class="hidden h-[1px] flex-1 border-b border-b-current md:block" />
+          <span class="text-main">
             <span class="sr-only">Tenure:</span> {job.tenure}
           </span>
         </Paragraph>

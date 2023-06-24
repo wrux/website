@@ -1,5 +1,3 @@
-/** @type {import('tailwindcss').Config} */
-
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const textStyles = ({ theme }) => ({
@@ -54,8 +52,9 @@ const textStyles = ({ theme }) => ({
   },
 });
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // darkMode: 'class',
+  darkMode: 'class',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   safelist: [
     // Don't purge typography classes
@@ -68,6 +67,9 @@ module.exports = {
         secondary: '#6f68e3',
         dark: '#1f1f28',
         offwhite: '#e5e5e5',
+        main: 'var(--highlight-main)',
+        accent: 'var(--highlight-accent)',
+        background: 'var(--highlight-background)',
       },
       container: {
         center: true,

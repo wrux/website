@@ -44,6 +44,18 @@ const { description, title } = Astro.props;
   }
 
   .link {
-    @apply text-secondary underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent dark:text-primary;
+    @apply text-main underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent;
+  }
+
+  :root {
+    --highlight-main: theme(colors.secondary);
+    --highlight-accent: theme(colors.primary);
+    --highlight-background: theme(colors.gray.100);
+
+    @media (prefers-color-scheme: dark) {
+      --highlight-main: theme(colors.primary);
+      --highlight-accent: theme(colors.secondary);
+      --highlight-background: theme(colors.dark);
+    }
   }
 </style>

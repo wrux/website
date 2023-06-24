@@ -34,9 +34,9 @@ import { Layout } from 'layouts';
       </div>
     </section>
 
-    <section class="md:py-22 my-spacing bg-gray-100 py-16 dark:bg-dark">
+    <section class="md:py-22 my-spacing bg-background py-16">
       <div class="container text-center lg:max-w-6xl">
-        <h2 class="c-h2 text-secondary dark:text-primary">Our services</h2>
+        <h2 class="c-h2 text-main">Our services</h2>
         <p class="lg:mb-22 c-p-lg mb-8 md:mb-16">
           We offer a wide range of web development services
         </p>
@@ -44,7 +44,7 @@ import { Layout } from 'layouts';
           {
             services.map((service) => (
               <li class="max-w-xl">
-                <svg class="mx-auto mb-6 h-12 w-12 text-secondary dark:text-primary">
+                <svg class="mx-auto mb-6 h-12 w-12 text-main">
                   <use href={`/assets/icons.svg#${service.icon}`} />
                 </svg>
                 <h3 class="mb-3 text-step-1 font-semibold leading-tight">
@@ -75,7 +75,7 @@ import { Layout } from 'layouts';
                     ILLUSTRATION HERE
                   </div>
                 </div>
-                <div class="flex-1 bg-gray-100 px-8 dark:bg-dark lg:rounded-xl lg:py-16">
+                <div class="flex-1 bg-background px-8 lg:rounded-xl lg:py-16">
                   <span
                     aria-hidden
                     class="mb-4 grid h-16 w-16 place-items-center rounded-full bg-secondary text-step-2 leading-none text-white"
@@ -95,9 +95,7 @@ import { Layout } from 'layouts';
       </div>
     </section>
 
-    <section
-      class="my-spacing bg-gray-100 py-16 dark:bg-dark lg:bg-transparent lg:py-0"
-    >
+    <section class="my-spacing bg-background py-16 lg:bg-transparent lg:py-0">
       <div class="mx-auto max-w-7xl lg:px-8">
         <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-24">
           <div class="container lg:px-0">
@@ -108,7 +106,7 @@ import { Layout } from 'layouts';
               provide you with a free consultation.
             </p>
           </div>
-          <div class="bg-gray-100 px-8 dark:bg-dark lg:rounded-xl lg:py-16">
+          <div class="bg-bg bg-background px-8 lg:rounded-xl lg:py-16">
             <div class="mx-auto max-w-sm">
               <ContactForm />
             </div>
