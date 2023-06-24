@@ -10,7 +10,7 @@ const { description, title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -31,31 +31,39 @@ const { description, title } = Astro.props;
       defer
     ></script>
   </head>
-  <body class="bg-white text-dark dark:bg-black dark:text-white">
+  <body>
     <slot />
   </body>
 </html>
 
 <style is:global>
+  :root {
+    --body-bg: white;
+    --body-text: theme(colors.dark);
+
+    --highlight-main: theme(colors.secondary);
+    --highlight-accent: theme(colors.primary);
+    --highlight-background: theme(colors.gray.100);
+  }
+
+  html.dark {
+    --body-bg: black;
+    --body-text: white;
+
+    --highlight-main: theme(colors.primary);
+    --highlight-accent: theme(colors.secondary);
+    --highlight-background: theme(colors.dark);
+  }
+
   html,
   body {
     max-width: 100vw;
     overflow-x: hidden;
+    background-color: var(--body-bg);
+    color: var(--body-text);
   }
 
   .link {
     @apply text-main underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent;
-  }
-
-  :root {
-    --highlight-main: theme(colors.secondary);
-    --highlight-accent: theme(colors.primary);
-    --highlight-background: theme(colors.gray.100);
-
-    @media (prefers-color-scheme: dark) {
-      --highlight-main: theme(colors.primary);
-      --highlight-accent: theme(colors.secondary);
-      --highlight-background: theme(colors.dark);
-    }
   }
 </style>

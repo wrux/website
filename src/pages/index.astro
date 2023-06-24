@@ -61,7 +61,7 @@ import { Layout } from 'layouts';
     <section class="my-spacing">
       <div class="container lg:max-w-6xl">
         <h2 class="c-h2 mb-8 text-center lg:mb-16">Our Approach</h2>
-        <div class="flex flex-col gap-16">
+        <div class="flex flex-col gap-16 pb-16">
           {
             approaches.map((approach, index) => (
               <div
@@ -95,9 +95,9 @@ import { Layout } from 'layouts';
       </div>
     </section>
 
-    <section class="my-spacing bg-background py-16 lg:bg-transparent lg:py-0">
+    <section class="md:py-22 my-spacing bg-background py-16">
       <div class="mx-auto max-w-7xl lg:px-8">
-        <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-24">
+        <div class="grid gap-8 md:gap-12 lg:grid-cols-2 lg:gap-24">
           <div class="container lg:px-0">
             <h2 class="c-h2">Contact us</h2>
             <p class="c-h4">
@@ -106,9 +106,9 @@ import { Layout } from 'layouts';
               provide you with a free consultation.
             </p>
           </div>
-          <div class="bg-bg bg-background px-8 lg:rounded-xl lg:py-16">
+          <div>
             <div class="mx-auto max-w-sm">
-              <ContactForm />
+              <!-- <ContactForm /> -->
             </div>
           </div>
         </div>
