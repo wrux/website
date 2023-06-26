@@ -140,20 +140,24 @@ export const recentWork: Array<Project> = [
 ];
 
 export const approaches: Array<{
+  animation: string;
   title: string;
   summary: string;
 }> = [
   {
+    animation: 'https://assets2.lottiefiles.com/packages/lf20_obpcci6k.json',
     summary:
       'We take a creative and collaborative approach to web development. We work with you to understand your business needs, and then we design and develop a website that is tailored to your specific requirements.',
     title: 'Creative and Collaborative',
   },
   {
+    animation: 'https://assets10.lottiefiles.com/packages/lf20_3dw8ed6q.json',
     summary:
       'We offer ongoing support and maintenance, so you can be sure that your website is always up-to-date and secure.',
     title: 'Ongoing Process',
   },
   {
+    animation: 'https://assets8.lottiefiles.com/packages/lf20_e9zwg7jb.json',
     summary:
       'We offer various website audits to keep your website accessible, performant and up to date with your competitors SEO rankings.',
     title: 'Audits',

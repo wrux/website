@@ -17,7 +17,7 @@ import { Layout } from 'layouts';
           Your Oxfordshire based Web Development Agency
         </h1>
         <lottie-player
-          class="pointer-events-none mx-auto mb-8 block aspect-[672/464] h-auto max-w-2xl"
+          class="pointer-events-none mx-auto mb-8 block aspect-[672/464] h-auto max-w-2xl select-none"
           src="https://lottie.host/a1881fee-27e5-4598-be52-2d6bbf57ec4f/Jb0BC6ndX7.json"
           background="transparent"
           speed="0.333"
@@ -59,7 +59,7 @@ import { Layout } from 'layouts';
     </section>
 
     <section class="my-spacing">
-      <div class="container lg:max-w-6xl">
+      <div class="container lg:max-w-7xl">
         <h2 class="c-h2 mb-8 text-center lg:mb-16">Our Approach</h2>
         <div class="gap:8 flex flex-col gap-8 md:gap-12 lg:gap-16">
           {
@@ -70,12 +70,17 @@ import { Layout } from 'layouts';
                   index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse',
                 ]}
               >
-                <div class="grid w-full max-w-md flex-1 place-items-center lg:max-w-[40%]">
-                  <div class="grid aspect-video w-full max-w-sm place-items-center bg-gray-900 text-white">
-                    ILLUSTRATION HERE
-                  </div>
+                <div class="grid w-full max-w-md flex-1 place-items-center lg:max-w-full">
+                  <lottie-player
+                    class="pointer-events-none mx-auto mb-8 block aspect-[672/464] h-auto max-w-2xl select-none"
+                    src={approach.animation}
+                    background="transparent"
+                    speed="0.333"
+                    loop
+                    autoplay
+                  />
                 </div>
-                <div class="flex max-w-prose flex-1 flex-col justify-center rounded-xl bg-background p-8 text-center lg:py-16">
+                <div class="flex max-w-prose flex-1 flex-col justify-center rounded-xl bg-background p-8 text-center lg:max-w-[40%] lg:py-16">
                   <span
                     aria-hidden
                     class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full bg-secondary text-step-2 leading-none text-white"
