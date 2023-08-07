@@ -13,7 +13,7 @@
   "dependencies": {
     "@astrojs/image": "^0.17.2",
     "@astrojs/tailwind": "^4.0.0",
-    "@fontsource-variable/inter": "^5.0.5",
+    "@fontsource-variable/inter": "^5.0.8",
     "astro": "^2.9.6",
     "astro-compress": "^1.1.50",
     "sharp": "^0.32.4",
