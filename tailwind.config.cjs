@@ -28,14 +28,14 @@ const textStyles = ({ theme }) => ({
   },
   overline: {
     fontSize: theme('fontSize.step--1'),
-    fontWeight: theme('fontWeight.bold'),
+    fontWeight: theme('fontWeight.semibold'),
     lineHeight: 1,
     letterSpacing: '0.125em',
     textTransform: 'uppercase',
   },
   overlineSm: {
     fontSize: theme('fontSize.step--2'),
-    fontWeight: theme('fontWeight.bold'),
+    fontWeight: theme('fontWeight.normal'),
     lineHeight: 1,
     letterSpacing: '0.125em',
     textTransform: 'uppercase',

@@ -1,7 +1,6 @@
 ---
 import { Picture } from '@astrojs/image/components';
-
-import { Jobs, Logo, Paragraph, Projects } from 'components';
+import { Logo, Section } from 'components';
 import { description, jobs, links, recentWork } from 'data';
 import { Layout } from 'layouts';
 ---
@@ -10,46 +9,29 @@ import { Layout } from 'layouts';
   title="Callum Bonnyman, Frontend Eengineer | wrux.com"
   description={description}
 >
-  <header
-    class="screen-min container relative flex h-screen-dynamic max-w-full flex-col items-center justify-center p-8 text-center md:p-16 lg:p-24"
-  >
-    <h1>
-      <span class="sr-only">WRUX.com</span>
-      <Logo animated className="mb-8 text-step-3" />
-    </h1>
-    <Paragraph
-      as="h2"
-      className="animated-subheading mb-8 text-primary"
-      textStyle="overline-sm"
-    >
-      Web Development Services
-    </Paragraph>
-    <lottie-player
-      id="scroll-indicator"
-      class="absolute bottom-8 left-1/2 h-16 w-16 -translate-x-1/2 opacity-0 transition-opacity duration-300 ease-in-out"
-      src="https://assets9.lottiefiles.com/packages/lf20_0msniqpo.json"
-      background="transparent"
-      speed="1"
-      loop
-      autoplay
-    >
-    </lottie-player>
+  <header class="sticky top-0 bg-black/20 backdrop-blur-lg w-screen my-spacing z-50">
+    <div class="container mx-auto flex items-center gap-8 h-20">
+      <h1>
+        <span class="sr-only">WRUX.com</span>
+        <Logo className="text-4xl" />
+      </h1>
+      <div aria-hidden class="h-0.5 bg-white flex-1"></div>
+      <h2 class="c-overline-sm">
+        Front end engineer and Freelancer
+        &bullet;
+        <a href="mailto:callum@wrux.com" class="link">
+          Available for work
+        </a>
+      </h2>
+    </div>
   </header>
-  <main>
-    <!-- <section class="mb-spacing w-full overflow-hidden">
-      <div class="container max-w-full text-center">
-        <Paragraph as="h2" textStyle="h2">Recent Work</Paragraph>
-      </div>
-      <Projects projects={recentWork} />
-    </section> -->
 
-    <section class="my-spacing">
-      <div class="mx-auto lg:max-w-4xl">
-        <div
-          class="md:py-22 mx-auto flex flex-col items-center justify-center bg-gray-900 px-8 py-16 text-center md:px-16 lg:rounded-xl lg:px-20"
-        >
+  <main>
+    <Section title="About Me">
+      <div class="flex md:flex-row-reverse gap-y-8 gap-x-16">
+        <div class="flex-1">
           <Picture
-            class="mb-6 max-w-[10rem] rounded-xl md:ml-auto md:max-w-[18rem]"
+            class="rounded-xl w-full"
             src="/assets/callum-bonnyman.jpeg"
             widths={[160, 300, 600]}
             sizes="(max-width: 767px) 160px, 300px"
@@ -60,50 +42,87 @@ import { Layout } from 'layouts';
             width={300}
             height={300}
           />
-          <Paragraph as="h2" className="mb-4 leading-none" textStyle="h1">
+      </div>
+        <div class="flex-1">
+          <h3 class="mb-4 leading-none c-h1">
             Callum Bonnyman
-          </Paragraph>
-          <Paragraph
-            as="h2"
-            className="mb-8 text-secondary"
-            textStyle="overline"
-          >
+          </h3>
+          <p class="mb-8 text-primary c-overline">
             Frontend Engineer
-          </Paragraph>
+          </p>
           <div class="max-w-prose">
-            <Paragraph textStyle="h4">{description}</Paragraph>
+            <p class="c-h4">{description}</p>
           </div>
+          <p class="mt-8 mb-2 c-p">
+            Find me elsewhere
+          </p>
+          <nav aria-label="Social links navigation">
+            <ul
+              class="c-p space-y-2"
+            >
+              {
+                links.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="nofollow noreferer"
+                      class="link"
+                    >
+                      {link.name}
+                      <span class="sr-only">(opens in new tab)</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
         </div>
       </div>
-    </section>
+    </Section>
 
-    <section class="mx-8 my-spacing">
-      <div class="container mx-auto max-w-3xl">
-        <Paragraph slot="side" as="h2" className="mb-8" textStyle="h2">
-          Work Experience
-        </Paragraph>
-        <Jobs jobs={jobs} />
+    <Section title="Work Experience">
+      <div class="grid gap-8 md:gap-12 lg:gap-16 xl:gap-24">
+        {jobs.map((job, index) => (
+          <article class="flex flex-col gap-2">
+            <span class="inline-block text-8xl font-semibold leading-none" aria-hidden>
+              {String(index + 1).padStart(2, '0')}.
+            </span>
+            <h3 class="text-step-5">{job.title}</h3>
+            <span class="text-step-1 text-primary">
+              <span class="sr-only">Tenure:</span> {job.tenure}
+            </span>
+            <span class="text-step-1">
+              {job.company} &bullet; {job.location}
+            </span>
+          </article>
+        ))}
       </div>
-    </section>
+    </Section>
 
     <section class="my-spacing bg-gray-900">
-      <div class="container mx-auto">
-        <div
-          class="md:py-22 mx-auto flex max-w-3xl flex-col items-center justify-center px-8 py-16 text-center md:px-16 lg:px-20"
-        >
-          <div class="max-w-prose">
-            <Paragraph textStyle="h4">
-              Feel free to
-              <a href="mailto:callum@wrux.com" class="link">contact me</a>
-              to discuss freelance work opportunities. I am an experienced frontend
-              developer with a proven track record of success. I am proficient in
-              HTML, CSS, JavaScript, and React. I am available to work on a freelance
-              basis.
-            </Paragraph>
-          </div>
+      <div class="container mx-auto py-16 lg:py-24 xl:py-32 flex justify-between items-end">
+        <div class="max-w-prose">
+          <h2 class="c-h2 mb-8">Contact Me</h2>
+          <p class="c-h4">
+            Feel free to
+            <a href="mailto:callum@wrux.com" class="link">contact me</a>
+            to discuss freelance work opportunities. I am an experienced frontend
+            developer with a proven track record of success. I am proficient in
+            HTML, CSS, JavaScript, and React. I am available to work on a freelance
+            basis.
+          </p>
         </div>
+        <a href="mailto:callum@wrux.com" class="button">Get in contact</a>
       </div>
     </section>
+
+    <!-- <section class="mb-spacing w-full overflow-hidden">
+      <div class="container max-w-full text-center">
+        <Paragraph as="h2" textStyle="h2">Recent Work</Paragraph>
+      </div>
+      <Projects projects={recentWork} />
+    </section> -->
   </main>
 
   <footer class="m-spacing">
@@ -137,24 +156,24 @@ import { Layout } from 'layouts';
 </Layout>
 
 <script>
-  const scrollIndicator = document.getElementById('scroll-indicator');
-  const tryToShowIndicator = () =>
-    scrollIndicator?.classList.toggle(
-      'opacity-0',
-      (window.scrollY / window.outerHeight) * 100 > 20
-    );
+  // const scrollIndicator = document.getElementById('scroll-indicator');
+  // const tryToShowIndicator = () =>
+  //   scrollIndicator?.classList.toggle(
+  //     'opacity-0',
+  //     (window.scrollY / window.outerHeight) * 100 > 20
+  //   );
 
-  if (scrollIndicator) {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(tryToShowIndicator, 1100);
-    });
+  // if (scrollIndicator) {
+  //   document.addEventListener('DOMContentLoaded', () => {
+  //     setTimeout(tryToShowIndicator, 1100);
+  //   });
 
-    window.addEventListener('scroll', tryToShowIndicator, { passive: true });
-  }
+  //   window.addEventListener('scroll', tryToShowIndicator, { passive: true });
+  // }
 </script>
 
 <style scoped>
-  .animated-subheading {
+  /* .animated-subheading {
     animation-name: animateSubheadIn;
     animation-duration: 300ms;
     animation-delay: 1100ms;
@@ -170,5 +189,5 @@ import { Layout } from 'layouts';
     100% {
       opacity: 1;
     }
-  }
+  } */
 </style>

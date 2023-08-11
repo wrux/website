@@ -5,7 +5,7 @@ export const jobs: Array<Job> = [
     company: 'Transom Design',
     location: 'Seattle, USA',
     tenure: '2022 - Present',
-    title: 'Design System Engineer',
+    title: 'Frontend Engineer',
   },
   {
     company: 'DEPT®',

@@ -4,6 +4,7 @@ declare global {
   type Job = {
     company: string;
     location: string;
+    summary?: string;
     tenure: string;
     title: string;
   };
