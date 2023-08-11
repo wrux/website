@@ -9,13 +9,13 @@ import { Layout } from 'layouts';
   title="Callum Bonnyman, Frontend Eengineer | wrux.com"
   description={description}
 >
-  <header class="sticky top-0 bg-black/20 backdrop-blur-lg w-screen my-spacing z-50">
-    <div class="container mx-auto flex items-center gap-8 h-20">
+  <header class="md:sticky top-0 bg-black/20 backdrop-blur-lg w-screen my-spacing z-50">
+    <div class="container flex flex-col md:flex-row items-center gap-8 h-20 text-center md:text-left">
       <h1>
         <span class="sr-only">WRUX.com</span>
-        <Logo className="text-4xl" />
+        <Logo animated className="text-4xl" />
       </h1>
-      <div aria-hidden class="h-0.5 bg-white flex-1"></div>
+      <div aria-hidden class="h-0.5 bg-white flex-1 hidden md:block"></div>
       <h2 class="c-overline-sm">
         Front end engineer and Freelancer
         &bullet;
@@ -28,10 +28,10 @@ import { Layout } from 'layouts';
 
   <main>
     <Section title="About Me">
-      <div class="flex md:flex-row-reverse gap-y-8 gap-x-16">
+      <div class="flex flex-col md:flex-row-reverse gap-y-8 gap-x-16">
         <div class="flex-1">
           <Picture
-            class="rounded-xl w-full"
+            class="rounded-xl w-full max-w-[10rem] md:max-w-full"
             src="/assets/callum-bonnyman.jpeg"
             widths={[160, 300, 600]}
             sizes="(max-width: 767px) 160px, 300px"
@@ -82,17 +82,17 @@ import { Layout } from 'layouts';
     </Section>
 
     <Section title="Work Experience">
-      <div class="grid gap-8 md:gap-12 lg:gap-16 xl:gap-24">
+      <div class="grid gap-16 lg:gap-24">
         {jobs.map((job, index) => (
           <article class="flex flex-col gap-2">
-            <span class="inline-block text-8xl font-semibold leading-none" aria-hidden>
+            <span class="inline-block text-6xl md:text-8xl font-semibold leading-none" aria-hidden>
               {String(index + 1).padStart(2, '0')}.
             </span>
-            <h3 class="text-step-5">{job.title}</h3>
-            <span class="text-step-1 text-primary">
+            <h3 class="c-h1">{job.title}</h3>
+            <span class="c-h4 text-primary">
               <span class="sr-only">Tenure:</span> {job.tenure}
             </span>
-            <span class="text-step-1">
+            <span class="c-h4">
               {job.company} &bullet; {job.location}
             </span>
           </article>
@@ -101,7 +101,7 @@ import { Layout } from 'layouts';
     </Section>
 
     <section class="my-spacing bg-gray-900">
-      <div class="container mx-auto py-16 lg:py-24 xl:py-32 flex justify-between items-end">
+      <div class="container py-16 lg:py-24 xl:py-32 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-16">
         <div class="max-w-prose">
           <h2 class="c-h2 mb-8">Contact Me</h2>
           <p class="c-h4">
@@ -127,7 +127,7 @@ import { Layout } from 'layouts';
 
   <footer class="m-spacing">
     <div
-      class="container mx-auto flex flex-col items-center justify-between gap-8 md:flex-row md:gap-12 lg:gap-16"
+      class="container flex flex-col items-center justify-between gap-8 md:flex-row md:gap-12 lg:gap-16"
     >
       <Logo className="text-step-1" />
       <nav aria-label="Footer navigation">

@@ -10,6 +10,7 @@ const textStyles = ({ theme }) => ({
     extends: 'heading',
     fontSize: theme('fontSize.step-4'),
     fontWeight: theme('fontWeight.semibold'),
+    lineHeight: 1.2,
   },
   h2: {
     extends: 'heading',
@@ -29,14 +30,14 @@ const textStyles = ({ theme }) => ({
   overline: {
     fontSize: theme('fontSize.step--1'),
     fontWeight: theme('fontWeight.semibold'),
-    lineHeight: 1,
+    lineHeight: 1.3,
     letterSpacing: '0.125em',
     textTransform: 'uppercase',
   },
   overlineSm: {
     fontSize: theme('fontSize.step--2'),
     fontWeight: theme('fontWeight.normal'),
-    lineHeight: 1,
+    lineHeight: 1.3,
     letterSpacing: '0.125em',
     textTransform: 'uppercase',
   },
@@ -61,6 +62,10 @@ module.exports = {
     { pattern: /^c-/ },
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+    },
     extend: {
       colors: {
         primary: '#00eacf',
