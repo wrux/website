@@ -32,29 +32,38 @@ export const links: Array<Link> = [
     description: `My GitHub profile with various public repositories, including the  source
       code for <a href="https://github.com/wrux/website" target="_blank" rel="nofollow noreferer" class="link">this website<span class="sr-only"> (opens in new tab)</span></a> built with AstroJS and Tailwind.`,
     href: 'https://github.com/wrux',
+    icon: 'mdi:github',
     name: 'Github',
-    newTab: true,
+    rel: 'nofollow noreferer',
     text: 'View my Github profile',
   },
   {
     href: 'https://www.linkedin.com/in/callum-bonnyman',
+    icon: 'mdi:linkedin',
     name: 'LinkedIn',
-    newTab: true,
+    rel: 'nofollow noreferer',
     text: 'View my LinkedIn profile',
   },
   {
     href: 'https://www.instagram.com/etocallum/',
+    icon: 'mdi:instagram',
     name: 'Instagram',
-    newTab: true,
+    rel: 'nofollow noreferer',
     text: 'Follow me on Instagram',
   },
   {
     description:
       'My travel blog of experiences from many countries all around the world. Sadly there has not been much to write about recently.',
     href: 'https://bloke.blog/',
+    icon: 'icon-park-outline:writing-fluently',
     name: 'Blog',
-    newTab: true,
     text: 'Check out my blog',
+  },
+  {
+    href: 'https://perpetual.pizza/',
+    icon: 'noto:pizza',
+    name: 'Perpetual Pizza',
+    text: 'Check out Perpetual Pizza',
   },
 ];
 

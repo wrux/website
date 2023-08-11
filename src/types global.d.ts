@@ -12,8 +12,9 @@ declare global {
   export type Link = {
     description?: string;
     href: string;
+    icon?: string;
     name: string;
-    newTab?: boolean;
+    rel?: string;
     text: string;
   };
 

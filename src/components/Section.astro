@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  title: string
+  title?: string
 }
 
 const { title } = Astro.props;
@@ -8,9 +8,9 @@ const { title } = Astro.props;
 
 
 <section class="container mx-auto my-spacing space-y-8 lg:space-y-12 xl:space-y-16">
-  <h2 class="inline-block md:sticky top-20 c-h4 bg-black/50 backdrop-blur-lg">
+  {title && <h2 class="inline-block md:sticky top-20 c-h4 bg-black/50 backdrop-blur-lg">
     {title}
-  </h2>
+  </h2>}
   <div>
     <slot />
   </div>
