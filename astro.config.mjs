@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import compress from 'astro-compress';
+import compress from '@otterlord/astro-compress';
 import tailwind from '@astrojs/tailwind';
 import image from '@astrojs/image';
 
