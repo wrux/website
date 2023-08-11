@@ -37,13 +37,11 @@ const { description, title } = Astro.props;
 </html>
 
 <style is:global>
-  html,
-  body {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-
   .link {
     @apply text-primary underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent;
+  }
+
+  .button {
+    @apply text-primary border-2 border-current rounded-md px-6 py-2 hover:bg-primary hover:text-black transition-colors c-p duration-300;
   }
 </style>

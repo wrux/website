@@ -4,6 +4,7 @@ declare global {
   type Job = {
     company: string;
     location: string;
+    summary?: string;
     tenure: string;
     title: string;
   };
@@ -11,8 +12,9 @@ declare global {
   export type Link = {
     description?: string;
     href: string;
+    icon?: string;
     name: string;
-    newTab?: boolean;
+    rel?: string;
     text: string;
   };
 
