@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import compress from '@otterlord/astro-compress';
+import compress from 'astro-compress';
 import tailwind from '@astrojs/tailwind';
 import image from '@astrojs/image';
 
@@ -10,9 +10,9 @@ export default defineConfig({
     }),
     tailwind(),
     compress({
-      path: ['./build', './dist'],
-      logger: 0,
-      html: {
+      Path: ['./build', './dist'],
+      Logger: 0,
+      HTML: {
         collapseInlineTagWhitespace: true,
         collapseWhitespace: true,
         conservativeCollapse: true,
