@@ -10,9 +10,9 @@ export default defineConfig({
     }),
     tailwind(),
     compress({
-      path: ['./build', './dist'],
-      logger: 0,
-      html: {
+      Path: ['./build', './dist'],
+      Logger: 0,
+      HTML: {
         collapseInlineTagWhitespace: true,
         collapseWhitespace: true,
         conservativeCollapse: true,
