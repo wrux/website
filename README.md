@@ -1,5 +1,3 @@
-![Screenshot of the website](screenshot.png)
-
 # Website for wrux.com
 
 Quick and simple website for [wrux.com](https://wrux.com) to test out the
