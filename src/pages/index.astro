@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon, Logo, Section } from 'components';
+import { Logo, Section } from 'components';
 import { description, jobs, links } from 'data';
 import { Layout } from 'layouts';
 ---
@@ -64,8 +64,16 @@ import { Layout } from 'layouts';
                         target="_blank"
                         rel={link?.rel}
                         class="inline-block text-4xl text-primary transition-all hover:scale-125 duration-300"
+                        title={`${link.text} (opens in new tab)`}
                       >
-                        <Icon name={link.icon} class="w-[1em] h-[1em]" />
+                        <svg
+                          viewBox="0 0 100 100"
+                          class="w-[1em] h-[1em]"
+                          aria-hidden
+                          user-select="none"
+                        >
+                          <use xlink:href={`#${link.icon}`} />
+                        </svg>
                         <span class="sr-only">
                           {link.text} (opens in new tab)
                         </span>
