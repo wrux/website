@@ -1,16 +1,15 @@
 ---
 export interface Props {
-  title?: string
+  title?: string;
 }
 
 const { title } = Astro.props;
 ---
 
-
-<section class="container mx-auto my-spacing space-y-8 lg:space-y-12 xl:space-y-16">
-  {title && <h2 class="c-h4">
-    {title}
-  </h2>}
+<section
+  class="container mx-auto my-spacing space-y-8 lg:space-y-12 xl:space-y-16"
+>
+  {title && <h2 class="c-h4 fade-in">{title}</h2>}
   <div>
     <slot />
   </div>

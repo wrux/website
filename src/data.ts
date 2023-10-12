@@ -1,4 +1,4 @@
-export const description = `I'm Callum, a Frontend Engineer from the United Kingdom. I love anything frontend, focusing on design systems, accessibility and browser performance.`;
+export const description = `With a decade of experience as a remote web developer, I specialize in crafting content-rich websites that prioritize performance and accessibility. My toolkit includes proficiency in content management systems, React, static websites, TypeScript, and Storybook.`;
 
 export const jobs: Array<Job> = [
   {
