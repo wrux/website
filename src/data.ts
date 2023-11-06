@@ -1,4 +1,5 @@
-export const description = `With a decade of experience as a remote web developer, I specialize in crafting content-rich websites that prioritize performance and accessibility. My toolkit includes proficiency in content management systems, React, static websites, TypeScript, and Storybook.`;
+export const description = `
+With a <strong>decade of experience</strong> working remotely as a web developer, my recent career trajectory has led me to specialise in frontend development. My passion is centred around constructing content-rich websites using technologies like <strong>React</strong>, <strong>Typescript</strong> and <strong>NextJS</strong> to build applications and design design systems, with a primary focus on delivering highly available, accessible, and exceptional user experiences.`;
 
 export const jobs: Array<Job> = [
   {
