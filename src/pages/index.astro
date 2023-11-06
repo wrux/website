@@ -29,12 +29,14 @@ import { Layout } from 'layouts';
   </header>
 
   <main>
-    <Section title="About Me">
-      <div class="flex flex-col md:flex-row-reverse gap-y-8 gap-x-16">
+    <Section>
+      <div
+        class="flex flex-col md:flex-row-reverse items-center gap-y-8 gap-x-16"
+      >
         <figure class="flex-1">
           <Image
             class="rounded-xl w-full"
-            src="/assets/callum-bonnyman-office.jpg"
+            src="/assets/callum-bonnyman-street.jpg"
             sizes="(max-width: 767px) 160px, 300px"
             loading="lazy"
             alt="Callum Bonnyman"
@@ -46,7 +48,7 @@ import { Layout } from 'layouts';
           <h3 class="mb-4 leading-none c-h1">Callum Bonnyman</h3>
           <p class="mb-8 text-primary c-overline">Frontend Engineer</p>
           <div class="max-w-prose">
-            <p class="c-h4">{description}</p>
+            <p class="c-h4" set:html={description} />
           </div>
           <nav
             class="mt-8 lg:mt-16 fade-in-up"
