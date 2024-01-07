@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import { Logo, Section } from 'components';
 import { description, jobs, links } from 'data';
 import { Layout } from 'layouts';
+
+import callum from '../images/callum-bonnyman-street.jpg';
 ---
 
 <Layout
@@ -36,9 +38,8 @@ import { Layout } from 'layouts';
         <figure class="flex-1">
           <Image
             class="rounded-xl w-full"
-            src="/assets/callum-bonnyman-street.jpg"
+            src={callum}
             sizes="(max-width: 767px) 160px, 300px"
-            loading="lazy"
             alt="Callum Bonnyman"
             width={300}
             height={300}
@@ -123,10 +124,9 @@ import { Layout } from 'layouts';
           <p class="c-h4 fade-in">
             Feel free to
             <a href="mailto:callum@wrux.com" class="link">contact me</a>
-             to discuss freelance work opportunities. I am an experienced
-            frontend developer with a proven track record of success. I am
-            proficient in HTML, CSS, JavaScript, and React. I am available to
-            work on a freelance basis.
+            to discuss freelance work opportunities. I am an experienced frontend
+            developer with a proven track record of success. I am proficient in HTML,
+            CSS, JavaScript, and React. I am available to work on a freelance basis.
           </p>
         </div>
         <a href="mailto:callum@wrux.com" class="button fade-in"
