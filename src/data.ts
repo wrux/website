@@ -3,9 +3,15 @@ With a <strong>decade of experience</strong> working remotely as a web developer
 
 export const jobs: Array<Job> = [
   {
+    company: 'Freelance',
+    location: '🌏 Remote',
+    tenure: '2022 - Present',
+    title: 'Frontend Engineer',
+  },
+  {
     company: 'Transom Design',
     location: 'Seattle, USA',
-    tenure: '2022 - Present',
+    tenure: '2022 - 2023',
     title: 'Frontend Engineer',
   },
   {
