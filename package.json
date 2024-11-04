@@ -22,5 +22,8 @@
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.6.4",
     "tailwindcss-typography": "^3.1.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.24.3"
   }
 }
