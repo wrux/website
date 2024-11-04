@@ -1,9 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import { Logo, Section } from '~/components';
 import { description, jobs, links } from '~/data';
 import { Layout } from '~/layouts';
-import callum from '~/images/callum-bonnyman-street.jpg';
 ---
 
 <Layout
@@ -35,9 +33,9 @@ import callum from '~/images/callum-bonnyman-street.jpg';
         class="flex flex-col md:flex-row-reverse items-center gap-y-8 gap-x-16"
       >
         <figure class="flex-1">
-          <Image
+          <img
             class="rounded-xl w-full"
-            src={callum}
+            src="/assets/callum-bonnyman-street-optimised.jpg"
             sizes="(max-width: 767px) 10rem, 18rem"
             alt="Callum Bonnyman"
             width={704}
