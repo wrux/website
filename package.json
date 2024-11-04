@@ -19,7 +19,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "cssnano": "^7.0.2",
-    "prettier": "^3.0.3",
+    "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.4",
     "tailwindcss-typography": "^3.1.0"
   },
