@@ -28,16 +28,6 @@ const { description, title } = Astro.props;
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <script
-      defer
-      data-api="/stats/api/event"
-      data-domain="wrux.com"
-      src="/stats/js/script.js"></script>
-    <script src="https://cdn.usefathom.com/script.js" data-site="HIFDIEQG" defer
-    ></script>
-    <script
-      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
-      defer></script>
   </head>
   <body class="text-white bg-black">
     <slot />
