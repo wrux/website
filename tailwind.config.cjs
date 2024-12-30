@@ -93,8 +93,7 @@ module.exports = {
       height: {
         'screen-dynamic': '100dvh',
       },
-      textStyles,
     },
   },
-  plugins: [require('tailwindcss-typography')()],
+  plugins: [],
 };
