@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import { Layout } from '~/layouts';
+import IntroBlock from '~/components/blocks/IntroBlock.astro';
 import WorkBlock from '~/components/blocks/WorkBlock.astro';
 import ContactBlock from '~/components/blocks/ContactBlock.astro';
-import IntroBlock from '~/components/blocks/IntroBlock.astro';
+import ProjectsBlock from '~/components/blocks/ProjectsBlock.astro';
 import SiteFooter from '~/components/layout/SiteFooter.astro';
 import SiteHeader from '~/components/layout/SiteHeader.astro';
 
@@ -12,6 +13,8 @@ const jobs = allJobs.sort((a, b) => (
   new Date(b.data.tenure.from).getTime() -
   new Date(a.data.tenure.from).getTime()
 ));
+
+const allProjects = await getCollection('projects');
 ---
 
 <Layout
@@ -24,6 +27,8 @@ const jobs = allJobs.sort((a, b) => (
     <IntroBlock />
     <WorkBlock jobs={jobs} />
     <ContactBlock />
+    <ProjectsBlock projects={allProjects} />
   </main>
 
   <SiteFooter />
+</Layout>
