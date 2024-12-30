@@ -1,0 +1,71 @@
+---
+import Section from "../Section.astro";
+
+export type Props = {
+  navigation: Link[];
+};
+
+const { navigation } = Astro.props;
+---
+
+<Section>
+  <div
+    class="flex flex-col md:flex-row-reverse items-center gap-y-8 gap-x-16"
+  >
+    <figure class="flex-1">
+      <img
+        class="rounded-xl w-full"
+        src="/assets/callum-bonnyman-street-optimised.jpg"
+        sizes="(max-width: 767px) 10rem, 18rem"
+        alt="Callum Bonnyman"
+        width={704}
+        height={1056}
+      />
+    </figure>
+    <div class="flex-1">
+      <h3 class="mb-4 leading-none type-h1">Callum Bonnyman</h3>
+      <p class="mb-8 text-primary type-overline">Frontend Engineer</p>
+      <div class="max-w-prose">
+        <p class="type-h4">
+          With a <strong>decade of experience</strong> working remotely as a web developer, my recent career trajectory has led me to specialise in frontend development. My passion is centred around constructing content-rich websites using technologies like <strong>React</strong>, <strong>Typescript</strong> and <strong>NextJS</strong> to build applications and design design systems, with a primary focus on delivering highly available, accessible, and exceptional user experiences.
+        </p>
+      </div>
+      <nav
+        class="mt-8 lg:mt-16 fade-in-up"
+        aria-label="Social links navigation"
+      >
+        <ul
+          class="type-p flex lg:inline-flex flex-wrap gap-4 mx-auto justify-evenly leading-none p-8 bg-gray-900 rounded-lg"
+        >
+          {
+            navigation
+              .filter(({ icon }) => !!icon)
+              .map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel={link?.rel}
+                    class="inline-block text-4xl text-primary transition-all hover:scale-125 duration-300"
+                    title={`${link.text} (opens in new tab)`}
+                  >
+                    <svg
+                      viewBox="0 0 100 100"
+                      class="w-[1em] h-[1em]"
+                      aria-hidden
+                      user-select="none"
+                    >
+                      <use xlink:href={`#${link.icon}`} />
+                    </svg>
+                    <span class="sr-only">
+                      {link.text} (opens in new tab)
+                    </span>
+                  </a>
+                </li>
+              ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</Section>
