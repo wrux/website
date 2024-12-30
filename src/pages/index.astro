@@ -1,7 +1,17 @@
 ---
+import { getCollection } from 'astro:content';
 import { Logo, Section } from '~/components';
-import { description, jobs, links } from '~/data';
+import { description, links } from '~/data';
 import { Layout } from '~/layouts';
+
+const allJobs = await getCollection('jobs');
+const jobs = allJobs.sort((a, b) => {
+  // Order by tenure start
+  return (
+    new Date(b.data.tenure.from).getTime() -
+    new Date(a.data.tenure.from).getTime()
+  );
+});
 ---
 
 <Layout
@@ -91,23 +101,30 @@ import { Layout } from '~/layouts';
     <Section title="Work Experience">
       <div class="grid gap-16 lg:gap-24">
         {
-          jobs.map((job, index) => (
-            <article class="flex flex-col gap-2 fade-in-up">
-              <span
-                class="inline-block text-6xl md:text-8xl font-semibold leading-none"
-                aria-hidden
-              >
-                {String(index + 1).padStart(2, '0')}.
-              </span>
-              <h3 class="type-h1">{job.title}</h3>
-              <span class="type-h4 text-primary">
-                <span class="sr-only">Tenure:</span> {job.tenure}
-              </span>
-              <span class="type-h4">
-                {job.company} &bullet; {job.location}
-              </span>
-            </article>
-          ))
+          jobs.map((job, index) => {
+            const start = (new Date(job.data.tenure.from)).getFullYear();
+            const end = job.data.tenure.to
+              ? (new Date(job.data.tenure.to)).getFullYear()
+              : 'Present'
+
+            return (
+              <article class="flex flex-col gap-2 fade-in-up">
+                <span
+                  class="inline-block text-6xl md:text-8xl font-semibold leading-none"
+                  aria-hidden
+                >
+                  {String(index + 1).padStart(2, '0')}.
+                </span>
+                <h3 class="type-h1">{job.data.title}</h3>
+                <span class="type-h4 text-primary">
+                  <span class="sr-only">Tenure:</span> {[start, end].join(' - ')}
+                </span>
+                <span class="type-h4">
+                  {job.data.company} &bullet; {job.data.location}
+                </span>
+              </article>
+            );
+          })
         }
       </div>
     </Section>
@@ -131,13 +148,6 @@ import { Layout } from '~/layouts';
         >
       </div>
     </section>
-
-    <!-- <section class="mb-spacing w-full overflow-hidden">
-      <div class="container max-w-full text-center">
-        <Paragraph as="h2" textStyle="h2">Recent Work</Paragraph>
-      </div>
-      <Projects projects={recentWork} />
-    </section> -->
   </main>
 
   <footer class="m-spacing">

@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/Layout.astro';
+
+const allPosts = await getCollection('projects');
+---
+
+<Layout
+  title="Callum Bonnyman, Frontend Eengineer | wrux.com"
+  description={'description'}
+>
+  <pre>{JSON.stringify(allPosts)}</pre>
+</Layout>
