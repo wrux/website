@@ -1,11 +1,5 @@
 ---
 import Section from "../Section.astro";
-
-export type Props = {
-  navigation: Link[];
-};
-
-const { navigation } = Astro.props;
 ---
 
 <Section>
@@ -30,42 +24,6 @@ const { navigation } = Astro.props;
           With a <strong>decade of experience</strong> working remotely as a web developer, my recent career trajectory has led me to specialise in frontend development. My passion is centred around constructing content-rich websites using technologies like <strong>React</strong>, <strong>Typescript</strong> and <strong>NextJS</strong> to build applications and design design systems, with a primary focus on delivering highly available, accessible, and exceptional user experiences.
         </p>
       </div>
-      <nav
-        class="mt-8 lg:mt-16 fade-in-up"
-        aria-label="Social links navigation"
-      >
-        <ul
-          class="type-p flex lg:inline-flex flex-wrap gap-4 mx-auto justify-evenly leading-none p-8 bg-gray-900 rounded-lg"
-        >
-          {
-            navigation
-              .filter(({ icon }) => !!icon)
-              .map((link) => (
-                <li>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel={link?.rel}
-                    class="inline-block text-4xl text-primary transition-all hover:scale-125 duration-300"
-                    title={`${link.text} (opens in new tab)`}
-                  >
-                    <svg
-                      viewBox="0 0 100 100"
-                      class="w-[1em] h-[1em]"
-                      aria-hidden
-                      user-select="none"
-                    >
-                      <use xlink:href={`#${link.icon}`} />
-                    </svg>
-                    <span class="sr-only">
-                      {link.text} (opens in new tab)
-                    </span>
-                  </a>
-                </li>
-              ))
-          }
-        </ul>
-      </nav>
     </div>
   </div>
 </Section>
