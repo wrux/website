@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Section from "../Section.astro";
+import { Image } from 'astro:assets';
+
+export type Props = {
+  projects: CollectionEntry<'projects'>[];
+};
+
+const { projects } = Astro.props;
+---
+
+<Section subtitle="Recent personal projects" title="Projects">
+  <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+    {
+      projects.map((project) => {
+        return (
+          <article class="link-box group flex flex-col gap-2 fade-in-up">
+            <div class="aspect-video overflow-hidden bg-primary">
+              <figure>
+                <Image
+                  src={project.data.image}
+                  class="aspect-video bg-gray-100 transition-all duration-300 group-hover:scale-105 group-hover:opacity-50 group-focus-within:scale-105 group-focus-within:opacity-50"
+                  width={768}
+                  height={480}
+                  alt={`Preview image of project: ${project.data.name}`}
+                />
+              </figure>
+            </div>
+            <h3 class="type-h4">
+              {project.data.name}
+            </h3>
+            <div class="max-w-prose">
+              <p class="type-p-sm">
+                {project.data.description}
+              </p>
+            </div>
+            <a
+              href={project.data.href}
+              class="mt-auto link link-overlay"
+              target="_blank"
+            >
+              View project
+              <span class="sr-only">(opens in new tab)</span>
+            </a>
+          </article>
+        );
+      })
+    }
+  </div>
+</Section>

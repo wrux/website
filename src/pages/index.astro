@@ -1,199 +1,34 @@
 ---
-import { Logo, Section } from '~/components';
-import { description, jobs, links } from '~/data';
+import { getCollection } from 'astro:content';
 import { Layout } from '~/layouts';
+import IntroBlock from '~/components/blocks/IntroBlock.astro';
+import WorkBlock from '~/components/blocks/WorkBlock.astro';
+import ContactBlock from '~/components/blocks/ContactBlock.astro';
+import ProjectsBlock from '~/components/blocks/ProjectsBlock.astro';
+import SiteFooter from '~/components/layout/SiteFooter.astro';
+import SiteHeader from '~/components/layout/SiteHeader.astro';
+
+const allJobs = await getCollection('jobs');
+const jobs = allJobs.sort((a, b) => (
+  new Date(b.data.tenure.from).getTime() -
+  new Date(a.data.tenure.from).getTime()
+));
+
+const allProjects = await getCollection('projects');
 ---
 
 <Layout
   title="Callum Bonnyman, Frontend Eengineer | wrux.com"
-  description={description}
+  description="With a decade of experience working remotely as a web developer, my recent career trajectory has led me to specialise in frontend development. My passion is centred around constructing content-rich websites using technologies like <strong>React</strong>, <strong>Typescript</strong> and <strong>NextJS</strong> to build applications and design design systems, with a primary focus on delivering highly available, accessible, and exceptional user experiences."
 >
-  <header
-    id="site-header"
-    class="md:sticky top-[-2px] bg-black/20 backdrop-blur-lg w-screen my-spacing z-50"
-  >
-    <div
-      class="container flex flex-col md:flex-row items-center gap-8 h-20 text-center md:text-left"
-    >
-      <h1 class="logo">
-        <span class="sr-only">WRUX.com</span>
-        <Logo animated />
-      </h1>
-      <div aria-hidden class="h-0.5 bg-white flex-1 hidden md:block"></div>
-      <h2 class="type-overline-sm">
-        Front end engineer and Freelancer &bullet;
-        <a href="mailto:callum@wrux.com" class="link"> Available for work</a>
-      </h2>
-    </div>
-  </header>
+  <SiteHeader />
 
   <main>
-    <Section>
-      <div
-        class="flex flex-col md:flex-row-reverse items-center gap-y-8 gap-x-16"
-      >
-        <figure class="flex-1">
-          <img
-            class="rounded-xl w-full"
-            src="/assets/callum-bonnyman-street-optimised.jpg"
-            sizes="(max-width: 767px) 10rem, 18rem"
-            alt="Callum Bonnyman"
-            width={704}
-            height={1056}
-          />
-        </figure>
-        <div class="flex-1">
-          <h3 class="mb-4 leading-none type-h1">Callum Bonnyman</h3>
-          <p class="mb-8 text-primary type-overline">Frontend Engineer</p>
-          <div class="max-w-prose">
-            <p class="type-h4" set:html={description} />
-          </div>
-          <nav
-            class="mt-8 lg:mt-16 fade-in-up"
-            aria-label="Social links navigation"
-          >
-            <ul
-              class="type-p flex lg:inline-flex flex-wrap gap-4 mx-auto justify-evenly leading-none p-8 bg-gray-900 rounded-lg"
-            >
-              {
-                links
-                  .filter(({ icon }) => !!icon)
-                  .map((link) => (
-                    <li>
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel={link?.rel}
-                        class="inline-block text-4xl text-primary transition-all hover:scale-125 duration-300"
-                        title={`${link.text} (opens in new tab)`}
-                      >
-                        <svg
-                          viewBox="0 0 100 100"
-                          class="w-[1em] h-[1em]"
-                          aria-hidden
-                          user-select="none"
-                        >
-                          <use xlink:href={`#${link.icon}`} />
-                        </svg>
-                        <span class="sr-only">
-                          {link.text} (opens in new tab)
-                        </span>
-                      </a>
-                    </li>
-                  ))
-              }
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </Section>
-
-    <Section title="Work Experience">
-      <div class="grid gap-16 lg:gap-24">
-        {
-          jobs.map((job, index) => (
-            <article class="flex flex-col gap-2 fade-in-up">
-              <span
-                class="inline-block text-6xl md:text-8xl font-semibold leading-none"
-                aria-hidden
-              >
-                {String(index + 1).padStart(2, '0')}.
-              </span>
-              <h3 class="type-h1">{job.title}</h3>
-              <span class="type-h4 text-primary">
-                <span class="sr-only">Tenure:</span> {job.tenure}
-              </span>
-              <span class="type-h4">
-                {job.company} &bullet; {job.location}
-              </span>
-            </article>
-          ))
-        }
-      </div>
-    </Section>
-
-    <section class="my-spacing bg-gray-900">
-      <div
-        class="container py-16 lg:py-24 xl:py-32 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-16"
-      >
-        <div class="max-w-prose">
-          <h2 class="type-h2 mb-8 fade-in">Contact Me</h2>
-          <p class="type-h4 fade-in">
-            Feel free to
-            <a href="mailto:callum@wrux.com" class="link">contact me</a>
-            to discuss freelance work opportunities. I am an experienced frontend
-            developer with a proven track record of success. I am proficient in HTML,
-            CSS, JavaScript, and React. I am available to work on a freelance basis.
-          </p>
-        </div>
-        <a href="mailto:callum@wrux.com" class="button fade-in"
-          >Get in contact</a
-        >
-      </div>
-    </section>
-
-    <!-- <section class="mb-spacing w-full overflow-hidden">
-      <div class="container max-w-full text-center">
-        <Paragraph as="h2" textStyle="h2">Recent Work</Paragraph>
-      </div>
-      <Projects projects={recentWork} />
-    </section> -->
+    <IntroBlock />
+    <WorkBlock jobs={jobs} />
+    <ContactBlock />
+    <ProjectsBlock projects={allProjects} />
   </main>
 
-  <footer class="m-spacing">
-    <div
-      class="container flex flex-col items-center justify-between gap-8 md:flex-row md:gap-12 lg:gap-16"
-    >
-      <Logo className="text-step-1" />
-      <nav aria-label="Footer navigation">
-        <ul
-          class="type-p flex flex-col gap-8 text-center md:flex-row md:flex-wrap"
-        >
-          {
-            links.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="nofollow noreferer"
-                  class="link"
-                >
-                  {link.name}
-                  <span class="sr-only">(opens in new tab)</span>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-    </div>
-  </footer>
+  <SiteFooter />
 </Layout>
-
-<style>
-  #site-header {
-    --logo-size: 2rem;
-
-    &[stuck] {
-      --logo-size: 1.625rem;
-    }
-  }
-
-  .logo {
-    transition: all 200ms ease-out;
-    font-size: var(--logo-size);
-  }
-</style>
-
-<script>
-  const observer = new IntersectionObserver(
-    ([e]) => {
-      console.log('e.intersectionRatio', e.intersectionRatio);
-      e.target.toggleAttribute('stuck', e.intersectionRatio < 1);
-    },
-    { threshold: [1] },
-  );
-
-  const header = document.getElementById('site-header');
-  if (header) observer.observe(header);
-</script>
