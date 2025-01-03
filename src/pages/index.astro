@@ -20,7 +20,7 @@ import { Layout } from '~/layouts';
         <Logo animated />
       </h1>
       <div aria-hidden class="h-0.5 bg-white flex-1 hidden md:block"></div>
-      <h2 class="c-overline-sm">
+      <h2 class="type-overline-sm">
         Front end engineer and Freelancer &bullet;
         <a href="mailto:callum@wrux.com" class="link"> Available for work</a>
       </h2>
@@ -43,17 +43,17 @@ import { Layout } from '~/layouts';
           />
         </figure>
         <div class="flex-1">
-          <h3 class="mb-4 leading-none c-h1">Callum Bonnyman</h3>
-          <p class="mb-8 text-primary c-overline">Frontend Engineer</p>
+          <h3 class="mb-4 leading-none type-h1">Callum Bonnyman</h3>
+          <p class="mb-8 text-primary type-overline">Frontend Engineer</p>
           <div class="max-w-prose">
-            <p class="c-h4" set:html={description} />
+            <p class="type-h4" set:html={description} />
           </div>
           <nav
             class="mt-8 lg:mt-16 fade-in-up"
             aria-label="Social links navigation"
           >
             <ul
-              class="c-p flex lg:inline-flex flex-wrap gap-4 mx-auto justify-evenly leading-none p-8 bg-gray-900 rounded-lg"
+              class="type-p flex lg:inline-flex flex-wrap gap-4 mx-auto justify-evenly leading-none p-8 bg-gray-900 rounded-lg"
             >
               {
                 links
@@ -99,11 +99,11 @@ import { Layout } from '~/layouts';
               >
                 {String(index + 1).padStart(2, '0')}.
               </span>
-              <h3 class="c-h1">{job.title}</h3>
-              <span class="c-h4 text-primary">
+              <h3 class="type-h1">{job.title}</h3>
+              <span class="type-h4 text-primary">
                 <span class="sr-only">Tenure:</span> {job.tenure}
               </span>
-              <span class="c-h4">
+              <span class="type-h4">
                 {job.company} &bullet; {job.location}
               </span>
             </article>
@@ -117,8 +117,8 @@ import { Layout } from '~/layouts';
         class="container py-16 lg:py-24 xl:py-32 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-16"
       >
         <div class="max-w-prose">
-          <h2 class="c-h2 mb-8 fade-in">Contact Me</h2>
-          <p class="c-h4 fade-in">
+          <h2 class="type-h2 mb-8 fade-in">Contact Me</h2>
+          <p class="type-h4 fade-in">
             Feel free to
             <a href="mailto:callum@wrux.com" class="link">contact me</a>
             to discuss freelance work opportunities. I am an experienced frontend
@@ -147,7 +147,7 @@ import { Layout } from '~/layouts';
       <Logo className="text-step-1" />
       <nav aria-label="Footer navigation">
         <ul
-          class="c-p flex flex-col gap-8 text-center md:flex-row md:flex-wrap"
+          class="type-p flex flex-col gap-8 text-center md:flex-row md:flex-wrap"
         >
           {
             links.map((link) => (
