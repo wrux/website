@@ -16,7 +16,8 @@
 
     .fade-in {
       animation-name: fadeIn;
-      animation-range: entry 50%;
+      animation-range-start: entry;
+      animation-range-end: 50%;
     }
   }
 }
