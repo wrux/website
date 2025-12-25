@@ -2,6 +2,7 @@
 import { Layout } from '~/layouts';
 import Logo from '~/components/Logo.astro';
 import SocialIcon from '~/components/SocialIcon.astro';
+import ProjectIcon from '~/components/ProjectIcon.astro';
 
 const socialLinks = [
   {
@@ -20,6 +21,45 @@ const socialLinks = [
     label: 'Instagram',
   },
 ];
+
+const projects = [
+  {
+    name: 'kacet' as const,
+    href: 'https://kacet.com',
+    label: 'kacet.com',
+    color: '#0056f5',
+  },
+  {
+    name: 'banburyshire' as const,
+    href: 'https://banburyshire.com',
+    label: 'banburyshire.com',
+    color: '#152621',
+  },
+  {
+    name: 'callum' as const,
+    href: 'https://callum.co.uk',
+    label: 'callum.co.uk',
+    color: '#1f2937',
+  },
+  {
+    name: 'pizza' as const,
+    href: 'https://perpetual.pizza',
+    label: 'perpetual.pizza',
+    color: '#d10001',
+  },
+  {
+    name: 'manhole' as const,
+    href: 'https://manhole.gallery',
+    label: 'manhole.gallery',
+    color: '#f2a04f',
+  },
+  {
+    name: 'butties' as const,
+    href: 'https://butties.com',
+    label: 'butties.com',
+    color: '#003aad',
+  },
+];
 ---
 
 <Layout
@@ -27,11 +67,11 @@ const socialLinks = [
   description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
 >
   <div class="container">
-    <header>
-      <Logo class:list="text-3xl" />
+    <header class="my-16">
+      <Logo class:list="text-3xl text-primary" />
     </header>
 
-    <main>
+    <main class="my-16">
       <h1
         class="text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 mb-6"
       >
@@ -39,7 +79,7 @@ const socialLinks = [
         Software Engineer &mdash; Freelancer
       </h1>
 
-      <p class="text-lg text-neutral-700 dark:text-neutral-300 mb-8 max-w-xl">
+      <p class="text-lg lg:text-2xl mb-8">
         <span class="sr-only">Summary:</span>
         I enjoy turning rough ideas into solid, usable products.
       </p>
@@ -58,10 +98,7 @@ const socialLinks = [
       >
         When I’m not coding, I enjoy exploring new tech and traveling the world
         while posting occasionally on
-        <a
-          href="https://callum.co.uk"
-          class="underline underline-offset-4 decoration-neutral-400 hover:decoration-neutral-900 dark:hover:decoration-neutral-100 transition"
-        >
+        <a href="https://callum.co.uk" class="link-underline">
           callum.co.uk
         </a>.
       </p>
@@ -83,6 +120,43 @@ const socialLinks = [
           ))
         }
       </ul>
+
+      <section class="mt-16 max-w-4xl">
+        <h2
+          class="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 mb-8"
+        >
+          Projects
+        </h2>
+        <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+          {
+            projects.map((project) => (
+              <li class="group relative link-box flex flex-col gap-2">
+                <div class="octagon relative aspect-square w-full rotate-[30deg] overflow-hidden group-hover:rotate-[10deg] transition-transform duration-300">
+                  <div
+                    class="relative aspect-square overflow-hidden h-full w-full flex items-center justify-center"
+                    style={`background-color: ${project.color};`}
+                  >
+                    <ProjectIcon
+                      name={project.name}
+                      size={48}
+                      class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  class="link-overlay link-hover text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors text-center"
+                  aria-label={project.label}
+                >
+                  <span class="text-sm">{project.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
     </main>
   </div>
 </Layout>

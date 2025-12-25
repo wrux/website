@@ -1,0 +1,39 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  name: 'kacet' | 'callum' | 'pizza' | 'manhole' | 'butties' | 'banburyshire';
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 32, class: className } = Astro.props;
+
+// Special handling for pizza icon (emoji) - astro-icon doesn't support text elements
+const isPizza = name === 'pizza';
+const fontSize = isPizza ? `${size}px` : '';
+const style = isPizza
+  ? `font-size: ${fontSize}; line-height: 1; display: inline-block; width: ${size}px; height: ${size}px; text-align: center;`
+  : '';
+
+// Map project names to icon file names
+const iconMap: Record<Exclude<typeof name, 'pizza'>, string> = {
+  kacet: 'kacet',
+  callum: 'blog', // callum.co.uk uses the blog icon
+  manhole: 'manhole',
+  butties: 'butties',
+  banburyshire: 'banburyshire',
+};
+
+const iconName = !isPizza ? iconMap[name] : '';
+---
+
+{
+  isPizza ? (
+    <span class={className} style={style}>
+      🍕
+    </span>
+  ) : (
+    <Icon name={iconName} size={size} class={className} />
+  )
+}

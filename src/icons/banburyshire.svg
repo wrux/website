@@ -1,0 +1,25 @@
+<svg
+  width="128"
+  height="128"
+  viewBox="0 0 128 128"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="Banburyshire sun logo"
+  role="img"
+>
+  <circle
+    cx="64"
+    cy="64"
+    r="26"
+    stroke="currentColor"
+    stroke-width="4"
+  />
+  <line x1="64" y1="8"  x2="64" y2="24" stroke="currentColor" stroke-width="4" />
+  <line x1="64" y1="104" x2="64" y2="120" stroke="currentColor" stroke-width="4" />
+  <line x1="8"  y1="64" x2="24" y2="64" stroke="currentColor" stroke-width="4" />
+  <line x1="104" y1="64" x2="120" y2="64" stroke="currentColor" stroke-width="4" />
+  <line x1="20" y1="20" x2="32" y2="32" stroke="currentColor" stroke-width="4" />
+  <line x1="96" y1="96" x2="108" y2="108" stroke="currentColor" stroke-width="4" />
+  <line x1="20" y1="108" x2="32" y2="96" stroke="currentColor" stroke-width="4" />
+  <line x1="96" y1="32"  x2="108" y2="20" stroke="currentColor" stroke-width="4" />
+</svg>

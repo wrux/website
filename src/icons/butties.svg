@@ -1,0 +1,21 @@
+<svg
+  width="40"
+  height="40"
+  viewBox="0 0 40 40"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>Butties logo</title>
+  <path
+    d="M5 12C5 10.8954 5.89543 10 7 10H33C34.1046 10 35 10.8954 35 12V14C35 14 30 16 20 16C10 16 5 14 5 14V12Z"
+    stroke="currentColor"
+    stroke-width="2"></path>
+  <path
+    d="M5 14C5 14 10 16 20 16C30 16 35 14 35 14V28C35 29.1046 34.1046 30 33 30H7C5.89543 30 5 29.1046 5 28V14Z"
+    stroke="currentColor"
+    stroke-width="2"></path>
+  <path
+    d="M5 22C5 22 10 24 20 24C30 24 35 22 35 22"
+    stroke="currentColor"
+    stroke-width="2"></path>
+</svg>

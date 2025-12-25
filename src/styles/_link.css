@@ -1,5 +1,9 @@
-.link {
-  @apply text-primary underline decoration-current underline-offset-4 transition-colors hover:decoration-transparent focus:decoration-transparent focus-visible:outline-none;
+.link-hover {
+  @apply hover:underline underline-offset-4 hover:text-neutral-900 dark:hover:text-neutral-100;
+}
+
+.link-underline {
+  @apply underline underline-offset-4 decoration-neutral-400 hover:decoration-neutral-900 dark:hover:decoration-neutral-100 transition;
 }
 
 .button {
