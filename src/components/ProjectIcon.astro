@@ -11,10 +11,6 @@ const { name, size = 32, class: className } = Astro.props;
 
 // Special handling for pizza icon (emoji) - astro-icon doesn't support text elements
 const isPizza = name === 'pizza';
-const fontSize = isPizza ? `${size}px` : '';
-const style = isPizza
-  ? `font-size: ${fontSize}; line-height: 1; display: inline-block; width: ${size}px; height: ${size}px; text-align: center;`
-  : '';
 
 // Map project names to icon file names
 const iconMap: Record<Exclude<typeof name, 'pizza'>, string> = {
@@ -26,11 +22,14 @@ const iconMap: Record<Exclude<typeof name, 'pizza'>, string> = {
 };
 
 const iconName = !isPizza ? iconMap[name] : '';
+const pizzaStyle = isPizza
+  ? `font-size: ${size}px; line-height: 1; display: inline-block; width: ${size}px; height: ${size}px; text-align: center;`
+  : '';
 ---
 
 {
   isPizza ? (
-    <span class={className} style={style}>
+    <span class={className} style={pizzaStyle}>
       🍕
     </span>
   ) : (

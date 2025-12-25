@@ -1,5 +1,5 @@
 ---
-import { Layout } from '~/layouts';
+import Layout from '~/layouts/Layout.astro';
 import Logo from '~/components/Logo.astro';
 import SocialIcon from '~/components/SocialIcon.astro';
 import ProjectIcon from '~/components/ProjectIcon.astro';
@@ -12,7 +12,7 @@ const socialLinks = [
   },
   {
     name: 'linkedin' as const,
-    href: 'https://www.linkedin.com/in/callum-bonnyman',
+    href: 'https://www.linkedin.com/in/wrux',
     label: 'LinkedIn',
   },
   {
@@ -73,10 +73,9 @@ const projects = [
 
     <main class="my-16">
       <h1
-        class="text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 mb-6"
+        class="text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-100 mb-6"
       >
-        <span class="sr-only">Job title:</span>
-        Software Engineer &mdash; Freelancer
+        Callum Bonnyman, Software Engineer
       </h1>
 
       <p class="text-lg lg:text-2xl mb-8">
@@ -84,18 +83,14 @@ const projects = [
         I enjoy turning rough ideas into solid, usable products.
       </p>
 
-      <p
-        class="text-base leading-relaxed text-neutral-700 dark:text-neutral-300 mb-6 max-w-xl"
-      >
+      <p class="text-base leading-relaxed text-neutral-300 mb-6 max-w-xl">
         I’m a software engineer and product creator with a passion for simple,
         effective solutions. I focus on clean code, thoughtful design, and
         building tools that people enjoy using. I love turning complex problems
         into intuitive experiences.
       </p>
 
-      <p
-        class="text-base leading-relaxed text-neutral-700 dark:text-neutral-300 max-w-xl"
-      >
+      <p class="text-base leading-relaxed text-neutral-300 max-w-xl">
         When I’m not coding, I enjoy exploring new tech and traveling the world
         while posting occasionally on
         <a href="https://callum.co.uk" class="link-underline">
@@ -111,7 +106,7 @@ const projects = [
                 href={link.href}
                 target="_blank"
                 rel="nofollow noreferrer"
-                class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+                class="text-neutral-300 hover:text-neutral-100 transition-colors"
                 aria-label={link.label}
               >
                 <SocialIcon name={link.name} size={28} />
@@ -122,11 +117,12 @@ const projects = [
       </ul>
 
       <section class="mt-16 max-w-4xl">
-        <h2
-          class="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 mb-8"
-        >
-          Projects
-        </h2>
+        <div class="mb-10 space-y-2">
+          <h2 class="text-xl font-semibold">Projects</h2>
+          <p class="text-base text-neutral-300">
+            A selection of personal projects I've been working on.
+          </p>
+        </div>
         <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
           {
             projects.map((project) => (
@@ -147,7 +143,7 @@ const projects = [
                   href={project.href}
                   target="_blank"
                   rel="nofollow noreferrer"
-                  class="link-overlay link-hover text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors text-center"
+                  class="link-overlay link-hover text-neutral-300 hover:text-neutral-100 transition-colors text-center"
                   aria-label={project.label}
                 >
                   <span class="text-sm">{project.label}</span>
