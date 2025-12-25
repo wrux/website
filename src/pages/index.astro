@@ -1,34 +1,155 @@
 ---
-import { getCollection } from 'astro:content';
-import { Layout } from '~/layouts';
-import IntroBlock from '~/components/blocks/IntroBlock.astro';
-import WorkBlock from '~/components/blocks/WorkBlock.astro';
-import ContactBlock from '~/components/blocks/ContactBlock.astro';
-import ProjectsBlock from '~/components/blocks/ProjectsBlock.astro';
-import SiteFooter from '~/components/layout/SiteFooter.astro';
-import SiteHeader from '~/components/layout/SiteHeader.astro';
+import Layout from '~/layouts/Layout.astro';
+import Logo from '~/components/Logo.astro';
+import SocialIcon from '~/components/SocialIcon.astro';
+import ProjectIcon from '~/components/ProjectIcon.astro';
 
-const allJobs = await getCollection('jobs');
-const jobs = allJobs.sort((a, b) => (
-  new Date(b.data.tenure.from).getTime() -
-  new Date(a.data.tenure.from).getTime()
-));
+const socialLinks = [
+  {
+    name: 'github' as const,
+    href: 'https://github.com/wrux',
+    label: 'GitHub',
+  },
+  {
+    name: 'linkedin' as const,
+    href: 'https://www.linkedin.com/in/wrux',
+    label: 'LinkedIn',
+  },
+  {
+    name: 'instagram' as const,
+    href: 'https://www.instagram.com/etocallum/',
+    label: 'Instagram',
+  },
+];
 
-const allProjects = await getCollection('projects');
+const projects = [
+  {
+    name: 'kacet' as const,
+    href: 'https://kacet.com',
+    label: 'kacet.com',
+    color: '#0056f5',
+  },
+  {
+    name: 'banburyshire' as const,
+    href: 'https://banburyshire.com',
+    label: 'banburyshire.com',
+    color: '#152621',
+  },
+  {
+    name: 'callum' as const,
+    href: 'https://callum.co.uk',
+    label: 'callum.co.uk',
+    color: '#1f2937',
+  },
+  {
+    name: 'pizza' as const,
+    href: 'https://perpetual.pizza',
+    label: 'perpetual.pizza',
+    color: '#d10001',
+  },
+  {
+    name: 'manhole' as const,
+    href: 'https://manhole.gallery',
+    label: 'manhole.gallery',
+    color: '#f2a04f',
+  },
+  {
+    name: 'butties' as const,
+    href: 'https://butties.com',
+    label: 'butties.com',
+    color: '#003aad',
+  },
+];
 ---
 
 <Layout
-  title="Callum Bonnyman, Frontend Eengineer | wrux.com"
-  description="With a decade of experience working remotely as a web developer, my recent career trajectory has led me to specialise in frontend development. My passion is centred around constructing content-rich websites using technologies like <strong>React</strong>, <strong>Typescript</strong> and <strong>NextJS</strong> to build applications and design design systems, with a primary focus on delivering highly available, accessible, and exceptional user experiences."
+  title="Software Engineer & Freelancer Building Digital Products | wrux.com"
+  description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
 >
-  <SiteHeader />
+  <div class="container">
+    <header class="my-16">
+      <Logo class:list="text-3xl text-primary" />
+    </header>
 
-  <main>
-    <IntroBlock />
-    <WorkBlock jobs={jobs} />
-    <ContactBlock />
-    <ProjectsBlock projects={allProjects} />
-  </main>
+    <main class="my-16">
+      <h1
+        class="text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-100 mb-6"
+      >
+        Callum Bonnyman, Software Engineer
+      </h1>
 
-  <SiteFooter />
+      <p class="text-base leading-relaxed text-neutral-300 mb-6 max-w-xl">
+        I’m a software engineer and product creator with a passion for simple,
+        effective solutions. I focus on clean code, thoughtful design, and
+        building tools that people enjoy using. I love turning complex problems
+        into intuitive experiences.
+      </p>
+
+      <p class="text-base leading-relaxed text-neutral-300 max-w-xl">
+        When I’m not coding, I enjoy exploring new tech and traveling the world
+        while posting occasionally on
+        <a href="https://callum.co.uk" target="_blank" class="link-underline"
+          >callum.co.uk</a
+        >.
+      </p>
+
+      <ul class="flex gap-4 mt-6 mb-8">
+        {
+          socialLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="text-neutral-300 hover:text-neutral-100 transition-colors"
+                aria-label={link.label}
+              >
+                <SocialIcon name={link.name} size={28} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <section class="my-4 max-w-4xl">
+        <div class="mb-10">
+          <h2 class="font-semibold leading-relaxed text-xl max-w-xl">
+            Personal Projects
+          </h2>
+          <p class="text-base leading-relaxed text-neutral-300 max-w-xl">
+            A selection of personal projects I've been working on.
+          </p>
+        </div>
+        <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+          {
+            projects.map((project) => (
+              <li class="group relative link-box flex flex-col gap-2">
+                <div class="octagon relative aspect-square w-full rotate-[30deg] overflow-hidden group-hover:rotate-[10deg] transition-transform duration-300">
+                  <div
+                    class="relative aspect-square overflow-hidden h-full w-full flex items-center justify-center"
+                    style={`background-color: ${project.color};`}
+                  >
+                    <ProjectIcon
+                      name={project.name}
+                      size={48}
+                      class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  class="link-overlay link-hover text-neutral-300 hover:text-neutral-100 transition-colors text-center"
+                  aria-label={project.label}
+                >
+                  <span class="text-sm">{project.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+  </div>
 </Layout>

@@ -1,16 +1,9 @@
----
-export interface Props {
-  animated?: boolean;
-  className?: string;
-}
-
-const { animated = false, className } = Astro.props;
----
-
 <svg
+  {...Astro.props}
+  width="4.1842105263em"
+  height="1em"
   viewBox="0 0 795 190"
   focusable="false"
-  class:list={['logo', { 'logo-animated': animated }, className]}
 >
   <path class="logo-element logo-1" d="M53.2 5H0V56H53.2V5Z" fill="currentColor"
   ></path>
@@ -45,46 +38,5 @@ const { animated = false, className } = Astro.props;
   .logo {
     height: 1em;
     width: 4.1842105263em;
-  }
-
-  .logo-animated .logo-element {
-    animation-name: animateLogoIn;
-    animation-duration: 300ms;
-    animation-fill-mode: both;
-    animation-timing-function: ease-in-out;
-  }
-
-  .logo-1 {
-    animation-delay: 500ms;
-  }
-  .logo-2 {
-    animation-delay: 600ms;
-  }
-  .logo-3 {
-    animation-delay: 700ms;
-  }
-  .logo-4 {
-    animation-delay: 800ms;
-  }
-  .logo-5 {
-    animation-delay: 900ms;
-  }
-  .logo-6 {
-    animation-delay: 1000ms;
-  }
-  .logo-7 {
-    animation-delay: 1100ms;
-  }
-
-  @keyframes animateLogoIn {
-    0% {
-      opacity: 0;
-      transform: translateX(5rem);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0rem);
-    }
   }
 </style>
