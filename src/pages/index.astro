@@ -78,11 +78,6 @@ const projects = [
         Callum Bonnyman, Software Engineer
       </h1>
 
-      <p class="text-lg lg:text-2xl mb-8">
-        <span class="sr-only">Summary:</span>
-        I enjoy turning rough ideas into solid, usable products.
-      </p>
-
       <p class="text-base leading-relaxed text-neutral-300 mb-6 max-w-xl">
         I’m a software engineer and product creator with a passion for simple,
         effective solutions. I focus on clean code, thoughtful design, and
@@ -93,12 +88,12 @@ const projects = [
       <p class="text-base leading-relaxed text-neutral-300 max-w-xl">
         When I’m not coding, I enjoy exploring new tech and traveling the world
         while posting occasionally on
-        <a href="https://callum.co.uk" class="link-underline">
-          callum.co.uk
-        </a>.
+        <a href="https://callum.co.uk" target="_blank" class="link-underline"
+          >callum.co.uk</a
+        >.
       </p>
 
-      <ul class="flex gap-4 mt-8">
+      <ul class="flex gap-4 mt-6 mb-8">
         {
           socialLinks.map((link) => (
             <li>
@@ -116,10 +111,12 @@ const projects = [
         }
       </ul>
 
-      <section class="mt-16 max-w-4xl">
-        <div class="mb-10 space-y-2">
-          <h2 class="text-xl font-semibold">Projects</h2>
-          <p class="text-base text-neutral-300">
+      <section class="my-4 max-w-4xl">
+        <div class="mb-10">
+          <h2 class="font-semibold leading-relaxed text-xl max-w-xl">
+            Personal Projects
+          </h2>
+          <p class="text-base leading-relaxed text-neutral-300 max-w-xl">
             A selection of personal projects I've been working on.
           </p>
         </div>
@@ -135,7 +132,7 @@ const projects = [
                     <ProjectIcon
                       name={project.name}
                       size={48}
-                      class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300"
+                      class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
                 </div>
