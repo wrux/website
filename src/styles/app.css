@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'InterVariable', 'Inter', 'sans-serif';
+  --font-sans: 'Inter Variable', 'Inter', 'sans-serif';
   --color-primary: #00eacf;
 }
 
