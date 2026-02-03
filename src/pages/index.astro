@@ -10,14 +10,18 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
   title="Software Engineer & Freelancer Building Digital Products | wrux.com"
   description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
 >
-  <div class="terminal-grid">
+  <div class="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.15fr)]">
     <section
       class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
     >
       <h2
         class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
       >
-        <Icon name="lucide:file-text" size={20} class="terminal-icon" />
+        <Icon
+          name="lucide:file-text"
+          size={20}
+          class="text-emerald-400 print:text-black"
+        />
         Summary
       </h2>
       <div class="max-w-prose">
@@ -39,7 +43,11 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
       <h2
         class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
       >
-        <Icon name="lucide:globe" size={20} class="terminal-icon" />
+        <Icon
+          name="lucide:globe"
+          size={20}
+          class="text-emerald-400 print:text-black"
+        />
         Online
       </h2>
       <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
@@ -50,7 +58,7 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
                 <SocialIcon
                   name={link.name}
                   size={16}
-                  class="terminal-icon shrink-0"
+                  class="text-emerald-400 print:text-black shrink-0"
                 />
                 {link.label}
               </span>
