@@ -2,11 +2,11 @@ import { z, defineCollection } from 'astro:content';
 
 const jobs = defineCollection({
   type: 'data',
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       company: z.string(),
       location: z.string(),
-      title: image(),
+      title: z.string(),
       tenure: z.object({
         from: z.string(),
         to: z.string().nullable(),
@@ -22,6 +22,8 @@ const projects = defineCollection({
       href: z.string(),
       name: z.string(),
       image: image(),
+      toolsUsed: z.array(z.string()),
+      order: z.number(),
     }),
 });
 

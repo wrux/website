@@ -1,155 +1,70 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-import Logo from '~/components/Logo.astro';
+import { Icon } from 'astro-icon/components';
 import SocialIcon from '~/components/SocialIcon.astro';
 import ProjectIcon from '~/components/ProjectIcon.astro';
-
-const socialLinks = [
-  {
-    name: 'github' as const,
-    href: 'https://github.com/wrux',
-    label: 'GitHub',
-  },
-  {
-    name: 'linkedin' as const,
-    href: 'https://www.linkedin.com/in/wrux',
-    label: 'LinkedIn',
-  },
-  {
-    name: 'instagram' as const,
-    href: 'https://www.instagram.com/etocallum/',
-    label: 'Instagram',
-  },
-];
-
-const projects = [
-  {
-    name: 'kacet' as const,
-    href: 'https://kacet.com',
-    label: 'kacet.com',
-    color: '#0056f5',
-  },
-  {
-    name: 'banburyshire' as const,
-    href: 'https://banburyshire.com',
-    label: 'banburyshire.com',
-    color: '#152621',
-  },
-  {
-    name: 'callum' as const,
-    href: 'https://callum.co.uk',
-    label: 'callum.co.uk',
-    color: '#1f2937',
-  },
-  {
-    name: 'pizza' as const,
-    href: 'https://perpetual.pizza',
-    label: 'perpetual.pizza',
-    color: '#d10001',
-  },
-  {
-    name: 'manhole' as const,
-    href: 'https://manhole.gallery',
-    label: 'manhole.gallery',
-    color: '#f2a04f',
-  },
-  {
-    name: 'butties' as const,
-    href: 'https://butties.com',
-    label: 'butties.com',
-    color: '#003aad',
-  },
-];
+import { person, socialLinks, featuredProjects } from '~/data/site';
 ---
 
 <Layout
   title="Software Engineer & Freelancer Building Digital Products | wrux.com"
   description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
 >
-  <div class="container">
-    <header class="my-16">
-      <Logo class:list="text-3xl text-primary" />
-    </header>
-
-    <main class="my-16">
-      <h1
-        class="text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-100 mb-6"
-      >
-        Callum Bonnyman, Software Engineer
-      </h1>
-
-      <p class="text-base leading-relaxed text-neutral-300 mb-6 max-w-xl">
-        I’m a software engineer and product creator with a passion for simple,
-        effective solutions. I focus on clean code, thoughtful design, and
-        building tools that people enjoy using. I love turning complex problems
-        into intuitive experiences.
+  <section
+    class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
+  >
+    <h2 class="flex items-center gap-2 text-lg font-semibold text-emerald-100">
+      <Icon name="lucide:file-text" size={20} class="terminal-icon" />
+      Summary
+    </h2>
+    <div class="max-w-prose">
+      <p class="mt-3 text-base leading-relaxed text-emerald-200">
+        {person.summary}
       </p>
-
-      <p class="text-base leading-relaxed text-neutral-300 max-w-xl">
-        When I’m not coding, I enjoy exploring new tech and traveling the world
-        while posting occasionally on
+      <p class="mt-4 text-base leading-relaxed text-emerald-200">
+        {person.bio.split('callum.co.uk')[0]} on
         <a href="https://callum.co.uk" target="_blank" class="link-underline"
           >callum.co.uk</a
         >.
       </p>
+    </div>
+  </section>
 
-      <ul class="flex gap-4 mt-6 mb-8">
+  <aside>
+    <div
+      class="terminal-card p-6 border-l-0 border-r-0 rounded-none lg:border-l"
+    >
+      <h2
+        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+      >
+        <Icon name="lucide:globe" size={20} class="terminal-icon" />
+        Online
+      </h2>
+      <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
         {
           socialLinks.map((link) => (
-            <li>
+            <li class="flex items-center justify-between gap-3">
+              <span class="flex items-center gap-2">
+                <SocialIcon
+                  name={link.name}
+                  size={16}
+                  class="terminal-icon shrink-0"
+                />
+                {link.label}
+              </span>
               <a
                 href={link.href}
                 target="_blank"
                 rel="nofollow noreferrer"
-                class="text-neutral-300 hover:text-neutral-100 transition-colors"
-                aria-label={link.label}
+                class="link-hover text-emerald-200 flex items-center gap-1.5 truncate min-w-0 justify-end"
+                title={link.href}
               >
-                <SocialIcon name={link.name} size={28} />
+                <span class="truncate">{link.href}</span>
               </a>
             </li>
           ))
         }
       </ul>
-
-      <section class="my-4 max-w-4xl">
-        <div class="mb-10">
-          <h2 class="font-semibold leading-relaxed text-xl max-w-xl">
-            Personal Projects
-          </h2>
-          <p class="text-base leading-relaxed text-neutral-300 max-w-xl">
-            A selection of personal projects I've been working on.
-          </p>
-        </div>
-        <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
-          {
-            projects.map((project) => (
-              <li class="group relative link-box flex flex-col gap-2">
-                <div class="octagon relative aspect-square w-full rotate-[30deg] overflow-hidden group-hover:rotate-[10deg] transition-transform duration-300">
-                  <div
-                    class="relative aspect-square overflow-hidden h-full w-full flex items-center justify-center"
-                    style={`background-color: ${project.color};`}
-                  >
-                    <ProjectIcon
-                      name={project.name}
-                      size={48}
-                      class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                </div>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="link-overlay link-hover text-neutral-300 hover:text-neutral-100 transition-colors text-center"
-                  aria-label={project.label}
-                >
-                  <span class="text-sm">{project.label}</span>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-  </div>
+    </div>
+  </aside>
 </Layout>

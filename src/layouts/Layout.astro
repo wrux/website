@@ -1,6 +1,10 @@
 ---
 import '@fontsource-variable/inter';
 import '~/styles/app.css';
+// Import the critical Latin font file for preloading
+import interLatinFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import Header from '~/components/Header.astro';
+import { person, sourceUrl } from '~/data/site';
 
 export interface Props {
   description: string;
@@ -16,6 +20,15 @@ const { description, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
+    {/* Preload critical font file for iOS Safari */}
+    <link
+      rel="preload"
+      href={interLatinFont}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -28,7 +41,31 @@ const { description, title } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="text-white bg-black">
-    <slot />
+  <body class="text-white bg-black w-full overflow-x-clip">
+    <div class="container boxed-terminal resume-terminal font-mono">
+      <Header />
+
+      <main class="py-8 space-y-8">
+        <slot />
+      </main>
+
+      <footer>
+        <div class="header-bleed-line"></div>
+        <div
+          class="flex flex-col items-center justify-center gap-2 px-8 py-6 text-sm text-emerald-400 sm:flex-row sm:gap-4"
+        >
+          <span>&copy; {new Date().getFullYear()} {person.name}</span>
+          <span>&middot;</span>
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="nofollow noreferrer"
+            class="link-hover text-emerald-300"
+          >
+            Source on GitHub
+          </a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

@@ -2,5 +2,14 @@
   "description": "The never ending digital pizza. I built this as a joke landing page 10+ years ago.",
   "href": "https://perpetual.pizza/",
   "name": "Perpetual Pizza",
-  "image": "~/images/projects/motorq.png"
+  "image": "~/images/projects/perpetual-pizza.png",
+  "toolsUsed": [
+    "AstroJS",
+    "ReactJS",
+    "SanityIO",
+    "TypeScript",
+    "Tailwind CSS",
+    "Vercel"
+  ],
+  "order": 3
 }

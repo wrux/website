@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/vercel": "^9.0.2",
     "@fontsource-variable/inter": "^5.2.8",
+    "@iconify-json/lucide": "^1.2.87",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
     "astro-icon": "^1.1.5",
