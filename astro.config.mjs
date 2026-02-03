@@ -7,7 +7,6 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   output: 'static',
   adapter: vercel({
-    imageService: true,
     webAnalytics: {
       enabled: true,
     },

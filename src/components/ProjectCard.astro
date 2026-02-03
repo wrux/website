@@ -20,7 +20,8 @@ const { project } = Astro.props;
       alt={project.data.name}
       loading="lazy"
       decoding="async"
-      sizes="(min-width: 768px) 240px, 100vw"
+      widths={[320, 480, 640, 768, 1024, 1280]}
+      sizes="(min-width: 1024px) 320px, (min-width: 768px) 272px, 100vw"
       class="block size-full object-cover border-b md:border-b-0 border-dashed md:border-r border-emerald-800/50 bg-emerald-950/50 group-hover:border-white focus-within:border-white transition-colors duration-300"
     />
   </div>
