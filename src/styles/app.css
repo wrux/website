@@ -46,11 +46,11 @@
   }
 
   .link-hover {
-    @apply hover:underline underline-offset-4 hover:text-neutral-100 transition-colors duration-150;
+    @apply hover:underline underline-offset-4 hover:text-neutral-100 focus:text-neutral-100 transition-colors duration-150;
   }
 
   .link-underline {
-    @apply underline underline-offset-4 decoration-neutral-400 hover:decoration-neutral-100 transition-colors duration-150;
+    @apply underline underline-offset-4 hover:text-neutral-100 hover:no-underline focus:no-underline transition-colors duration-150;
   }
 
   .link-box {
@@ -82,8 +82,7 @@
       rgba(2, 12, 10, 0.95),
       rgba(1, 8, 7, 0.98)
     );
-    box-shadow:
-      0 0 0 1px rgba(16, 185, 129, 0.15),
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15),
       0 20px 60px rgba(0, 0, 0, 0.4);
   }
 
