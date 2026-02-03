@@ -1,10 +1,12 @@
+/** URL to this site's public source code repository */
+export const sourceUrl = 'https://github.com/wrux/website';
+
 export const person = {
   name: 'Callum Bonnyman',
   role: 'Software Engineer',
   summary:
-    "I’m a software engineer and product creator with a passion for simple, effective solutions. I focus on clean code, thoughtful design, and building tools that people enjoy using. I love turning complex problems into intuitive experiences.",
-  bio:
-    "When I’m not coding, I enjoy exploring new tech and traveling the world while posting occasionally on callum.co.uk.",
+    'I’m a software engineer and product creator with a passion for simple, effective solutions. I focus on clean code, thoughtful design, and building tools that people enjoy using. I love turning complex problems into intuitive experiences.',
+  bio: 'When I’m not coding, I enjoy exploring new tech and traveling the world while posting occasionally on callum.co.uk.',
 };
 
 export const socialLinks = [

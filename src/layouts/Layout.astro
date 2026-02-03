@@ -3,6 +3,8 @@ import '@fontsource-variable/inter';
 import '~/styles/app.css';
 // Import the critical Latin font file for preloading
 import interLatinFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import Header from '~/components/Header.astro';
+import { person, sourceUrl } from '~/data/site';
 
 export interface Props {
   description: string;
@@ -39,7 +41,31 @@ const { description, title } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="text-white bg-black">
-    <slot />
+  <body class="text-white bg-black w-full overflow-x-clip">
+    <div class="container boxed-terminal resume-terminal font-mono">
+      <Header />
+
+      <main class="pt-8 pb-16 space-y-8">
+        <slot />
+      </main>
+
+      <footer>
+        <div class="header-bleed-line"></div>
+        <div
+          class="flex flex-col items-center justify-center gap-2 px-8 py-6 text-sm text-emerald-400 sm:flex-row sm:gap-4"
+        >
+          <span>&copy; {new Date().getFullYear()} {person.name}</span>
+          <span>&middot;</span>
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="nofollow noreferrer"
+            class="link-hover text-emerald-300"
+          >
+            Source on GitHub
+          </a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

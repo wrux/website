@@ -1,9 +1,8 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-import Logo from '~/components/Logo.astro';
-import SocialIcon from '~/components/SocialIcon.astro';
 import { getCollection } from 'astro:content';
-import { person, socialLinks, featuredProjects } from '~/data/site';
+import { person, featuredProjects } from '~/data/site';
+import { Icon } from 'astro-icon/components';
 
 const jobs = await getCollection('jobs');
 const projects = await getCollection('projects');
@@ -45,7 +44,7 @@ const sortedJobs = [...jobs].sort((a, b) => {
 });
 
 const sortedProjects = [...projects].sort((a, b) =>
-  a.data.name.localeCompare(b.data.name)
+  a.data.name.localeCompare(b.data.name),
 );
 ---
 
@@ -53,140 +52,101 @@ const sortedProjects = [...projects].sort((a, b) =>
   title={`Resume | ${person.name}`}
   description={`Professional resume for ${person.name}, ${person.role}.`}
 >
-  <div class="container resume-terminal font-mono">
-    <header class="my-10">
-      <div class="terminal-panel">
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div class="space-y-4">
-            <Logo class:list="text-3xl text-primary terminal-glow" />
-            <div class="space-y-2">
-              <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-emerald-100">
-                {person.name}
-              </h1>
-              <p class="text-lg text-emerald-300">{person.role}</p>
-            </div>
-          </div>
-
-          <div class="terminal-card px-6 py-5">
-            <p class="text-xs uppercase tracking-[0.35em] text-emerald-500">
-              Contact
-            </p>
-            <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-200">
-              {socialLinks.map((link) => (
-                <li class="flex items-center gap-3">
-                  <SocialIcon name={link.name} size={20} class="terminal-icon" />
-                  <div class="flex flex-col">
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="nofollow noreferrer"
-                      class="link-hover"
-                    >
-                      {link.label}
-                    </a>
-                    <span class="text-xs text-emerald-400">{link.href}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div class="terminal-divider my-8" />
-
-        <pre class="terminal-prompt text-xs text-emerald-400">
-{`> resume --profile "${person.name}"
-> export --format "print"`}
-        </pre>
+  <section class="space-y-8">
+    <div class="terminal-card p-6">
+      <h2
+        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+      >
+        <Icon name="lucide:file-text" size={20} class="terminal-icon" />
+        Summary
+      </h2>
+      <div class="max-w-prose">
+        <p class="mt-3 text-base leading-relaxed text-emerald-200">
+          {person.summary}
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-emerald-200">
+          {person.bio.split('callum.co.uk')[0]} on
+          <a href="https://callum.co.uk" target="_blank" class="link-underline"
+            >callum.co.uk</a
+          >.
+        </p>
       </div>
-    </header>
+    </div>
 
-    <main class="terminal-grid grid gap-10 lg:grid-cols-[2fr,1fr]">
-      <section class="space-y-8">
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Summary</h2>
-          <p class="mt-3 text-base leading-relaxed text-emerald-200">
-            {person.summary}
-          </p>
-          <p class="mt-4 text-base leading-relaxed text-emerald-200">
-            {person.bio.split('callum.co.uk')[0]} on
-            <a href="https://callum.co.uk" target="_blank" class="link-underline">
-              callum.co.uk
-            </a>
-            .
-          </p>
-        </div>
-
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Experience</h2>
-          <ul class="mt-6 flex flex-col gap-5">
-            {sortedJobs.map((job) => (
-              <li class="terminal-item">
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <p class="text-base font-semibold text-emerald-100">
-                      {job.data.title}
-                    </p>
-                    <p class="text-sm text-emerald-300">
-                      {job.data.company} · {job.data.location}
-                    </p>
-                  </div>
-                  <p class="text-sm text-emerald-400">
-                    {formatTenure(job.data.tenure)}
+    <div class="terminal-card p-6">
+      <h2 class="text-lg font-semibold text-emerald-100">Experience</h2>
+      <ul class="mt-6 flex flex-col gap-5">
+        {
+          sortedJobs.map((job) => (
+            <li class="terminal-item">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p class="text-base font-semibold text-emerald-100">
+                    {job.data.title}
+                  </p>
+                  <p class="text-sm text-emerald-300">
+                    {job.data.company} · {job.data.location}
                   </p>
                 </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <aside class="space-y-8">
-        <section class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Selected Projects</h2>
-          <ul class="mt-5 flex flex-col gap-4">
-            {sortedProjects.map((project) => (
-              <li class="terminal-item">
-                <p class="text-base font-semibold text-emerald-100">
-                  {project.data.name}
+                <p class="text-sm text-emerald-400">
+                  {formatTenure(job.data.tenure)}
                 </p>
-                {project.data.description && (
-                  <p class="mt-2 text-sm text-emerald-300">
-                    {project.data.description}
-                  </p>
-                )}
-                <a
-                  href={project.data.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="mt-3 inline-flex text-sm text-emerald-200 link-hover"
-                >
-                  {project.data.href}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 
-        <section class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Project Links</h2>
-          <ul class="mt-5 flex flex-col gap-3 text-sm text-emerald-300">
-            {featuredProjects.map((project) => (
-              <li class="flex items-center justify-between gap-3">
-                <span>{project.label}</span>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="link-hover text-emerald-200"
-                >
-                  {project.href}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </aside>
-    </main>
-  </div>
+  <aside class="space-y-8">
+    <section class="terminal-card p-6">
+      <h2 class="text-lg font-semibold text-emerald-100">Selected Projects</h2>
+      <ul class="mt-5 flex flex-col gap-4">
+        {
+          sortedProjects.map((project) => (
+            <li class="terminal-item">
+              <p class="text-base font-semibold text-emerald-100">
+                {project.data.name}
+              </p>
+              {project.data.description && (
+                <p class="mt-2 text-sm text-emerald-300">
+                  {project.data.description}
+                </p>
+              )}
+              <a
+                href={project.data.href}
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="mt-3 inline-flex text-sm text-emerald-200 link-hover"
+              >
+                {project.data.href}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="terminal-card p-6">
+      <h2 class="text-lg font-semibold text-emerald-100">Project Links</h2>
+      <ul class="mt-5 flex flex-col gap-3 text-sm text-emerald-300">
+        {
+          featuredProjects.map((project) => (
+            <li class="flex items-center justify-between gap-3">
+              <span>{project.label}</span>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="nofollow noreferrer"
+                class="link-hover text-emerald-200"
+              >
+                {project.href}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </aside>
 </Layout>
