@@ -2,13 +2,56 @@
 import Layout from '~/layouts/Layout.astro';
 import Logo from '~/components/Logo.astro';
 import SocialIcon from '~/components/SocialIcon.astro';
-import ProjectIcon from '~/components/ProjectIcon.astro';
+import { getCollection } from 'astro:content';
 import { person, socialLinks, featuredProjects } from '~/data/site';
+
+const jobs = await getCollection('jobs');
+const projects = await getCollection('projects');
+
+const parseDate = (value: string) => {
+  const [day, month, year] = value.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day));
+};
+
+const formatMonthYear = (value: string) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(parseDate(value));
+
+const formatTenure = (tenure: { from: string; to: string | null }) => {
+  const from = formatMonthYear(tenure.from);
+  const to = tenure.to ? formatMonthYear(tenure.to) : 'Present';
+  return `${from} — ${to}`;
+};
+
+const sortedJobs = [...jobs].sort((a, b) => {
+  const aTo = a.data.tenure.to
+    ? parseDate(a.data.tenure.to).getTime()
+    : Number.POSITIVE_INFINITY;
+  const bTo = b.data.tenure.to
+    ? parseDate(b.data.tenure.to).getTime()
+    : Number.POSITIVE_INFINITY;
+
+  if (aTo !== bTo) {
+    return bTo - aTo;
+  }
+
+  return (
+    parseDate(b.data.tenure.from).getTime() -
+    parseDate(a.data.tenure.from).getTime()
+  );
+});
+
+const sortedProjects = [...projects].sort((a, b) =>
+  a.data.name.localeCompare(b.data.name)
+);
 ---
 
 <Layout
-  title="Software Engineer & Freelancer Building Digital Products | wrux.com"
-  description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
+  title={`Resume | ${person.name}`}
+  description={`Professional resume for ${person.name}, ${person.role}.`}
 >
   <div class="container resume-terminal font-mono">
     <header class="my-10">
@@ -52,14 +95,14 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
         <div class="terminal-divider my-8" />
 
         <pre class="terminal-prompt text-xs text-emerald-400">
-{`> whoami
-> cat bio.txt`}
+{`> resume --profile "${person.name}"
+> export --format "print"`}
         </pre>
       </div>
     </header>
 
-    <main class="grid gap-10 lg:grid-cols-[2fr,1fr]">
-      <section class="space-y-6">
+    <main class="terminal-grid grid gap-10 lg:grid-cols-[2fr,1fr]">
+      <section class="space-y-8">
         <div class="terminal-card p-6">
           <h2 class="text-lg font-semibold text-emerald-100">Summary</h2>
           <p class="mt-3 text-base leading-relaxed text-emerald-200">
@@ -75,65 +118,59 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
         </div>
 
         <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">
-            Personal Projects
-          </h2>
-          <p class="mt-2 text-sm text-emerald-300">
-            A selection of personal projects I've been working on.
-          </p>
-          <ul class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-            {featuredProjects.map((project) => (
-              <li class="group relative link-box flex flex-col gap-3 terminal-item">
-                <div class="octagon relative aspect-square w-full rotate-[30deg] overflow-hidden group-hover:rotate-[10deg] transition-transform duration-300">
-                  <div
-                    class="relative aspect-square overflow-hidden h-full w-full flex items-center justify-center"
-                    style={`background-color: ${project.color};`}
-                  >
-                    <ProjectIcon
-                      name={project.name}
-                      size={48}
-                      class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300 group-hover:scale-110"
-                    />
+          <h2 class="text-lg font-semibold text-emerald-100">Experience</h2>
+          <ul class="mt-6 flex flex-col gap-5">
+            {sortedJobs.map((job) => (
+              <li class="terminal-item">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <p class="text-base font-semibold text-emerald-100">
+                      {job.data.title}
+                    </p>
+                    <p class="text-sm text-emerald-300">
+                      {job.data.company} · {job.data.location}
+                    </p>
                   </div>
+                  <p class="text-sm text-emerald-400">
+                    {formatTenure(job.data.tenure)}
+                  </p>
                 </div>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="link-overlay link-hover text-emerald-200 text-center text-sm"
-                  aria-label={project.label}
-                >
-                  {project.label}
-                </a>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <aside class="space-y-6">
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Online</h2>
-          <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
-            {socialLinks.map((link) => (
-              <li class="flex items-center justify-between gap-3">
-                <span>{link.label}</span>
+      <aside class="space-y-8">
+        <section class="terminal-card p-6">
+          <h2 class="text-lg font-semibold text-emerald-100">Selected Projects</h2>
+          <ul class="mt-5 flex flex-col gap-4">
+            {sortedProjects.map((project) => (
+              <li class="terminal-item">
+                <p class="text-base font-semibold text-emerald-100">
+                  {project.data.name}
+                </p>
+                {project.data.description && (
+                  <p class="mt-2 text-sm text-emerald-300">
+                    {project.data.description}
+                  </p>
+                )}
                 <a
-                  href={link.href}
+                  href={project.data.href}
                   target="_blank"
                   rel="nofollow noreferrer"
-                  class="link-hover text-emerald-200"
+                  class="mt-3 inline-flex text-sm text-emerald-200 link-hover"
                 >
-                  {link.href}
+                  {project.data.href}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
+        </section>
 
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Projects</h2>
-          <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
+        <section class="terminal-card p-6">
+          <h2 class="text-lg font-semibold text-emerald-100">Project Links</h2>
+          <ul class="mt-5 flex flex-col gap-3 text-sm text-emerald-300">
             {featuredProjects.map((project) => (
               <li class="flex items-center justify-between gap-3">
                 <span>{project.label}</span>
@@ -148,7 +185,7 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
               </li>
             ))}
           </ul>
-        </div>
+        </section>
       </aside>
     </main>
   </div>
