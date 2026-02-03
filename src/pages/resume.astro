@@ -75,7 +75,12 @@ const sortedProjects = [...projects].sort(
     </div>
 
     <div class="terminal-card p-6">
-      <h2 class="text-lg font-semibold text-emerald-100">Experience</h2>
+      <h2
+        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+      >
+        <Icon name="lucide:briefcase" size={20} class="terminal-icon" />
+        Experience
+      </h2>
       <ul class="mt-6 flex flex-col gap-5">
         {
           sortedJobs.map((job) => (
@@ -100,7 +105,12 @@ const sortedProjects = [...projects].sort(
 
   <aside class="space-y-8">
     <section class="terminal-card p-6">
-      <h2 class="text-lg font-semibold text-emerald-100">Selected Projects</h2>
+      <h2
+        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+      >
+        <Icon name="lucide:folder-git-2" size={20} class="terminal-icon" />
+        Selected Projects
+      </h2>
       <ul class="mt-5 flex flex-col gap-4">
         {
           sortedProjects.map((project) => (
@@ -113,7 +123,12 @@ const sortedProjects = [...projects].sort(
     </section>
 
     <section class="terminal-card p-6">
-      <h2 class="text-lg font-semibold text-emerald-100">Project Links</h2>
+      <h2
+        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+      >
+        <Icon name="lucide:link" size={20} class="terminal-icon" />
+        Project Links
+      </h2>
       <ul class="mt-5 flex flex-col gap-3 text-sm text-emerald-300">
         {
           featuredProjects.map((project) => (

@@ -99,8 +99,7 @@
     border: none;
     box-shadow: none;
     margin-inline: -2rem;
-    padding-right: 2rem;
-    padding-left: 4rem;
+    padding: 0 2rem;
     background: linear-gradient(
       180deg,
       rgba(2, 12, 10, 0.95),

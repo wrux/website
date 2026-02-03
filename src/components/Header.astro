@@ -1,62 +1,19 @@
 ---
-import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
-import SocialIcon from '~/components/SocialIcon.astro';
-import { person, socialLinks } from '~/data/site';
+import { person } from '~/data/site';
 ---
 
 <header class="terminal-panel terminal-panel-header">
   <div class="header-bleed-line"></div>
-  <div
-    class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between py-6"
-  >
-    <div class="space-y-4">
-      <Logo class:list="text-4xl sm:text-7xl text-primary terminal-glow" />
-      <div class="space-y-1">
-        <h1
-          class="text-4xl sm:text-5xl font-semibold tracking-tight text-white"
-        >
-          {person.name}
-        </h1>
-        <p class="flex items-center gap-2 text-lg text-emerald-300">
-          {person.role}
-        </p>
-      </div>
-    </div>
-
-    <div class="terminal-card px-6 py-5">
-      <p
-        class="flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-emerald-500"
-      >
-        <Icon name="lucide:contact" size={14} />
-        Contact
+  <div class="flex flex-col gap-6 py-6 lg:py-12">
+    <Logo class:list="text-4xl sm:text-7xl text-primary terminal-glow" />
+    <div class="space-y-1">
+      <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-white">
+        {person.name}
+      </h1>
+      <p class="flex items-center gap-2 text-lg text-emerald-300">
+        {person.role}
       </p>
-      <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-200">
-        {
-          socialLinks.map((link) => (
-            <li class="flex items-center gap-3">
-              <SocialIcon
-                name={link.name}
-                size={20}
-                class="terminal-icon shrink-0"
-              />
-              <div class="flex flex-col min-w-0">
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="link-hover flex items-center gap-1.5"
-                >
-                  {link.label}
-                </a>
-                <span class="text-xs text-emerald-400 truncate">
-                  {link.href}
-                </span>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </div>
 
