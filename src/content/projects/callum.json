@@ -2,5 +2,14 @@
   "description": "Callum.co.uk is my personal travel blog, built with AstroJS and SanityIO content store.",
   "href": "https://callum.co.uk",
   "name": "Callum.co.uk",
-  "image": "~/images/projects/motorq.png"
+  "image": "~/images/projects/callum.png",
+  "toolsUsed": [
+    "AstroJS",
+    "ReactJS",
+    "SanityIO",
+    "TypeScript",
+    "Tailwind CSS",
+    "Vercel"
+  ],
+  "order": 1
 }

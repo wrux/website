@@ -1,0 +1,17 @@
+{
+  "description": "A freelance job market place with blockchain smart contracts used as the settlement layer.",
+  "href": "https://kacet.com",
+  "name": "kacet",
+  "image": "~/images/projects/kacet.png",
+  "toolsUsed": [
+    "Next.js",
+    "Tailwind CSS",
+    "TypeScript",
+    "Supabase",
+    "Tanstack Start",
+    "Turborepo",
+    "Storybook",
+    "Rust"
+  ],
+  "order": 0
+}
