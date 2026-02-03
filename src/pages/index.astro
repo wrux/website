@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
 import SocialIcon from '~/components/SocialIcon.astro';
 import ProjectIcon from '~/components/ProjectIcon.astro';
@@ -10,146 +11,195 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
   title="Software Engineer & Freelancer Building Digital Products | wrux.com"
   description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
 >
-  <div class="container resume-terminal font-mono">
-    <header class="my-10">
-      <div class="terminal-panel">
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div class="space-y-4">
-            <Logo class:list="text-3xl text-primary terminal-glow" />
-            <div class="space-y-2">
-              <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-emerald-100">
-                {person.name}
-              </h1>
-              <p class="text-lg text-emerald-300">{person.role}</p>
-            </div>
-          </div>
-
-          <div class="terminal-card px-6 py-5">
-            <p class="text-xs uppercase tracking-[0.35em] text-emerald-500">
-              Contact
+  <div class="container boxed-terminal resume-terminal font-mono">
+    <header class="terminal-panel terminal-panel-header">
+      <div class="header-bleed-line"></div>
+      <div
+        class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between py-6"
+      >
+        <div class="space-y-4">
+          <Logo class:list="text-4xl sm:text-5xl text-primary terminal-glow" />
+          <div class="space-y-1">
+            <h1
+              class="text-4xl sm:text-5xl font-semibold tracking-tight text-emerald-100"
+            >
+              {person.name}
+            </h1>
+            <p class="flex items-center gap-2 text-lg text-emerald-300">
+              <Icon name="lucide:briefcase" size={18} class="terminal-icon" />
+              {person.role}
             </p>
-            <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-200">
-              {socialLinks.map((link) => (
+          </div>
+        </div>
+
+        <div class="terminal-card px-6 py-5">
+          <p
+            class="flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-emerald-500"
+          >
+            <Icon name="lucide:contact" size={14} />
+            Contact
+          </p>
+          <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-200">
+            {
+              socialLinks.map((link) => (
                 <li class="flex items-center gap-3">
-                  <SocialIcon name={link.name} size={20} class="terminal-icon" />
-                  <div class="flex flex-col">
+                  <SocialIcon
+                    name={link.name}
+                    size={20}
+                    class="terminal-icon shrink-0"
+                  />
+                  <div class="flex flex-col min-w-0">
                     <a
                       href={link.href}
                       target="_blank"
                       rel="nofollow noreferrer"
-                      class="link-hover"
+                      class="link-hover flex items-center gap-1.5"
                     >
                       {link.label}
+                      <Icon
+                        name="lucide:external-link"
+                        size={12}
+                        class="opacity-60"
+                      />
                     </a>
-                    <span class="text-xs text-emerald-400">{link.href}</span>
+                    <span class="text-xs text-emerald-400 truncate">
+                      {link.href}
+                    </span>
                   </div>
                 </li>
-              ))}
-            </ul>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="header-bleed-line"></div>
+    </header>
+
+    <main class="space-y-6 pt-8 pb-16">
+      <section class="space-y-6">
+        <div
+          class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
+        >
+          <h2
+            class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          >
+            <Icon name="lucide:file-text" size={20} class="terminal-icon" />
+            Summary
+          </h2>
+          <div class="max-w-prose">
+            <p class="mt-3 text-base leading-relaxed text-emerald-200">
+              {person.summary}
+            </p>
+            <p class="mt-4 text-base leading-relaxed text-emerald-200">
+              {person.bio.split('callum.co.uk')[0]} on
+              <a
+                href="https://callum.co.uk"
+                target="_blank"
+                class="link-underline inline-flex items-center gap-1"
+              >
+                callum.co.uk
+                <Icon name="lucide:external-link" size={14} class="inline" />
+              </a>
+              .
+            </p>
           </div>
         </div>
 
-        <div class="terminal-divider my-8" />
-
-        <pre class="terminal-prompt text-xs text-emerald-400">
-{`> whoami
-> cat bio.txt`}
-        </pre>
-      </div>
-    </header>
-
-    <main class="grid gap-10 lg:grid-cols-[2fr,1fr]">
-      <section class="space-y-6">
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Summary</h2>
-          <p class="mt-3 text-base leading-relaxed text-emerald-200">
-            {person.summary}
-          </p>
-          <p class="mt-4 text-base leading-relaxed text-emerald-200">
-            {person.bio.split('callum.co.uk')[0]} on
-            <a href="https://callum.co.uk" target="_blank" class="link-underline">
-              callum.co.uk
-            </a>
-            .
-          </p>
-        </div>
-
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">
+        <div
+          class="terminal-card p-6 border-t-0 border-l-0 border-r-0 rounded-none"
+        >
+          <h2
+            class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          >
+            <Icon name="lucide:folder-git-2" size={20} class="terminal-icon" />
             Personal Projects
           </h2>
-          <p class="mt-2 text-sm text-emerald-300">
+          <p class="mt-2 flex items-center gap-2 text-sm text-emerald-300">
+            <Icon name="lucide:sparkles" size={14} class="terminal-icon" />
             A selection of personal projects I've been working on.
           </p>
           <ul class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-            {featuredProjects.map((project) => (
-              <li class="group relative link-box flex flex-col gap-3 terminal-item">
-                <div class="octagon relative aspect-square w-full rotate-[30deg] overflow-hidden group-hover:rotate-[10deg] transition-transform duration-300">
-                  <div
-                    class="relative aspect-square overflow-hidden h-full w-full flex items-center justify-center"
-                    style={`background-color: ${project.color};`}
-                  >
-                    <ProjectIcon
-                      name={project.name}
-                      size={48}
-                      class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300 group-hover:scale-110"
-                    />
+            {
+              featuredProjects.map((project) => (
+                <li class="group relative link-box flex flex-col gap-3 terminal-item">
+                  <div class="octagon relative aspect-square w-full rotate-[30deg] overflow-hidden group-hover:rotate-[10deg] transition-transform duration-300">
+                    <div
+                      class="relative aspect-square overflow-hidden h-full w-full flex items-center justify-center"
+                      style={`background-color: ${project.color};`}
+                    >
+                      <ProjectIcon
+                        name={project.name}
+                        size={48}
+                        class="-rotate-[30deg] group-hover:-rotate-[10deg] transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
                   </div>
-                </div>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="link-overlay link-hover text-emerald-200 text-center text-sm"
-                  aria-label={project.label}
-                >
-                  {project.label}
-                </a>
-              </li>
-            ))}
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="nofollow noreferrer"
+                    class="link-overlay link-hover text-emerald-200 text-center text-sm inline-flex items-center justify-center gap-1"
+                    aria-label={project.label}
+                  >
+                    {project.label}
+                    <Icon
+                      name="lucide:external-link"
+                      size={12}
+                      class="shrink-0"
+                    />
+                  </a>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </section>
 
-      <aside class="space-y-6">
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Online</h2>
+      <aside>
+        <div
+          class="terminal-card p-6 border-l-0 border-r-0 rounded-none lg:border-l"
+        >
+          <h2
+            class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          >
+            <Icon name="lucide:globe" size={20} class="terminal-icon" />
+            Online
+          </h2>
           <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
-            {socialLinks.map((link) => (
-              <li class="flex items-center justify-between gap-3">
-                <span>{link.label}</span>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="link-hover text-emerald-200"
-                >
-                  {link.href}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="terminal-card p-6">
-          <h2 class="text-lg font-semibold text-emerald-100">Projects</h2>
-          <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
-            {featuredProjects.map((project) => (
-              <li class="flex items-center justify-between gap-3">
-                <span>{project.label}</span>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="nofollow noreferrer"
-                  class="link-hover text-emerald-200"
-                >
-                  {project.href}
-                </a>
-              </li>
-            ))}
+            {
+              socialLinks.map((link) => (
+                <li class="flex items-center justify-between gap-3">
+                  <span class="flex items-center gap-2">
+                    <SocialIcon
+                      name={link.name}
+                      size={16}
+                      class="terminal-icon shrink-0"
+                    />
+                    {link.label}
+                  </span>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="nofollow noreferrer"
+                    class="link-hover text-emerald-200 flex items-center gap-1.5 truncate min-w-0 justify-end"
+                    title={link.href}
+                  >
+                    <span class="truncate">{link.href}</span>
+                    <Icon
+                      name="lucide:external-link"
+                      size={14}
+                      class="shrink-0"
+                    />
+                  </a>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </aside>
+
+      <div class="header-bleed-line"></div>
     </main>
   </div>
 </Layout>

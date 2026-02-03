@@ -15,5 +15,22 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [icon()],
+  integrations: [
+    icon({
+      include: {
+        lucide: [
+          'user',
+          'briefcase',
+          'contact',
+          'file-text',
+          'folder-git-2',
+          'external-link',
+          'terminal',
+          'globe',
+          'sparkles',
+          'link',
+        ],
+      },
+    }),
+  ],
 });

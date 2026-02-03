@@ -10,6 +10,26 @@
   padding-inline: 2rem;
 }
 
+/* Boxed terminal layout */
+.boxed-terminal {
+  border-left: 1px solid rgba(16, 185, 129, 0.35);
+  border-right: 1px solid rgba(16, 185, 129, 0.35);
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.header-bleed-line {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 185, 129, 0.6),
+    transparent
+  );
+}
+
 @layer base {
   *,
   ::after,
@@ -64,9 +84,28 @@
 
   .terminal-panel {
     border: 1px solid rgba(16, 185, 129, 0.35);
-    background: linear-gradient(180deg, rgba(2, 12, 10, 0.95), rgba(1, 8, 7, 0.98));
-    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15), 0 20px 60px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(
+      180deg,
+      rgba(2, 12, 10, 0.95),
+      rgba(1, 8, 7, 0.98)
+    );
+    box-shadow:
+      0 0 0 1px rgba(16, 185, 129, 0.15),
+      0 20px 60px rgba(0, 0, 0, 0.4);
     padding: 2rem;
+  }
+
+  .terminal-panel-header {
+    border: none;
+    box-shadow: none;
+    margin-inline: -2rem;
+    padding-right: 2rem;
+    padding-left: 4rem;
+    background: linear-gradient(
+      180deg,
+      rgba(2, 12, 10, 0.95),
+      rgba(1, 8, 7, 0.98)
+    );
   }
 
   .terminal-card {
@@ -82,7 +121,12 @@
 
   .terminal-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.6), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(16, 185, 129, 0.6),
+      transparent
+    );
   }
 
   .terminal-prompt {
@@ -134,7 +178,8 @@
     box-shadow: none;
   }
 
-  .terminal-divider {
+  .terminal-divider,
+  .header-bleed-line {
     background: #111111;
   }
 
