@@ -42,10 +42,12 @@ const { description, title } = Astro.props;
     <meta name="description" content={description} />
   </head>
   <body class="text-white bg-black w-full overflow-x-clip">
-    <div class="container boxed-terminal resume-terminal font-mono">
+    <div
+      class="container boxed-terminal resume-terminal font-mono flex flex-col min-h-svh"
+    >
       <Header />
 
-      <main class="py-8 space-y-8">
+      <main class="py-8 space-y-8 flex-1">
         <slot />
       </main>
 

@@ -132,13 +132,13 @@ const sortedProjects = [...projects].sort(
       <ul class="mt-5 flex flex-col gap-3 text-sm text-emerald-300">
         {
           featuredProjects.map((project) => (
-            <li class="flex items-center justify-between gap-3">
-              <span>{project.label}</span>
+            <li class="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
+              <span class="font-medium text-emerald-200">{project.label}</span>
               <a
                 href={project.href}
                 target="_blank"
                 rel="nofollow noreferrer"
-                class="link-hover text-emerald-200"
+                class="link-hover text-emerald-200 break-all sm:break-normal"
               >
                 {project.href}
               </a>

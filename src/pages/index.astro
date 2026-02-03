@@ -10,27 +10,29 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
   title="Software Engineer & Freelancer Building Digital Products | wrux.com"
   description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
 >
-  <section
-    class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
-  >
-    <h2 class="flex items-center gap-2 text-lg font-semibold text-emerald-100">
-      <Icon name="lucide:file-text" size={20} class="terminal-icon" />
-      Summary
-    </h2>
-    <div class="max-w-prose">
-      <p class="mt-3 text-base leading-relaxed text-emerald-200">
-        {person.summary}
-      </p>
-      <p class="mt-4 text-base leading-relaxed text-emerald-200">
-        {person.bio.split('callum.co.uk')[0]} on
-        <a href="https://callum.co.uk" target="_blank" class="link-underline"
-          >callum.co.uk</a
-        >.
-      </p>
-    </div>
-  </section>
+  <div class="terminal-grid">
+    <section
+      class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
+    >
+      <h2
+        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+      >
+        <Icon name="lucide:file-text" size={20} class="terminal-icon" />
+        Summary
+      </h2>
+      <div class="max-w-prose">
+        <p class="mt-3 text-base leading-relaxed text-emerald-200">
+          {person.summary}
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-emerald-200">
+          {person.bio.split('callum.co.uk')[0]} on
+          <a href="https://callum.co.uk" target="_blank" class="link-underline"
+            >callum.co.uk</a
+          >.
+        </p>
+      </div>
+    </section>
 
-  <aside>
     <div
       class="terminal-card p-6 border-l-0 border-r-0 rounded-none lg:border-l"
     >
@@ -43,7 +45,7 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
       <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
         {
           socialLinks.map((link) => (
-            <li class="flex items-center justify-between gap-3">
+            <li class="flex flex-col justify-between gap-3 min-w-0">
               <span class="flex items-center gap-2">
                 <SocialIcon
                   name={link.name}
@@ -56,7 +58,7 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
                 href={link.href}
                 target="_blank"
                 rel="nofollow noreferrer"
-                class="link-hover text-emerald-200 flex items-center gap-1.5 truncate min-w-0 justify-end"
+                class="link-hover text-emerald-200 flex items-center gap-1.5 truncate min-w-0"
                 title={link.href}
               >
                 <span class="truncate">{link.href}</span>
@@ -66,5 +68,5 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
         }
       </ul>
     </div>
-  </aside>
+  </div>
 </Layout>
