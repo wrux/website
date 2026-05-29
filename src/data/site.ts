@@ -7,7 +7,7 @@ export const person = {
   location: 'Remote',
   website: 'https://callum.co.uk',
   contact: {
-    email: '',
+    email: 'callum@wrux.com',
     phone: '',
     linkedin: 'https://www.linkedin.com/in/wrux',
     github: 'https://github.com/wrux',
