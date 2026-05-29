@@ -4,7 +4,7 @@ export const sourceUrl = 'https://github.com/wrux/website';
 export const person = {
   name: 'Callum Bonnyman',
   role: 'Software Engineer',
-  location: 'Remote',
+  location: 'Oxford, UK',
   website: 'https://callum.co.uk',
   contact: {
     email: 'callum@wrux.com',
@@ -13,7 +13,7 @@ export const person = {
     github: 'https://github.com/wrux',
   },
   summary:
-    'I’m a software engineer and product creator with a passion for simple, effective solutions. I focus on clean code, thoughtful design, and building tools that people enjoy using. I love turning complex problems into intuitive experiences.',
+    'Full-stack developer with 13 years of professional experience across backend, full-stack, and frontend systems. My recent work focuses on modern frontend architecture, React, and TypeScript alongside serverless backend technologies. I specialise in engineering high-performance web applications with a strict emphasis on browser optimisation and accessible, user-first interfaces.',
   bio: 'When I’m not coding, I enjoy exploring new tech and traveling the world while posting occasionally on callum.co.uk.',
   skills: [
     'TypeScript',
