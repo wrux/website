@@ -119,6 +119,63 @@
   .terminal-glow {
     text-shadow: 0 0 10px rgba(16, 185, 129, 0.55);
   }
+
+  .cv-portfolio-list {
+    counter-reset: portfolio;
+  }
+
+  .cv-portfolio-item {
+    counter-increment: portfolio;
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: 1rem 1.5rem;
+    position: relative;
+    padding: 1.15rem 0 1.15rem 2.25rem;
+    border-top: 1px solid rgba(16, 185, 129, 0.18);
+  }
+
+  .cv-portfolio-item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .cv-portfolio-item::before {
+    content: counter(portfolio, decimal-leading-zero);
+    position: absolute;
+    top: 1.2rem;
+    left: 0;
+    color: rgba(16, 185, 129, 0.7);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .cv-portfolio-item:first-child::before {
+    top: 0.05rem;
+  }
+
+  .cv-portfolio-body p {
+    max-width: 76ch;
+  }
+
+  .cv-portfolio-tags li {
+    border: 1px solid rgba(16, 185, 129, 0.24);
+    background: rgba(0, 0, 0, 0.22);
+    padding: 0.15rem 0.45rem;
+  }
+
+  .cv-portfolio-links a {
+    display: inline-flex;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.35);
+    padding-bottom: 0.08rem;
+  }
+
+  @media (max-width: 47.999rem) {
+    .cv-portfolio-item {
+      display: block;
+      padding-left: 1.8rem;
+    }
+  }
 }
 
 @media print {
@@ -240,6 +297,11 @@
     margin-top: 0.06in !important;
   }
 
+  .cv-summary-content {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
   .cv-print-section .rounded-full {
     background: transparent !important;
     border: none !important;
@@ -251,8 +313,40 @@
   }
 
   .cv-portfolio-item {
+    display: block;
     break-inside: avoid;
     page-break-inside: avoid;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .cv-portfolio-item::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .cv-portfolio-tags {
+    display: block !important;
+    margin-top: 0.04in !important;
+    font-size: 8pt !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  .cv-portfolio-tags::before {
+    content: 'Skills: ';
+    font-weight: 600;
+  }
+
+  .cv-portfolio-tags li {
+    display: inline;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .cv-portfolio-tags li + li::before {
+    content: ', ';
   }
 
   .cv-portfolio-item ul {
