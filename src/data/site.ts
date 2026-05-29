@@ -4,9 +4,39 @@ export const sourceUrl = 'https://github.com/wrux/website';
 export const person = {
   name: 'Callum Bonnyman',
   role: 'Software Engineer',
+  location: 'Oxford, UK',
+  website: 'https://callum.co.uk',
+  contact: {
+    email: 'callum@wrux.com',
+    phone: '',
+    linkedin: 'https://www.linkedin.com/in/wrux',
+    github: 'https://github.com/wrux',
+  },
   summary:
-    'I’m a software engineer and product creator with a passion for simple, effective solutions. I focus on clean code, thoughtful design, and building tools that people enjoy using. I love turning complex problems into intuitive experiences.',
+    'Full-stack developer with 13 years of professional experience across backend, full-stack, and frontend systems. My recent work focuses on modern frontend architecture, React, and TypeScript alongside serverless backend technologies. I specialise in engineering high-performance web applications with a strict emphasis on browser optimisation and accessible, user-first interfaces.',
   bio: 'When I’m not coding, I enjoy exploring new tech and traveling the world while posting occasionally on callum.co.uk.',
+  skills: [
+    'TypeScript',
+    'JavaScript',
+    'React',
+    'Next.js',
+    'Astro',
+    'Tailwind CSS',
+    'Node.js',
+    'Frontend architecture',
+    'Design systems',
+    'Product engineering',
+    'Turborepo',
+    'Tanstack Start',
+    'React Query',
+    'GraphQL',
+    'HTMX',
+    'AlpineJS',
+    'Datastar',
+    'Vercel',
+    'Supabase',
+    'Sanity',
+  ],
 };
 
 export const socialLinks = [
@@ -63,5 +93,185 @@ export const featuredProjects = [
     href: 'https://butties.com',
     label: 'butties.com',
     color: '#003aad',
+  },
+];
+
+export const professionalPortfolio = [
+  {
+    name: 'Banburyshire',
+    description:
+      'Developing an independent digital guide and community platform for North Oxfordshire, leveraging high-conversion SEO strategies and modern content architecture to promote regional culture and tourism.',
+    urls: [
+      {
+        label: 'banburyshire.com',
+        href: 'https://banburyshire.com/',
+      },
+    ],
+    skills: [
+      'React',
+      'TypeScript',
+      'NextJS',
+      'Turborepo',
+      'SanityIO',
+      'Vite',
+      'React Query',
+      'Tanstack tools',
+      'Convex backend',
+      'Resend',
+      'ShadCN',
+      'Tailwind',
+      'Storybook',
+      'Vercel',
+    ],
+  },
+  {
+    name: 'Kacet',
+    description:
+      'Currently architecting a specialized crypto freelance job marketplace, focusing on secure, high-performance transaction handling within the Web3 ecosystem.',
+    urls: [
+      {
+        label: 'kacet.com',
+        href: 'https://kacet.com/',
+      },
+    ],
+    skills: [
+      'React',
+      'TypeScript',
+      'NextJS',
+      'Turborepo',
+      'SanityIO',
+      'Vite',
+      'Tanstack Start',
+      'Supabase backend',
+      'Resend',
+      'ShadCN',
+      'Tailwind',
+      'Storybook',
+      'Vercel',
+    ],
+  },
+  {
+    name: 'Ethan Stowell Restaurants (ESR) Portfolio',
+    subtitle: 'Main Site & Restaurant Network',
+    description:
+      'Engineered a scalable, multi-tenant digital presence for a premier hospitality group using Sanity.io for content management, establishing a reusable design system to maintain brand consistency across diverse restaurant digital storefronts.',
+    urls: [
+      {
+        label: 'ethanstowellrestaurants.com',
+        href: 'https://ethanstowellrestaurants.com/',
+      },
+      {
+        label: 'tavolata.com',
+        href: 'https://tavolata.com/',
+      },
+      {
+        label: 'ballardpizzacompany.com',
+        href: 'https://ballardpizzacompany.com/',
+      },
+      {
+        label: 'howtocookawolf.com',
+        href: 'https://howtocookawolf.com/',
+      },
+      {
+        label: 'victortavern.com',
+        href: 'https://victortavern.com/',
+      },
+    ],
+    skills: ['NextJS', 'Sanity', 'Tailwind', 'Vercel'],
+  },
+  {
+    name: 'Triumph Motorcycles Parts Finder',
+    description:
+      'Built a micro frontend React and TypeScript app with Vite and styled-components, querying a .NET backend for motorcycle parts catalogue data.',
+    urls: [
+      {
+        label: 'Landing page',
+        href: 'https://www.triumphmotorcycles.com/shop-accessories/parts-bike-selection',
+      },
+      {
+        label: 'React app',
+        href: 'https://www.triumphmotorcycles.com/shop-accessories/parts-bike-selection/parts-finder?&catalogPageId=25639&modelId=ZJ1&bikeId=f1f4c466-75be-439c-9f05-92c3c6e8a1d0',
+      },
+    ],
+    skills: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'styled-components',
+      'micro frontend',
+      '.NET backend',
+    ],
+  },
+  {
+    name: 'Illinois Humanities',
+    description:
+      'Designed and developed a public-facing digital platform to improve accessibility for state-wide cultural grants, programs, and community engagement initiatives.',
+    urls: [
+      {
+        label: 'ilhumanities.org',
+        href: 'https://ilhumanities.org/',
+      },
+    ],
+    skills: ['CraftCMS', 'Tailwind', 'HTMX', 'AlpineJS'],
+  },
+  {
+    name: 'Peggy Notebaert Nature Museum',
+    description:
+      "Modernised the museum's digital presence to enhance user experience, focusing on content-rich storytelling to drive community participation in conservation research and events.",
+    urls: [
+      {
+        label: 'naturemuseum.org',
+        href: 'https://naturemuseum.org/',
+      },
+    ],
+    skills: ['CraftCMS', 'Tailwind', 'HTMX', 'AlpineJS'],
+  },
+  {
+    name: 'First Lady & Cruise Chicago',
+    description:
+      "Delivered high-performance web solutions for Chicago's premier river cruise lines, focusing on conversion-optimised booking flows and scalable architecture for high-traffic tourism sites.",
+    urls: [
+      {
+        label: 'firstlady.com',
+        href: 'https://firstlady.com',
+      },
+    ],
+    skills: ['CraftCMS', 'Tailwind', 'HTMX', 'AlpineJS'],
+  },
+  {
+    name: 'Artist Assembly',
+    description:
+      'Built a centralized event management and registration platform for national artist fellows, ensuring a seamless user journey for high-profile cultural convenings.',
+    urls: [
+      {
+        label: 'artistassembly.org',
+        href: 'https://www.artistassembly.org/',
+      },
+    ],
+    skills: ['CraftCMS', 'GSAP', 'Tailwind', 'HTMX', 'AlpineJS'],
+  },
+  {
+    name: 'Motorq',
+    description:
+      'Developed front-end architecture for a vehicle intelligence platform, translating complex, real-time automotive OEM data into intuitive, actionable insights for enterprise fleets.',
+    urls: [
+      {
+        label: 'motorq.com',
+        href: 'https://motorq.com/',
+      },
+    ],
+    skills: ['React', 'TypeScript', 'NextJS', 'SanityIO', 'ChakraUI'],
+  },
+  {
+    name: 'Illinois Stop Hate',
+    description:
+      'Developed an accessible, mission-driven digital resource hub to facilitate community reporting and provide critical educational materials regarding social justice.',
+    urls: [
+      {
+        label: 'ilstophate.org',
+        href: 'https://ilstophate.org/',
+      },
+    ],
+    keywords: ['accessibility', 'resource hub', 'social justice'],
   },
 ];
