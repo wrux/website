@@ -1,12 +1,10 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { person, featuredProjects } from '~/data/site';
+import { person, professionalPortfolio } from '~/data/site';
 import { Icon } from 'astro-icon/components';
-import ProjectCard from '~/components/ProjectCard.astro';
 
 const jobs = await getCollection('jobs');
-const projects = await getCollection('projects');
 
 const parseDate = (value: string) => {
   const [day, month, year] = value.split('-').map(Number);
@@ -19,6 +17,9 @@ const formatMonthYear = (value: string) =>
     year: 'numeric',
     timeZone: 'UTC',
   }).format(parseDate(value));
+
+const formatISODate = (value: string) =>
+  parseDate(value).toISOString().slice(0, 10);
 
 const formatTenure = (tenure: { from: string; to: string | null }) => {
   const from = formatMonthYear(tenure.from);
@@ -44,8 +45,95 @@ const sortedJobs = [...jobs].sort((a, b) => {
   );
 });
 
-const sortedProjects = [...projects].sort(
-  (a, b) => a.data.order - b.data.order,
+const contactItems = [
+  {
+    label: 'Email',
+    value: person.contact.email,
+    href: person.contact.email ? `mailto:${person.contact.email}` : null,
+    itemprop: 'email',
+    microformatClass: 'u-email',
+  },
+  {
+    label: 'Phone',
+    value: person.contact.phone,
+    href: person.contact.phone ? `tel:${person.contact.phone}` : null,
+    itemprop: 'telephone',
+    microformatClass: 'p-tel',
+  },
+  {
+    label: 'Website',
+    value: person.website,
+    href: person.website,
+    itemprop: 'url',
+    microformatClass: 'u-url',
+  },
+  {
+    label: 'LinkedIn',
+    value: person.contact.linkedin,
+    href: person.contact.linkedin,
+    itemprop: 'sameAs',
+    microformatClass: 'u-url',
+  },
+  {
+    label: 'GitHub',
+    value: person.contact.github,
+    href: person.contact.github,
+    itemprop: 'sameAs',
+    microformatClass: 'u-url',
+  },
+].filter((item) => item.value);
+
+const sameAs = [
+  person.contact.linkedin,
+  person.contact.github,
+  person.website,
+].filter(Boolean);
+
+const cvStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person.name,
+  jobTitle: person.role,
+  description: person.summary,
+  url: person.website,
+  email: person.contact.email || undefined,
+  telephone: person.contact.phone || undefined,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: person.location,
+  },
+  sameAs,
+  knowsAbout: person.skills,
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: person.role,
+    skills: person.skills,
+  },
+  workExample: professionalPortfolio.map((project) => ({
+    '@type': 'CreativeWork',
+    name: project.name,
+    alternateName: project.subtitle,
+    description: project.description,
+    url: project.urls[0]?.href,
+    sameAs: project.urls.map((url) => url.href),
+    keywords: project.keywords,
+  })),
+  workExperience: sortedJobs.map((job) => ({
+    '@type': 'Role',
+    roleName: job.data.title,
+    startDate: formatISODate(job.data.tenure.from),
+    endDate: job.data.tenure.to ? formatISODate(job.data.tenure.to) : undefined,
+    worksFor: {
+      '@type': 'Organization',
+      name: job.data.company,
+      address: job.data.location,
+    },
+  })),
+};
+
+const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
+  /</g,
+  '\\u003c',
 );
 ---
 
@@ -53,115 +141,214 @@ const sortedProjects = [...projects].sort(
   title={`CV | ${person.name}`}
   description={`Professional CV for ${person.name}, ${person.role}.`}
 >
-  <section class="space-y-8">
-    <div class="terminal-card p-6">
+  <script type="application/ld+json" set:html={cvStructuredDataJson} />
+
+  <article
+    class="cv-document h-card space-y-8"
+    itemscope
+    itemtype="https://schema.org/Person"
+  >
+    <section
+      class="cv-print-section terminal-card p-6"
+      aria-label="CV contact details"
+    >
       <h2
         class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
       >
         <Icon
-          name="lucide:file-text"
+          name="lucide:contact"
           size={20}
           class="text-emerald-400 print:text-black"
         />
-        Summary
+        Contact
       </h2>
-      <div class="max-w-prose">
-        <p class="mt-3 text-base leading-relaxed text-emerald-200">
-          {person.summary}
+      <div
+        class="cv-contact-list mt-4 grid gap-3 text-sm text-emerald-300 sm:grid-cols-2"
+      >
+        <p>
+          <span class="font-medium text-emerald-200">Name</span>
+          <span class="p-name block" itemprop="name">{person.name}</span>
         </p>
-        <p class="mt-4 text-base leading-relaxed text-emerald-200">
-          {person.bio.split('callum.co.uk')[0]} on
-          <a href="https://callum.co.uk" target="_blank" class="link-underline"
-            >callum.co.uk</a
-          >.
+        <p>
+          <span class="font-medium text-emerald-200">Role</span>
+          <span class="p-job-title block" itemprop="jobTitle">{person.role}</span>
         </p>
-      </div>
-    </div>
-
-    <div class="terminal-card p-6">
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
-      >
-        <Icon
-          name="lucide:briefcase"
-          size={20}
-          class="text-emerald-400 print:text-black"
-        />
-        Experience
-      </h2>
-      <ul class="mt-6 flex flex-col gap-5">
+        <p>
+          <span class="font-medium text-emerald-200">Location</span>
+          <span
+            class="block"
+            itemprop="address"
+            itemscope
+            itemtype="https://schema.org/PostalAddress"
+          >
+            <span class="p-locality" itemprop="addressLocality"
+              >{person.location}</span
+            >
+          </span>
+        </p>
         {
-          sortedJobs.map((job) => (
-            <li class="terminal-item">
-              <h3 class="text-base font-semibold text-emerald-100">
-                {job.data.title}
-              </h3>
-              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <p class="text-sm text-emerald-300">
-                  {job.data.company} · {job.data.location}
-                </p>
-                <p class="text-sm text-emerald-400">
-                  {formatTenure(job.data.tenure)}
-                </p>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <aside class="space-y-8">
-    <section class="terminal-card p-6">
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
-      >
-        <Icon
-          name="lucide:folder-git-2"
-          size={20}
-          class="text-emerald-400 print:text-black"
-        />
-        Selected Projects
-      </h2>
-      <ul class="mt-5 flex flex-col gap-4">
-        {
-          sortedProjects.map((project) => (
-            <li>
-              <ProjectCard project={project} />
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <section class="terminal-card p-6">
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
-      >
-        <Icon
-          name="lucide:link"
-          size={20}
-          class="text-emerald-400 print:text-black"
-        />
-        Project Links
-      </h2>
-      <ul class="mt-5 flex flex-col gap-3 text-sm text-emerald-300">
-        {
-          featuredProjects.map((project) => (
-            <li class="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
-              <span class="font-medium text-emerald-200">{project.label}</span>
+          contactItems.map((item) => (
+            <p>
+              <span class="font-medium text-emerald-200">{item.label}</span>
               <a
-                href={project.href}
-                target="_blank"
-                rel="nofollow noreferrer"
-                class="link-hover text-emerald-200 break-all sm:break-normal"
+                class:list={[
+                  'cv-print-visible-url block link-hover text-emerald-200 break-all sm:break-normal',
+                  item.microformatClass,
+                ]}
+                href={item.href ?? undefined}
+                itemprop={item.itemprop}
               >
-                {project.href}
+                {item.value}
               </a>
-            </li>
+            </p>
           ))
         }
-      </ul>
+      </div>
     </section>
-  </aside>
+
+    <section class="cv-print-page space-y-8">
+      <div class="cv-print-section terminal-card p-6">
+        <h2
+          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        >
+          <Icon
+            name="lucide:file-text"
+            size={20}
+            class="text-emerald-400 print:text-black"
+          />
+          Summary
+        </h2>
+        <div class="max-w-prose">
+          <p class="mt-3 text-base leading-relaxed text-emerald-200">
+            {person.summary}
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-emerald-200">
+            {person.bio.split('callum.co.uk')[0]} on
+            <a href="https://callum.co.uk" target="_blank" class="link-underline"
+              >callum.co.uk</a
+            >.
+          </p>
+        </div>
+      </div>
+
+      <div class="cv-print-section terminal-card p-6">
+        <h2
+          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        >
+          <Icon
+            name="lucide:sparkles"
+            size={20}
+            class="text-emerald-400 print:text-black"
+          />
+          Core Skills
+        </h2>
+        <ul
+          class="mt-5 flex flex-wrap gap-2 text-sm text-emerald-200"
+          aria-label="Core software engineering skills"
+        >
+          {
+            person.skills.map((skill) => (
+              <li
+                class="rounded-full border border-emerald-700/60 bg-black px-2 py-0.5"
+                itemprop="knowsAbout"
+              >
+                {skill}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="cv-print-section terminal-card p-6">
+        <h2
+          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        >
+          <Icon
+            name="lucide:briefcase"
+            size={20}
+            class="text-emerald-400 print:text-black"
+          />
+          Experience
+        </h2>
+        <ul class="mt-6 flex flex-col gap-5">
+          {
+            sortedJobs.map((job) => (
+              <li class="terminal-item">
+                <h3 class="text-base font-semibold text-emerald-100">
+                  {job.data.title}
+                </h3>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <p class="text-sm text-emerald-300">
+                    {job.data.company} · {job.data.location}
+                  </p>
+                  <p class="text-sm text-emerald-400">
+                    {formatTenure(job.data.tenure)}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <aside class="cv-print-page space-y-8">
+      <section class="cv-print-section cv-print-flow terminal-card p-6">
+        <h2
+          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        >
+          <Icon
+            name="lucide:folder-git-2"
+            size={20}
+            class="text-emerald-400 print:text-black"
+          />
+          Professional Portfolio
+        </h2>
+        <ul class="cv-portfolio-list mt-5 flex flex-col gap-4">
+          {
+            professionalPortfolio.map((project) => (
+              <li
+                class="cv-portfolio-item terminal-item"
+                itemprop="workExample"
+                itemscope
+                itemtype="https://schema.org/CreativeWork"
+              >
+                <h3
+                  class="text-base font-semibold text-emerald-100"
+                  itemprop="name"
+                >
+                  {project.name}
+                </h3>
+                {
+                  project.subtitle && (
+                    <p class="mt-1 text-sm font-medium text-emerald-300">
+                      {project.subtitle}
+                    </p>
+                  )
+                }
+                <p class="mt-2 text-sm text-emerald-300" itemprop="description">
+                  {project.description}
+                </p>
+                <ul class="mt-3 flex flex-wrap gap-2 text-sm text-emerald-200">
+                  {project.urls.map((url) => (
+                    <li>
+                      <a
+                        href={url.href}
+                        target="_blank"
+                        rel="nofollow noreferrer"
+                        class="cv-print-visible-url link-hover text-emerald-200 break-all sm:break-normal"
+                        itemprop="url"
+                      >
+                        {url.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </aside>
+  </article>
 </Layout>

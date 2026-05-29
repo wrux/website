@@ -123,12 +123,31 @@
 
 @media print {
   @page {
-    margin: 0.6in;
+    size: A4;
+    margin: 10mm;
+  }
+
+  html {
+    font-size: 12px;
   }
 
   body {
     background: #ffffff;
     color: #111111;
+    font-size: 9pt;
+    line-height: 1.35;
+  }
+
+  body .container {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .resume-terminal > main {
+    padding: 0 !important;
   }
 
   .resume-terminal {
@@ -137,6 +156,45 @@
 
   .resume-terminal * {
     color: #111111 !important;
+  }
+
+  .resume-terminal h1 {
+    font-size: 20pt;
+    line-height: 1.1;
+  }
+
+  .resume-terminal h2 {
+    font-size: 10.5pt;
+    line-height: 1.2;
+  }
+
+  .resume-terminal h3 {
+    font-size: 9.5pt;
+    line-height: 1.25;
+  }
+
+  .resume-terminal p,
+  .resume-terminal li,
+  .resume-terminal a {
+    line-height: 1.32;
+  }
+
+  .resume-terminal svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  .terminal-panel-header > div:not(.header-bleed-line) {
+    gap: 0.08in !important;
+    padding-block: 0 0.18in !important;
+  }
+
+  .cv-document {
+    display: block;
+  }
+
+  .cv-document > * + * {
+    margin-top: 0.18in !important;
   }
 
   /* Strip the “terminal” chrome for print */
@@ -149,6 +207,59 @@
     padding: 0;
   }
 
+  .cv-contact-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.07in 0.16in !important;
+  }
+
+  .cv-print-page:not(:last-child) {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .cv-print-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-print-flow {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .cv-print-section + .cv-print-section {
+    margin-top: 0.18in !important;
+  }
+
+  .cv-print-section ul {
+    margin-top: 0.09in !important;
+    gap: 0.07in !important;
+  }
+
+  .cv-print-section p {
+    margin-top: 0.06in !important;
+  }
+
+  .cv-print-section .rounded-full {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .cv-portfolio-list {
+    gap: 0.12in !important;
+  }
+
+  .cv-portfolio-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-portfolio-item ul {
+    margin-top: 0.04in !important;
+    gap: 0.04in 0.12in !important;
+  }
+
   /* Remove bleed lines / decorative dividers in print */
   .terminal-divider,
   .header-bleed-line {
@@ -158,11 +269,16 @@
   a {
     color: #111111;
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
 
   a::after {
     content: ' (' attr(href) ')';
     font-size: 0.85em;
     color: #444444;
+  }
+
+  .cv-print-visible-url::after {
+    content: none;
   }
 }
