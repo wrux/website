@@ -120,6 +120,10 @@
     text-shadow: 0 0 10px rgba(16, 185, 129, 0.55);
   }
 
+  .cv-print-only {
+    display: none;
+  }
+
   .cv-portfolio-list {
     counter-reset: portfolio;
   }
@@ -305,6 +309,19 @@
     margin-top: 0.06in !important;
   }
 
+  .cv-print-only {
+    display: inline !important;
+  }
+
+  .cv-print-line {
+    display: block !important;
+  }
+
+  .cv-print-hide,
+  .cv-screen-only {
+    display: none !important;
+  }
+
   .cv-summary-content {
     width: 100% !important;
     max-width: none !important;
@@ -337,37 +354,16 @@
     display: none !important;
   }
 
-  .cv-portfolio-tags {
-    display: block !important;
-    margin-top: 0.04in !important;
+  .cv-portfolio-skills-csv {
+    margin-top: 0.06in !important;
     font-size: 8pt !important;
     letter-spacing: 0 !important;
     text-transform: none !important;
   }
 
-  .cv-portfolio-tags::before {
-    content: 'Skills: ';
-    font-weight: 600;
-  }
-
-  .cv-portfolio-tags li {
-    display: inline;
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-
-  .cv-portfolio-tags li + li::before {
-    content: ', ';
-  }
-
   .cv-portfolio-item ul {
     margin-top: 0.06in !important;
     gap: 0.04in 0.12in !important;
-  }
-
-  .cv-portfolio-item .cv-portfolio-tags {
-    margin-top: 0.06in !important;
   }
 
   .cv-portfolio-item .cv-portfolio-links {
