@@ -3,17 +3,13 @@ import Logo from '~/components/Logo.astro';
 import { person } from '~/data/site';
 ---
 
-<header class="terminal-panel terminal-panel-header">
+<header class="terminal-panel site-header">
   <div class="header-bleed-line"></div>
-  <div class="flex flex-col gap-6 py-6 lg:py-12">
-    <Logo class:list="print:hidden text-7xl text-primary terminal-glow" />
-    <div class="space-y-1">
-      <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-white">
-        {person.name}
-      </h1>
-      <p class="flex items-center gap-2 text-lg text-emerald-300">
-        {person.role}
-      </p>
+  <div class="site-header-inner">
+    <Logo class="site-logo terminal-glow" />
+    <div class="site-heading">
+      <h1>{person.name}</h1>
+      <p>{person.role}</p>
     </div>
   </div>
 

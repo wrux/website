@@ -9,12 +9,8 @@ export interface Props {
 const { project } = Astro.props;
 ---
 
-<article
-  class="grid group grid-cols-1 md:grid-cols-5 link-box overflow-hidden border border-dashed border-emerald-800/50 bg-emerald-950/50 hover:border-white focus-within:border-white transition-colors duration-300"
->
-  <div
-    class="col-span-1 md:col-span-2 print:hidden w-full h-auto md:w-auto md:h-full md:flex-1 aspect-video md:aspect-auto"
-  >
+<article class="project-card link-box">
+  <div class="project-media">
     <Image
       src={project.data.image}
       alt={project.data.name}
@@ -22,27 +18,21 @@ const { project } = Astro.props;
       decoding="async"
       widths={[320, 480, 640, 768, 1024, 1280]}
       sizes="(min-width: 1024px) 320px, (min-width: 768px) 272px, 100vw"
-      class="block size-full object-cover border-b md:border-b-0 border-dashed md:border-r border-emerald-800/50 bg-emerald-950/50 group-hover:border-white focus-within:border-white transition-colors duration-300"
+      class="project-image"
     />
   </div>
-  <div class="col-span-1 md:col-span-3 min-w-0 flex-1 max-w-prose py-4 px-5">
-    <p
-      class="text-base font-semibold text-emerald-100 group-hover:text-white focus-within:text-white transition-colors duration-300"
-    >
-      {project.data.name}
-    </p>
+  <div class="project-content">
+    <p class="project-title">{project.data.name}</p>
     {
       project.data.description && (
-        <p class="mt-2 text-sm text-emerald-300">{project.data.description}</p>
+        <p class="project-description">{project.data.description}</p>
       )
     }
     {
       project.data.toolsUsed?.length > 0 && (
-        <ul class="mt-3 flex flex-wrap gap-1.5 text-[11px] uppercase tracking-wide text-emerald-200/80">
+        <ul class="project-tools">
           {project.data.toolsUsed.map((tool) => (
-            <li class="rounded-full border border-emerald-700/60 bg-black px-2 py-0.5">
-              {tool}
-            </li>
+            <li>{tool}</li>
           ))}
         </ul>
       )
@@ -51,7 +41,7 @@ const { project } = Astro.props;
       href={project.data.href}
       target="_blank"
       rel="nofollow noreferrer"
-      class="mt-3 inline-flex link-overlay text-sm text-emerald-200 link-hover"
+      class="project-link link-overlay link-hover"
     >
       {project.data.href}
     </a>

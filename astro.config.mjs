@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 
 import vercel from '@astrojs/vercel';
@@ -12,10 +11,7 @@ export default defineConfig({
     },
   }),
   build: {
-    inlineStylesheets: 'always',
-  },
-  vite: {
-    plugins: [tailwindcss()],
+    inlineStylesheets: 'never',
   },
   integrations: [
     icon({
