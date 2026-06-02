@@ -1,6 +1,6 @@
 ---
-import appStylesheet from '~/styles/app.css?url';
-import printStylesheet from '~/styles/print.css?url';
+import appStylesheet from '~/styles/app.css?inline';
+import printStylesheet from '~/styles/print.css?inline';
 // Import the critical Latin font file for preloading
 import interLatinFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '~/components/Header.astro';
@@ -40,8 +40,8 @@ const { description, title } = Astro.props;
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="stylesheet" href={appStylesheet} />
-    <link rel="stylesheet" href={printStylesheet} media="print" />
+    <style set:html={appStylesheet}></style>
+    <style media="print" set:html={printStylesheet}></style>
   </head>
   <body>
     <div class="site-shell resume-terminal">
