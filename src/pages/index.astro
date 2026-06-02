@@ -10,25 +10,19 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
   title="Software Engineer & Freelancer Building Digital Products | wrux.com"
   description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
 >
-  <div class="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.15fr)]">
-    <section
-      class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
-    >
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
-      >
+  <div class="home-grid">
+    <section class="terminal-card panel">
+      <h2 class="section-title">
         <Icon
           name="lucide:file-text"
           size={20}
-          class="text-emerald-400 print:text-black"
+          class="section-icon"
         />
         Summary
       </h2>
-      <div class="max-w-prose">
-        <p class="mt-3 text-base leading-relaxed text-emerald-200">
-          {person.summary}
-        </p>
-        <p class="mt-4 text-base leading-relaxed text-emerald-200">
+      <div class="prose">
+        <p>{person.summary}</p>
+        <p>
           {person.bio.split('callum.co.uk')[0]} on
           <a href="https://callum.co.uk" target="_blank" class="link-underline"
             >callum.co.uk</a
@@ -37,28 +31,20 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
       </div>
     </section>
 
-    <div
-      class="terminal-card p-6 border-l-0 border-r-0 rounded-none lg:border-l"
-    >
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
-      >
-        <Icon
-          name="lucide:globe"
-          size={20}
-          class="text-emerald-400 print:text-black"
-        />
+    <section class="terminal-card panel">
+      <h2 class="section-title">
+        <Icon name="lucide:globe" size={20} class="section-icon" />
         Online
       </h2>
-      <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
+      <ul class="social-list">
         {
           socialLinks.map((link) => (
-            <li class="flex flex-col justify-between gap-3 min-w-0">
-              <span class="flex items-center gap-2">
+            <li>
+              <span class="social-label">
                 <SocialIcon
                   name={link.name}
                   size={16}
-                  class="text-emerald-400 print:text-black shrink-0"
+                  class="section-icon"
                 />
                 {link.label}
               </span>
@@ -66,15 +52,15 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
                 href={link.href}
                 target="_blank"
                 rel="nofollow noreferrer"
-                class="link-hover text-emerald-200 flex items-center gap-1.5 truncate min-w-0"
+                class="link-hover social-link"
                 title={link.href}
               >
-                <span class="truncate">{link.href}</span>
+                <span>{link.href}</span>
               </a>
             </li>
           ))
         }
       </ul>
-    </div>
+    </section>
   </div>
 </Layout>

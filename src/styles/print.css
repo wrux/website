@@ -1,0 +1,227 @@
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+@layer print.reset, print.base, print.layout, print.components, print.utilities;
+
+@layer print.reset {
+  *,
+  ::before,
+  ::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+@layer print.base {
+  html {
+    font-size: 12px;
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+    color: #111;
+    font: 9pt/1.35 Arial, Helvetica, sans-serif;
+  }
+
+  a {
+    color: #111;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  a::after {
+    content: ' (' attr(href) ')';
+    color: #444;
+    font-size: 0.85em;
+  }
+}
+
+@layer print.layout {
+  .site-shell,
+  .site-main,
+  .cv-document,
+  .cv-stack {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #111;
+    font-family: inherit;
+  }
+
+  .site-main {
+    padding: 0;
+  }
+
+  .cv-document > * + *,
+  .cv-stack > * + *,
+  .cv-section + .cv-section {
+    margin-top: 0.18in;
+  }
+
+  .cv-contact-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.07in 0.16in;
+    margin-top: 0.09in;
+  }
+
+  .prose,
+  .cv-summary-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .prose p,
+  .cv-section p {
+    margin-top: 0.06in;
+  }
+
+  .work-list,
+  .cv-portfolio-list,
+  .cv-portfolio-links {
+    display: block;
+    margin-top: 0.09in;
+  }
+
+  .terminal-item + .terminal-item {
+    margin-top: 0.07in;
+  }
+
+  .work-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.12in;
+    margin-top: 0.03in;
+  }
+
+  .cv-print-page:not(:last-child) {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .cv-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-print-flow {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+}
+
+@layer print.components {
+  .terminal-panel,
+  .terminal-card,
+  .terminal-item {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .site-header {
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header-inner {
+    gap: 0.08in;
+    padding: 0 0 0.18in;
+  }
+
+  .site-heading h1 {
+    color: #111;
+    font-size: 20pt;
+    line-height: 1.1;
+  }
+
+  .site-heading p,
+  .section-title,
+  .field-label,
+  .field-value,
+  .text-link,
+  .prose p,
+  .work-meta,
+  .cv-portfolio-subtitle,
+  .cv-portfolio-body p,
+  .cv-portfolio-links {
+    color: #111;
+  }
+
+  .section-title {
+    gap: 0.06in;
+    font-size: 10.5pt;
+    line-height: 1.2;
+  }
+
+  .section-icon {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  .cv-portfolio-item {
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 0;
+    border: 0;
+  }
+
+  .cv-portfolio-item + .cv-portfolio-item {
+    margin-top: 0.24in;
+  }
+
+  .cv-portfolio-item::before {
+    content: none;
+  }
+
+  .cv-portfolio-skills-csv {
+    margin-top: 0.06in;
+    font-size: 8pt;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .cv-portfolio-links li {
+    display: inline;
+  }
+
+  .cv-portfolio-links li + li::before {
+    content: ', ';
+  }
+
+  .cv-portfolio-links a {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+@layer print.utilities {
+  .site-footer,
+  .site-logo,
+  .header-bleed-line,
+  .terminal-divider,
+  .cv-print-hide,
+  .cv-screen-only {
+    display: none !important;
+  }
+
+  .cv-print-visible-url::after {
+    content: none;
+  }
+
+  .cv-print-only {
+    display: inline !important;
+  }
+
+  .cv-print-line {
+    display: block !important;
+  }
+}

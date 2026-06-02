@@ -1,127 +1,360 @@
-@import 'tailwindcss';
-
-@theme {
-  --font-sans: 'Inter Variable', 'Inter', 'sans-serif';
-  --color-primary: #00eacf;
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
+    format('woff2-variations');
 }
 
-@utility container {
-  @apply mx-auto px-4 sm:px-8 print:px-0;
-}
+@layer reset, base, layout, components, utilities;
 
-.header-bleed-line {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(16, 185, 129, 0.6),
-    transparent
-  );
+@layer reset {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ul,
+  p,
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  svg,
+  img {
+    display: block;
+    max-width: 100%;
+  }
 }
 
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+  :root {
+    --bg: #000;
+    --panel: #02140fb3;
+    --panel-strong: #020c0af2;
+    --line: #10b98140;
+    --line-strong: #10b98199;
+    --primary: #00eacf;
+    --text: #fff;
+    --text-soft: #d1fae5;
+    --text-mid: #a7f3d0;
+    --text-dim: #6ee7b7;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
+    color-scheme: dark;
+  }
+
+  html {
+    font-family: 'Inter Variable', Inter, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: clip;
+    background: var(--bg);
   }
 }
 
-@layer utilities {
-  .octagon {
-    clip-path: polygon(
-      30% 0%,
-      70% 0%,
-      100% 30%,
-      100% 70%,
-      70% 100%,
-      30% 100%,
-      0% 70%,
-      0% 30%
-    );
+@layer layout {
+  .site-shell {
+    --shell-pad: 1rem;
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    max-width: 64rem;
+    margin-inline: auto;
+    padding-inline: var(--shell-pad);
+    color: var(--text-soft);
+    font-family: var(--mono);
   }
 
-  .link-hover {
-    @apply hover:underline underline-offset-4 hover:text-neutral-100 focus:text-neutral-100 transition-colors duration-150;
+  .site-main {
+    flex: 1;
+    padding-block: 2rem;
   }
 
-  .link-underline {
-    @apply underline underline-offset-4 hover:text-neutral-100 hover:no-underline focus:no-underline transition-colors duration-150;
+  .site-main > * + *,
+  .cv-document > * + *,
+  .cv-stack > * + * {
+    margin-top: 2rem;
   }
 
-  .link-box {
-    position: relative;
+  .home-grid {
+    display: grid;
+    gap: 2rem;
+  }
 
-    .link-overlay:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
+  .panel,
+  .cv-section {
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 40rem) {
+    .site-shell {
+      --shell-pad: 2rem;
+      max-width: 36rem;
+      border-inline: 1px solid #00eacf33;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .site-shell {
+      max-width: 48rem;
     }
 
-    a:not(.link-overlay) {
-      position: relative;
-      z-index: 2;
+    .home-grid {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.15fr);
     }
   }
 
-  .resume-terminal {
-    color: #d1fae5;
+  @media (min-width: 64rem) {
+    .site-shell {
+      max-width: 64rem;
+    }
   }
+}
 
-  .terminal-panel {
-    @apply p-8;
-
-    border: 1px solid rgba(16, 185, 129, 0.35);
-    background: linear-gradient(
-      180deg,
-      rgba(2, 12, 10, 0.95),
-      rgba(1, 8, 7, 0.98)
-    );
-    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15),
-      0 20px 60px rgba(0, 0, 0, 0.4);
-  }
-
-  .terminal-panel-header {
-    @apply border-none shadow-none -mx-8 print:mx-0 py-0 px-8;
-
-    background: linear-gradient(
-      180deg,
-      rgba(2, 12, 10, 0.95),
-      rgba(1, 8, 7, 0.98)
-    );
-  }
-
-  .terminal-card {
-    border: 1px solid rgba(16, 185, 129, 0.25);
-    background: rgba(2, 20, 15, 0.7);
-  }
-
-  .terminal-divider {
+@layer components {
+  .header-bleed-line {
+    width: 100vw;
     height: 1px;
+    margin-left: calc(-50vw + 50%);
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(16, 185, 129, 0.6),
+      var(--line-strong),
       transparent
     );
   }
 
-  .terminal-prompt {
-    white-space: pre-wrap;
-    letter-spacing: 0.04em;
+  .terminal-panel,
+  .terminal-card {
+    border: 1px solid var(--line);
+    background: var(--panel);
+  }
+
+  .terminal-panel {
+    padding: 2rem;
+    background: linear-gradient(180deg, var(--panel-strong), #010807fa);
+    box-shadow: 0 0 0 1px #10b98126, 0 20px 60px #0006;
+  }
+
+  .site-header {
+    margin-inline: calc(var(--shell-pad) * -1);
+    padding: 0 var(--shell-pad);
+    border: 0;
+    box-shadow: none;
+  }
+
+  .site-header-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-block: 1.5rem;
+  }
+
+  .site-logo {
+    width: 0.7048em;
+    height: 1em;
+    color: var(--primary);
+    font-size: 4.5rem;
   }
 
   .terminal-glow {
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.55);
+    text-shadow: 0 0 10px #10b9818c;
   }
 
-  .cv-print-only {
-    display: none;
+  .site-heading h1 {
+    color: var(--text);
+    font-size: clamp(2.25rem, 8vw, 3rem);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .site-heading p,
+  .section-icon,
+  .site-footer,
+  .work-meta p:last-child {
+    color: var(--text-dim);
+  }
+
+  .site-heading p {
+    margin-top: 0.25rem;
+    font-size: 1.125rem;
+  }
+
+  .site-footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem 2rem;
+    font-size: 0.875rem;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-soft);
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .prose {
+    max-width: 65ch;
+  }
+
+  .prose p,
+  .cv-portfolio-body p {
+    color: var(--text-mid);
+    line-height: 1.625;
+  }
+
+  .prose p {
+    margin-top: 0.75rem;
+  }
+
+  .prose p + p {
+    margin-top: 1rem;
+  }
+
+  .link-hover,
+  .link-underline {
+    color: var(--text-dim);
+    text-underline-offset: 4px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+
+  .link-underline {
+    text-decoration: underline;
+  }
+
+  .link-hover:hover,
+  .link-hover:focus,
+  .link-underline:hover,
+  .link-underline:focus {
+    color: var(--text);
+  }
+
+  .link-hover:hover {
+    text-decoration: underline;
+  }
+
+  .social-list,
+  .work-list,
+  .cv-portfolio-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .social-list {
+    color: var(--text-mid);
+    font-size: 0.875rem;
+  }
+
+  .social-list li,
+  .social-label,
+  .social-link {
+    min-width: 0;
+  }
+
+  .social-list li {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .social-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .social-link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cv-contact-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    color: var(--text-mid);
+    font-size: 0.875rem;
+  }
+
+  .field-label {
+    display: block;
+    color: var(--text-soft);
+    font-weight: 500;
+  }
+
+  .field-value,
+  .text-link {
+    display: block;
+    color: var(--text-mid);
+    overflow-wrap: anywhere;
+  }
+
+  .skill-list,
+  .cv-portfolio-tags,
+  .cv-portfolio-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: #a7f3d0cc;
+    font-size: 0.75rem;
+  }
+
+  .skill-chip,
+  .cv-portfolio-tags li {
+    border: 1px solid #10b9813d;
+    border-radius: 999px;
+    background: #00000038;
+    padding: 0.125rem 0.5rem;
+  }
+
+  .work-list {
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .terminal-item h3,
+  .cv-portfolio-heading h3 {
+    color: var(--text-soft);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .work-meta {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+    color: var(--text-mid);
+    font-size: 0.875rem;
   }
 
   .cv-portfolio-list {
@@ -135,11 +368,11 @@
     gap: 1.15rem 1.65rem;
     position: relative;
     padding: 1.45rem 0 1.45rem 2.25rem;
-    border-top: 1px solid rgba(16, 185, 129, 0.18);
+    border-top: 1px solid #10b9812e;
   }
 
   .cv-portfolio-item:first-child {
-    border-top: none;
+    border-top: 0;
     padding-top: 0;
   }
 
@@ -148,7 +381,7 @@
     position: absolute;
     top: 1.2rem;
     left: 0;
-    color: rgba(16, 185, 129, 0.7);
+    color: #10b981b3;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -158,28 +391,49 @@
     top: 0.05rem;
   }
 
+  .cv-portfolio-subtitle,
   .cv-portfolio-body p {
-    max-width: 76ch;
+    margin-top: 0.5rem;
+    color: var(--text-mid);
+    font-size: 0.875rem;
   }
 
-  .cv-portfolio-tags {
-    margin-top: 0.75rem;
-  }
-
-  .cv-portfolio-tags li {
-    border: 1px solid rgba(16, 185, 129, 0.24);
-    background: rgba(0, 0, 0, 0.22);
-    padding: 0.15rem 0.45rem;
+  .cv-portfolio-subtitle {
+    font-weight: 500;
   }
 
   .cv-portfolio-links {
-    margin-top: 0.85rem;
+    font-size: 0.875rem;
   }
 
   .cv-portfolio-links a {
-    display: inline-flex;
-    border-bottom: 1px solid rgba(16, 185, 129, 0.35);
+    border-bottom: 1px solid #10b98159;
     padding-bottom: 0.08rem;
+  }
+
+  @media (min-width: 40rem) {
+    .site-footer-inner {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .cv-contact-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .work-meta {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .site-header-inner {
+      padding-block: 3rem;
+    }
   }
 
   @media (max-width: 47.999rem) {
@@ -190,210 +444,8 @@
   }
 }
 
-@media print {
-  @page {
-    size: A4;
-    margin: 10mm;
-  }
-
-  html {
-    font-size: 12px;
-  }
-
-  body {
-    background: #ffffff;
-    color: #111111;
-    font-size: 9pt;
-    line-height: 1.35;
-  }
-
-  body .container {
-    width: 100% !important;
-    max-width: none !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .resume-terminal > main {
-    padding: 0 !important;
-  }
-
-  .resume-terminal {
-    color: #111111;
-  }
-
-  .resume-terminal * {
-    color: #111111 !important;
-  }
-
-  .resume-terminal h1 {
-    font-size: 20pt;
-    line-height: 1.1;
-  }
-
-  .resume-terminal h2 {
-    font-size: 10.5pt;
-    line-height: 1.2;
-  }
-
-  .resume-terminal h3 {
-    font-size: 9.5pt;
-    line-height: 1.25;
-  }
-
-  .resume-terminal p,
-  .resume-terminal li,
-  .resume-terminal a {
-    line-height: 1.32;
-  }
-
-  .resume-terminal svg {
-    width: 12px !important;
-    height: 12px !important;
-  }
-
-  .terminal-panel-header > div:not(.header-bleed-line) {
-    gap: 0.08in !important;
-    padding-block: 0 0.18in !important;
-  }
-
-  .cv-document {
-    display: block;
-  }
-
-  .cv-document > * + * {
-    margin-top: 0.18in !important;
-  }
-
-  /* Strip the “terminal” chrome for print */
-  .terminal-panel,
-  .terminal-card,
-  .terminal-item {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .cv-contact-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.07in 0.16in !important;
-  }
-
-  .cv-print-page:not(:last-child) {
-    break-after: page;
-    page-break-after: always;
-  }
-
-  .cv-print-section {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  .cv-print-flow {
-    break-inside: auto;
-    page-break-inside: auto;
-  }
-
-  .cv-print-section + .cv-print-section {
-    margin-top: 0.18in !important;
-  }
-
-  .cv-print-section ul {
-    margin-top: 0.09in !important;
-    gap: 0.07in !important;
-  }
-
-  .cv-print-section p {
-    margin-top: 0.06in !important;
-  }
-
+@layer utilities {
   .cv-print-only {
-    display: inline !important;
-  }
-
-  .cv-print-line {
-    display: block !important;
-  }
-
-  .cv-print-hide,
-  .cv-screen-only {
-    display: none !important;
-  }
-
-  .cv-summary-content {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  .cv-print-section .rounded-full {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-
-  .cv-portfolio-list {
-    gap: 0.24in !important;
-  }
-
-  .cv-portfolio-item {
-    display: block;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    padding: 0 !important;
-    border: none !important;
-  }
-
-  .cv-portfolio-item + .cv-portfolio-item {
-    margin-top: 0.24in !important;
-  }
-
-  .cv-portfolio-item::before {
-    content: none !important;
-    display: none !important;
-  }
-
-  .cv-portfolio-skills-csv {
-    margin-top: 0.06in !important;
-    font-size: 8pt !important;
-    letter-spacing: 0 !important;
-    text-transform: none !important;
-  }
-
-  .cv-portfolio-item ul {
-    margin-top: 0.06in !important;
-    gap: 0.04in 0.12in !important;
-  }
-
-  .cv-portfolio-item .cv-portfolio-links {
-    margin-top: 0.07in !important;
-  }
-
-  .cv-portfolio-links a {
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
-  }
-
-  /* Remove bleed lines / decorative dividers in print */
-  .terminal-divider,
-  .header-bleed-line {
     display: none;
-  }
-
-  a {
-    color: #111111;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-  }
-
-  a::after {
-    content: ' (' attr(href) ')';
-    font-size: 0.85em;
-    color: #444444;
-  }
-
-  .cv-print-visible-url::after {
-    content: none;
   }
 }

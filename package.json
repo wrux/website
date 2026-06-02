@@ -13,12 +13,20 @@
     "@astrojs/vercel": "^10.0.8",
     "@fontsource-variable/inter": "^5.2.8",
     "@iconify-json/lucide": "^1.2.110",
-    "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.2",
-    "astro-icon": "^1.1.5",
-    "tailwindcss": "^4.3.0"
+    "astro-icon": "^1.1.5"
   },
   "overrides": {
     "path-to-regexp": "6.3.0"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "cssnano": "^7.1.9",
+    "postcss": "^8.5.15",
+    "postcss-preset-env": "^11.3.0"
   }
 }
