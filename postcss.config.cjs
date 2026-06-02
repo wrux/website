@@ -5,7 +5,6 @@ module.exports = {
     require('postcss-preset-env')({
       stage: 3,
       preserve: false,
-      autoprefixer: false,
       features: {
         'custom-media-queries': true,
         'gap-properties': false,
