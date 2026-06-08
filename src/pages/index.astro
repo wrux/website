@@ -2,8 +2,14 @@
 import Layout from '~/layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import SocialIcon from '~/components/SocialIcon.astro';
-import ProjectIcon from '~/components/ProjectIcon.astro';
-import { person, socialLinks, featuredProjects } from '~/data/site';
+import { person, socialLinks } from '~/data/site';
+
+const homepageSummary =
+  'I work with teams that need dependable frontend delivery: clear interfaces, maintainable React systems, content-heavy sites, and product builds that keep moving after launch.';
+
+const homepageSocialLinks = socialLinks.filter(
+  (link) => link.href !== person.website,
+);
 ---
 
 <Layout
@@ -26,7 +32,7 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
       </h2>
       <div class="max-w-prose">
         <p class="mt-3 text-base leading-relaxed text-emerald-200">
-          {person.summary}
+          {homepageSummary}
         </p>
         <p class="mt-4 text-base leading-relaxed text-emerald-200">
           {person.bio.split('callum.co.uk')[0]} on
@@ -52,7 +58,7 @@ import { person, socialLinks, featuredProjects } from '~/data/site';
       </h2>
       <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
         {
-          socialLinks.map((link) => (
+          homepageSocialLinks.map((link) => (
             <li class="flex flex-col justify-between gap-3 min-w-0">
               <span class="flex items-center gap-2">
                 <SocialIcon
