@@ -26,6 +26,7 @@ export default defineConfig({
           'contact',
           'file-text',
           'folder-git-2',
+          'graduation-cap',
           'external-link',
           'terminal',
           'globe',

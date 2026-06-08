@@ -5,5 +5,9 @@
   "tenure": {
     "from": "11-06-2021",
     "to": "10-06-2022"
-  }
+  },
+  "description": [
+    "Built React micro-frontends for enterprise clients including Triumph Motorcycles and Jotun, while working alongside the backend development team",
+    "Led development of Silent Night's design system and component library, increasing UI consistency and development efficiency"
+  ]
 }

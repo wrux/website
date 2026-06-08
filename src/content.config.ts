@@ -12,6 +12,7 @@ const jobs = defineCollection({
       from: z.string(),
       to: z.string().nullable(),
     }),
+    description: z.array(z.string()).optional(),
   }),
 });
 

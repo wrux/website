@@ -1,9 +1,14 @@
 {
   "company": "Freelance",
-  "location": "🌏 Remote",
+  "location": "Remote",
   "title": "Frontend Engineer",
   "tenure": {
     "from": "12-06-2022",
     "to": null
-  }
+  },
+  "description": [
+    "Built multiple CraftCMS catalog websites as a contractor, delivering production-ready sites for clients",
+    "Developed kacet.com from concept to production using React, TypeScript, Tailwind, Vite, and TanStack, driving the product to a deployable MVP",
+    "Implemented Next.js incremental static regeneration for product pages to shorten content update delays."
+  ]
 }

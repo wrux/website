@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { person, professionalPortfolio } from '~/data/site';
+import { education, person, professionalPortfolio } from '~/data/site';
 import { Icon } from 'astro-icon/components';
 
 const jobs = await getCollection('jobs');
@@ -47,6 +47,20 @@ const sortedJobs = [...jobs].sort((a, b) => {
 
 const contactItems = [
   {
+    label: 'Website',
+    value: person.website,
+    href: person.website,
+    itemprop: 'url',
+    microformatClass: 'u-url',
+  },
+  {
+    label: 'Blog',
+    value: person.blog,
+    href: person.blog,
+    itemprop: 'sameAs',
+    microformatClass: 'u-url',
+  },
+  {
     label: 'Email',
     value: person.contact.email,
     href: person.contact.email ? `mailto:${person.contact.email}` : null,
@@ -80,6 +94,7 @@ const sameAs = [
   person.contact.linkedin,
   person.contact.github,
   person.website,
+  person.blog,
 ].filter(Boolean);
 
 const cvStructuredData = {
@@ -97,6 +112,11 @@ const cvStructuredData = {
   },
   sameAs,
   knowsAbout: person.skills,
+  alumniOf: education.map((school) => ({
+    '@type': 'CollegeOrUniversity',
+    name: school.institution,
+    address: school.location,
+  })),
   hasOccupation: {
     '@type': 'Occupation',
     name: person.role,
@@ -109,11 +129,12 @@ const cvStructuredData = {
     description: project.description,
     url: project.urls[0]?.href,
     sameAs: project.urls.map((url) => url.href),
-    keywords: project.skills ?? project.keywords,
+    keywords: project.skills,
   })),
   workExperience: sortedJobs.map((job) => ({
     '@type': 'Role',
     roleName: job.data.title,
+    description: job.data.description?.join(' '),
     startDate: formatISODate(job.data.tenure.from),
     endDate: job.data.tenure.to ? formatISODate(job.data.tenure.to) : undefined,
     worksFor: {
@@ -284,6 +305,46 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
                     {formatTenure(job.data.tenure)}
                   </p>
                 </div>
+                {
+                  job.data.description && (
+                    <ul class="mt-3 max-w-prose list-disc space-y-2 pl-5 text-sm text-emerald-300">
+                      {job.data.description.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  )
+                }
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="cv-print-section terminal-card p-6">
+        <h2
+          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        >
+          <Icon
+            name="lucide:graduation-cap"
+            size={20}
+            class="text-emerald-400 print:text-black"
+          />
+          Education
+        </h2>
+        <ul class="mt-6 flex flex-col gap-5">
+          {
+            education.map((school) => (
+              <li class="terminal-item">
+                <h3 class="text-base font-semibold text-emerald-100">
+                  {school.degree}
+                </h3>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <p class="text-sm text-emerald-300">
+                    {school.institution} · {school.location}
+                  </p>
+                  <p class="text-sm text-emerald-400">{school.period}</p>
+                </div>
+                <p class="mt-3 text-sm text-emerald-300">{school.summary}</p>
               </li>
             ))
           }
@@ -330,12 +391,12 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
                     class="cv-portfolio-tags cv-print-hide mt-3 flex flex-wrap gap-1.5 text-[11px] uppercase tracking-wide text-emerald-200/80"
                     aria-label={`${project.name} project skills`}
                   >
-                    {(project.skills ?? project.keywords).map((skill) => (
+                    {project.skills.map((skill) => (
                       <li>{skill}</li>
                     ))}
                   </ul>
                   <p class="cv-print-only cv-print-line cv-portfolio-skills-csv">
-                    Skills: {(project.skills ?? project.keywords).join(', ')}
+                    Skills: {project.skills.join(', ')}
                   </p>
                 </div>
                 <div class="cv-portfolio-body">

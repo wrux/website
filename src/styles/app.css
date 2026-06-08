@@ -87,13 +87,22 @@
   }
 
   .terminal-panel-header {
-    @apply border-none shadow-none -mx-8 print:mx-0 py-0 px-8;
+    @apply border-none shadow-none print:mx-0 py-0;
 
     background: linear-gradient(
       180deg,
       rgba(2, 12, 10, 0.95),
       rgba(1, 8, 7, 0.98)
     );
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 40rem) {
+    .terminal-panel-header {
+      margin-inline: -2rem;
+      padding-inline: 2rem;
+    }
   }
 
   .terminal-card {

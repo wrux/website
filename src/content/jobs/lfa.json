@@ -5,5 +5,9 @@
   "tenure": {
     "from": "11-06-2014",
     "to": "11-06-2019"
-  }
+  },
+  "description": [
+    "Built and maintained Magento 2 commerce sites, improving site reliability and feature delivery for customers",
+    "Led development of an internal ERP and manufacturing tooling with Laravel that became a core company asset"
+  ]
 }

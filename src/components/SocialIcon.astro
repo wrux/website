@@ -2,12 +2,21 @@
 import { Icon } from 'astro-icon/components';
 
 export interface Props {
-  name: 'github' | 'linkedin' | 'instagram';
+  name: 'blog' | 'github' | 'instagram' | 'link' | 'linkedin' | 'website';
   size?: number;
   class?: string;
 }
 
 const { name, size = 32, class: className } = Astro.props;
+
+const iconMap = {
+  blog: 'lucide:file-text',
+  github: 'github',
+  instagram: 'instagram',
+  link: 'lucide:link',
+  linkedin: 'linkedin',
+  website: 'lucide:globe',
+} as const;
 ---
 
-<Icon name={name} size={size} class={className} />
+<Icon name={iconMap[name]} size={size} class={className} />
