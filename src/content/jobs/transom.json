@@ -7,7 +7,8 @@
     "to": "11-06-2023"
   },
   "description": [
-    "Built multiple Sanity.io + Next.js sites, improving content delivery and developer clarity",
-    "Maintained and migrated legacy codebases to Sanity, reducing technical debt and easing future updates"
+    "Built Sanity and Next.js sites with React, TypeScript-oriented frontend architecture, reusable components, and editorial workflows for content-rich client platforms",
+    "Maintained and migrated legacy codebases to Sanity, reducing technical debt and making future content and product updates easier to ship",
+    "Collaborated with designers, content teams, and stakeholders to turn visual direction and information architecture into performant, accessible web experiences"
   ]
 }

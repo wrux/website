@@ -7,7 +7,8 @@
     "to": "11-06-2021"
   },
   "description": [
-    "Built and maintained multiple CraftCMS and WordPress catalog sites, improving content delivery and site stability for clients.",
-    "Developed and expanded a reusable design system and component library for bnn.de, reducing front-end duplication and speeding feature implementation."
+    "Built and maintained Craft CMS and WordPress catalog sites with accessible, responsive frontend components, improving content delivery and site stability for clients",
+    "Developed and expanded a reusable design system and component library for bnn.de, reducing frontend duplication and speeding feature implementation",
+    "Improved frontend maintainability across content-heavy sites by standardising templates, CSS patterns, component structure, and editor-friendly content models"
   ]
 }

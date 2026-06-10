@@ -1,14 +1,15 @@
 {
   "company": "Freelance",
   "location": "Remote",
-  "title": "Frontend Engineer",
+  "title": "Senior Frontend Engineer",
   "tenure": {
     "from": "12-06-2022",
     "to": null
   },
   "description": [
-    "Built multiple CraftCMS catalog websites as a contractor, delivering production-ready sites for clients",
-    "Developed kacet.com from concept to production using React, TypeScript, Tailwind, Vite, and TanStack, driving the product to a deployable MVP",
-    "Implemented Next.js incremental static regeneration for product pages to shorten content update delays."
+    "Partner with founders, agencies, and product teams to ship production React, Next.js, Astro, Craft CMS, and Sanity web products with maintainable frontend architecture",
+    "Developed kacet.com from concept to production using React, TypeScript, Tailwind CSS, Vite, TanStack tools, Supabase, and Vercel, driving the marketplace product to a deployable MVP",
+    "Built content-heavy catalog and marketing platforms with reusable components, editorial workflows, SEO-ready structure, and pragmatic design system patterns",
+    "Implemented Next.js incremental static regeneration and product page architecture to keep content fresh while preserving frontend performance"
   ]
 }

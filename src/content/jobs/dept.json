@@ -7,7 +7,8 @@
     "to": "10-06-2022"
   },
   "description": [
-    "Built React micro-frontends for enterprise clients including Triumph Motorcycles and Jotun, while working alongside the backend development team",
-    "Led development of Silent Night's design system and component library, increasing UI consistency and development efficiency"
+    "Built React and TypeScript micro-frontends for enterprise product experiences including Triumph Motorcycles and Jotun, collaborating closely with backend teams on API integration and release delivery",
+    "Led development of Silentnight's design system and component library, defining reusable UI patterns that improved consistency, accessibility, and implementation speed",
+    "Translated design and product requirements into maintainable frontend architecture using Vite, styled-components, component state, and production-ready testing and review practices"
   ]
 }
