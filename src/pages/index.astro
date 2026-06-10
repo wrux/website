@@ -21,20 +21,20 @@ const homepageSocialLinks = socialLinks.filter(
       class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
     >
       <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
       >
         <Icon
           name="lucide:file-text"
           size={20}
-          class="text-emerald-400 print:text-black"
+          class="text-[var(--accent)] print:text-black"
         />
         Summary
       </h2>
       <div class="max-w-prose">
-        <p class="mt-3 text-base leading-relaxed text-emerald-200">
+        <p class="mt-3 text-base leading-relaxed text-[var(--text-muted)]">
           {homepageSummary}
         </p>
-        <p class="mt-4 text-base leading-relaxed text-emerald-200">
+        <p class="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
           {person.bio.split('callum.co.uk')[0]} on
           <a href="https://callum.co.uk" target="_blank" class="link-underline"
             >callum.co.uk</a
@@ -47,16 +47,16 @@ const homepageSocialLinks = socialLinks.filter(
       class="terminal-card p-6 border-l-0 border-r-0 rounded-none lg:border-l"
     >
       <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
       >
         <Icon
           name="lucide:globe"
           size={20}
-          class="text-emerald-400 print:text-black"
+          class="text-[var(--accent)] print:text-black"
         />
         Online
       </h2>
-      <ul class="mt-4 flex flex-col gap-3 text-sm text-emerald-300">
+      <ul class="mt-4 flex flex-col gap-3 text-sm text-[var(--text-muted)]">
         {
           homepageSocialLinks.map((link) => (
             <li class="flex flex-col justify-between gap-3 min-w-0">
@@ -64,7 +64,7 @@ const homepageSocialLinks = socialLinks.filter(
                 <SocialIcon
                   name={link.name}
                   size={16}
-                  class="text-emerald-400 print:text-black shrink-0"
+                  class="text-[var(--accent)] print:text-black shrink-0"
                 />
                 {link.label}
               </span>
@@ -72,7 +72,7 @@ const homepageSocialLinks = socialLinks.filter(
                 href={link.href}
                 target="_blank"
                 rel="nofollow noreferrer"
-                class="link-hover text-emerald-200 flex items-center gap-1.5 truncate min-w-0"
+                class="link-hover text-[var(--accent)] flex items-center gap-1.5 truncate min-w-0"
                 title={link.href}
               >
                 <span class="truncate">{link.href}</span>

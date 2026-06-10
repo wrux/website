@@ -167,28 +167,28 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
       aria-label="CV contact details"
     >
       <h2
-        class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+        class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
       >
         <Icon
           name="lucide:contact"
           size={20}
-          class="text-emerald-400 print:text-black"
+          class="text-[var(--accent)] print:text-black"
         />
         Contact
       </h2>
       <div
-        class="cv-contact-list mt-4 grid gap-3 text-sm text-emerald-300 sm:grid-cols-2"
+        class="cv-contact-list mt-4 grid gap-3 text-sm text-[var(--text-muted)] sm:grid-cols-2"
       >
         <p>
-          <span class="font-medium text-emerald-200">Name</span>
+          <span class="font-medium text-[var(--accent)]">Name</span>
           <span class="p-name block" itemprop="name">{person.name}</span>
         </p>
         <p>
-          <span class="font-medium text-emerald-200">Role</span>
+          <span class="font-medium text-[var(--accent)]">Role</span>
           <span class="p-job-title block" itemprop="jobTitle">{person.role}</span>
         </p>
         <p>
-          <span class="font-medium text-emerald-200">Location</span>
+          <span class="font-medium text-[var(--accent)]">Location</span>
           <span
             class="block"
             itemprop="address"
@@ -203,10 +203,10 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
         {
           contactItems.map((item) => (
             <p>
-              <span class="font-medium text-emerald-200">{item.label}</span>
+              <span class="font-medium text-[var(--accent)]">{item.label}</span>
               <a
                 class:list={[
-                  'cv-print-visible-url block link-hover text-emerald-200 break-all sm:break-normal',
+                  'cv-print-visible-url block link-hover text-[var(--accent)] break-all sm:break-normal',
                   item.microformatClass,
                 ]}
                 href={item.href ?? undefined}
@@ -223,20 +223,20 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
     <section class="cv-print-page space-y-8">
       <div class="cv-print-section terminal-card p-6">
         <h2
-          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
         >
           <Icon
             name="lucide:file-text"
             size={20}
-            class="text-emerald-400 print:text-black"
+            class="text-[var(--accent)] print:text-black"
           />
           Professional Summary
         </h2>
         <div class="cv-summary-content max-w-prose">
-          <p class="mt-3 text-base leading-relaxed text-emerald-200">
+          <p class="mt-3 text-base leading-relaxed text-[var(--text-muted)]">
             {person.summary}
           </p>
-          <p class="mt-4 text-base leading-relaxed text-emerald-200">
+          <p class="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
             {person.bio.split('callum.co.uk')[0]} on
             <a href="https://callum.co.uk" target="_blank" class="link-underline"
               >callum.co.uk</a
@@ -247,29 +247,29 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
 
       <div class="cv-print-section terminal-card p-6">
         <h2
-          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
         >
           <Icon
             name="lucide:sparkles"
             size={20}
-            class="text-emerald-400 print:text-black"
+            class="text-[var(--accent)] print:text-black"
           />
           Technical Skills
         </h2>
         <p
-          class="cv-print-only cv-print-line mt-5 text-sm text-emerald-300"
+          class="cv-print-only cv-print-line mt-5 text-sm text-[var(--text-muted)]"
           aria-label="Technical skills for resume parsing"
         >
           Technical Skills: {person.skills.join(', ')}
         </p>
         <ul
-          class="cv-print-hide mt-5 flex flex-wrap gap-2 text-sm text-emerald-200"
+          class="cv-print-hide mt-5 flex flex-wrap gap-2 text-sm text-[var(--accent)]"
           aria-label="Core software engineering skills"
         >
           {
             person.skills.map((skill) => (
               <li
-                class="rounded-full border border-emerald-700/60 bg-black px-2 py-0.5"
+                class="rounded-full border border-[var(--rule)] bg-[rgba(126,226,196,0.08)] px-2 py-0.5"
                 itemprop="knowsAbout"
               >
                 {skill}
@@ -281,12 +281,12 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
 
       <div class="cv-print-section terminal-card p-6">
         <h2
-          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
         >
           <Icon
             name="lucide:briefcase"
             size={20}
-            class="text-emerald-400 print:text-black"
+            class="text-[var(--accent)] print:text-black"
           />
           Work Experience
         </h2>
@@ -294,20 +294,20 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
           {
             sortedJobs.map((job) => (
               <li class="terminal-item">
-                <h3 class="text-base font-semibold text-emerald-100">
+                <h3 class="text-base font-semibold text-[var(--text)]">
                   {job.data.title}
                 </h3>
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <p class="text-sm text-emerald-300">
+                  <p class="text-sm text-[var(--text-muted)]">
                     {job.data.company} · {job.data.location}
                   </p>
-                  <p class="text-sm text-emerald-400">
+                  <p class="text-sm text-[var(--accent)]">
                     {formatTenure(job.data.tenure)}
                   </p>
                 </div>
                 {
                   job.data.description && (
-                    <ul class="mt-3 max-w-prose list-disc space-y-2 pl-5 text-sm text-emerald-300">
+                    <ul class="mt-3 max-w-prose list-disc space-y-2 pl-5 text-sm text-[var(--text-muted)]">
                       {job.data.description.map((item) => (
                         <li>{item}</li>
                       ))}
@@ -322,12 +322,12 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
 
       <div class="cv-print-section terminal-card p-6">
         <h2
-          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
         >
           <Icon
             name="lucide:graduation-cap"
             size={20}
-            class="text-emerald-400 print:text-black"
+            class="text-[var(--accent)] print:text-black"
           />
           Education
         </h2>
@@ -335,16 +335,16 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
           {
             education.map((school) => (
               <li class="terminal-item">
-                <h3 class="text-base font-semibold text-emerald-100">
+                <h3 class="text-base font-semibold text-[var(--text)]">
                   {school.degree}
                 </h3>
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <p class="text-sm text-emerald-300">
+                  <p class="text-sm text-[var(--text-muted)]">
                     {school.institution} · {school.location}
                   </p>
-                  <p class="text-sm text-emerald-400">{school.period}</p>
+                  <p class="text-sm text-[var(--accent)]">{school.period}</p>
                 </div>
-                <p class="mt-3 text-sm text-emerald-300">{school.summary}</p>
+                <p class="mt-3 text-sm text-[var(--text-muted)]">{school.summary}</p>
               </li>
             ))
           }
@@ -355,12 +355,12 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
     <aside class="cv-print-page space-y-8">
       <section class="cv-print-section cv-print-flow terminal-card p-6">
         <h2
-          class="flex items-center gap-2 text-lg font-semibold text-emerald-100"
+          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
         >
           <Icon
             name="lucide:folder-git-2"
             size={20}
-            class="text-emerald-400 print:text-black"
+            class="text-[var(--accent)] print:text-black"
           />
           Professional Portfolio
         </h2>
@@ -375,20 +375,20 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
               >
                 <div class="cv-portfolio-heading">
                   <h3
-                    class="text-base font-semibold text-emerald-100"
+                    class="text-base font-semibold text-[var(--text)]"
                     itemprop="name"
                   >
                     {project.name}
                   </h3>
                   {
                     project.subtitle && (
-                      <p class="mt-1 text-sm font-medium text-emerald-300">
+                      <p class="mt-1 text-sm font-medium text-[var(--text-muted)]">
                         {project.subtitle}
                       </p>
                     )
                   }
                   <ul
-                    class="cv-portfolio-tags cv-print-hide mt-3 flex flex-wrap gap-1.5 text-[11px] uppercase tracking-wide text-emerald-200/80"
+                    class="cv-portfolio-tags cv-print-hide mt-3 flex flex-wrap gap-1.5 text-[11px] uppercase tracking-wide text-[var(--accent)]"
                     aria-label={`${project.name} project skills`}
                   >
                     {project.skills.map((skill) => (
@@ -401,13 +401,13 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
                 </div>
                 <div class="cv-portfolio-body">
                   <p
-                    class="mt-2 text-sm text-emerald-300"
+                    class="mt-2 text-sm text-[var(--text-muted)]"
                     itemprop="description"
                   >
                     {project.description}
                   </p>
                   <ul
-                    class="cv-portfolio-links mt-3 flex flex-wrap gap-2 text-sm text-emerald-200"
+                    class="cv-portfolio-links mt-3 flex flex-wrap gap-2 text-sm text-[var(--accent)]"
                   >
                     {project.urls.map((url) => (
                       <li>
@@ -415,7 +415,7 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
                           href={url.href}
                           target="_blank"
                           rel="nofollow noreferrer"
-                          class="cv-print-visible-url link-hover text-emerald-200 break-all sm:break-normal"
+                          class="cv-print-visible-url link-hover text-[var(--accent)] break-all sm:break-normal"
                           itemprop="url"
                         >
                           <span class="cv-screen-only">{url.label}</span>

@@ -34,16 +34,16 @@ const { description, title } = Astro.props;
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00eacf" />
-    <meta name="msapplication-TileColor" content="#00eacf" />
-    <meta name="theme-color" content="#00eacf" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#7ee2c4" />
+    <meta name="msapplication-TileColor" content="#070a0f" />
+    <meta name="theme-color" content="#070a0f" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="text-white bg-black w-full overflow-x-clip">
+  <body class="w-full overflow-x-clip bg-[var(--page-bg)] text-[var(--text)] antialiased">
     <div
-      class="container sm:border-x print:border-none border-primary/20 sm:max-w-xl md:max-w-3xl lg:max-w-5xl resume-terminal font-mono flex flex-col min-h-svh"
+      class="container flex min-h-svh flex-col border-[var(--rule)] font-sans resume-terminal sm:max-w-xl sm:border-x md:max-w-3xl lg:max-w-5xl print:border-none"
     >
       <Header />
 
@@ -54,7 +54,7 @@ const { description, title } = Astro.props;
       <footer class="print:hidden">
         <div class="header-bleed-line"></div>
         <div
-          class="flex flex-col items-center justify-center gap-2 px-8 py-6 text-sm text-emerald-400 sm:flex-row sm:gap-4"
+          class="flex flex-col items-center justify-center gap-2 px-8 py-6 text-sm text-[var(--text-soft)] sm:flex-row sm:gap-4"
         >
           <span>&copy; {new Date().getFullYear()} {person.name}</span>
           <span>&middot;</span>
@@ -62,7 +62,7 @@ const { description, title } = Astro.props;
             href={sourceUrl}
             target="_blank"
             rel="nofollow noreferrer"
-            class="link-hover text-emerald-300"
+            class="link-hover"
           >
             Source on GitHub
           </a>

@@ -8,10 +8,10 @@ import { person } from '~/data/site';
   <div class="flex flex-col gap-6 py-6 lg:py-12">
     <Logo class:list="print:hidden text-7xl text-primary terminal-glow" />
     <div class="space-y-1">
-      <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-white">
+      <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-[var(--text)]">
         {person.name}
       </h1>
-      <p class="flex items-center gap-2 text-lg text-emerald-300">
+      <p class="flex items-center gap-2 text-lg text-[var(--text-muted)]">
         {person.role}
       </p>
     </div>

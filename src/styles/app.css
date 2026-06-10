@@ -2,7 +2,21 @@
 
 @theme {
   --font-sans: 'Inter Variable', 'Inter', 'sans-serif';
-  --color-primary: #00eacf;
+  --font-mono: 'SFMono-Regular', 'Cascadia Code', 'Consolas', 'monospace';
+  --color-primary: #7ee2c4;
+}
+
+:root {
+  --page-bg: #070a0f;
+  --panel-bg: rgba(12, 22, 28, 0.92);
+  --panel-bg-soft: rgba(15, 31, 37, 0.72);
+  --text: #f4f7f5;
+  --text-muted: #b7c8c0;
+  --text-soft: #8fa39a;
+  --accent: #7ee2c4;
+  --accent-strong: #b8f5de;
+  --rule: rgba(126, 226, 196, 0.22);
+  --rule-strong: rgba(184, 245, 222, 0.42);
 }
 
 @utility container {
@@ -16,7 +30,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(16, 185, 129, 0.6),
+    rgba(126, 226, 196, 0.5),
     transparent
   );
 }
@@ -46,11 +60,31 @@
   }
 
   .link-hover {
-    @apply hover:underline underline-offset-4 hover:text-neutral-100 focus:text-neutral-100 transition-colors duration-150;
+    color: var(--accent);
+    text-decoration-color: rgba(126, 226, 196, 0.38);
+    text-underline-offset: 0.22em;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+
+  .link-hover:hover,
+  .link-hover:focus {
+    color: var(--accent-strong);
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
   }
 
   .link-underline {
-    @apply underline underline-offset-4 hover:text-neutral-100 hover:no-underline focus:no-underline transition-colors duration-150;
+    color: var(--accent);
+    text-decoration-line: underline;
+    text-decoration-color: rgba(126, 226, 196, 0.42);
+    text-underline-offset: 0.22em;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+
+  .link-underline:hover,
+  .link-underline:focus {
+    color: var(--accent-strong);
+    text-decoration-color: currentColor;
   }
 
   .link-box {
@@ -70,20 +104,21 @@
   }
 
   .resume-terminal {
-    color: #d1fae5;
+    color: var(--text);
+    line-height: 1.58;
   }
 
   .terminal-panel {
     @apply p-8;
 
-    border: 1px solid rgba(16, 185, 129, 0.35);
+    border: 1px solid var(--rule);
     background: linear-gradient(
       180deg,
-      rgba(2, 12, 10, 0.95),
-      rgba(1, 8, 7, 0.98)
+      rgba(13, 23, 30, 0.98),
+      rgba(7, 12, 18, 0.98)
     );
-    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15),
-      0 20px 60px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 1px rgba(126, 226, 196, 0.08),
+      0 22px 70px rgba(0, 0, 0, 0.34);
   }
 
   .terminal-panel-header {
@@ -91,8 +126,8 @@
 
     background: linear-gradient(
       180deg,
-      rgba(2, 12, 10, 0.95),
-      rgba(1, 8, 7, 0.98)
+      rgba(13, 23, 30, 0.98),
+      rgba(7, 12, 18, 0.98)
     );
     margin-inline: -1rem;
     padding-inline: 1rem;
@@ -106,8 +141,8 @@
   }
 
   .terminal-card {
-    border: 1px solid rgba(16, 185, 129, 0.25);
-    background: rgba(2, 20, 15, 0.7);
+    border: 1px solid var(--rule);
+    background: var(--panel-bg-soft);
   }
 
   .terminal-divider {
@@ -115,56 +150,37 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(16, 185, 129, 0.6),
+      rgba(126, 226, 196, 0.48),
       transparent
     );
   }
 
   .terminal-prompt {
+    font-family: var(--font-mono);
     white-space: pre-wrap;
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
   }
 
   .terminal-glow {
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.55);
+    text-shadow: 0 0 18px rgba(126, 226, 196, 0.2);
   }
 
   .cv-print-only {
     display: none;
   }
 
-  .cv-portfolio-list {
-    counter-reset: portfolio;
-  }
-
   .cv-portfolio-item {
-    counter-increment: portfolio;
     display: grid;
     grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
     gap: 1.15rem 1.65rem;
     position: relative;
-    padding: 1.45rem 0 1.45rem 2.25rem;
-    border-top: 1px solid rgba(16, 185, 129, 0.18);
+    padding: 1.45rem 0;
+    border-top: 1px solid var(--rule);
   }
 
   .cv-portfolio-item:first-child {
     border-top: none;
     padding-top: 0;
-  }
-
-  .cv-portfolio-item::before {
-    content: counter(portfolio, decimal-leading-zero);
-    position: absolute;
-    top: 1.2rem;
-    left: 0;
-    color: rgba(16, 185, 129, 0.7);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  .cv-portfolio-item:first-child::before {
-    top: 0.05rem;
   }
 
   .cv-portfolio-body p {
@@ -176,8 +192,8 @@
   }
 
   .cv-portfolio-tags li {
-    border: 1px solid rgba(16, 185, 129, 0.24);
-    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(126, 226, 196, 0.22);
+    background: rgba(126, 226, 196, 0.08);
     padding: 0.15rem 0.45rem;
   }
 
@@ -187,14 +203,13 @@
 
   .cv-portfolio-links a {
     display: inline-flex;
-    border-bottom: 1px solid rgba(16, 185, 129, 0.35);
+    border-bottom: 1px solid rgba(126, 226, 196, 0.35);
     padding-bottom: 0.08rem;
   }
 
   @media (max-width: 47.999rem) {
     .cv-portfolio-item {
       display: block;
-      padding-left: 1.8rem;
     }
   }
 }
@@ -356,11 +371,6 @@
 
   .cv-portfolio-item + .cv-portfolio-item {
     margin-top: 0.24in !important;
-  }
-
-  .cv-portfolio-item::before {
-    content: none !important;
-    display: none !important;
   }
 
   .cv-portfolio-skills-csv {
