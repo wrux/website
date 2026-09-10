@@ -1,12 +1,13 @@
 ---
 import Logo from '~/components/Logo.astro';
-import { person } from '~/data/site';
+import { home, person } from '~/data/site';
 
 export interface ContactItem {
   label: string;
   value: string;
   href: string | null;
   itemprop?: string;
+  printOnly?: boolean;
 }
 
 export interface Props {
@@ -16,50 +17,47 @@ export interface Props {
 const { contactItems } = Astro.props;
 ---
 
-<header class="terminal-panel terminal-panel-header cv-masthead">
-  <div class="header-bleed-line"></div>
-  <div class="cv-masthead-inner flex items-center gap-5 py-6 sm:gap-7 lg:py-10">
-    <Logo
-      class="cv-masthead-logo text-7xl text-primary terminal-glow shrink-0 sm:text-8xl"
-      aria-hidden="true"
-    />
+<header class="cv-masthead tile flex flex-col gap-8 sm:col-span-2 lg:col-span-3 lg:p-9">
+  <div class="flex flex-wrap items-center justify-between gap-3 print:hidden">
+    <p class="eyebrow">{person.role} · {person.location}</p>
+    <p class="chip flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-[var(--ok)]" aria-hidden="true"></span>
+      {home.status.label}
+    </p>
+  </div>
+
+  <div class="cv-masthead-inner flex flex-col gap-4">
+    <Logo class="cv-masthead-logo hidden text-7xl" aria-hidden="true" />
     <div class="min-w-0">
       <h1
-        class="text-4xl font-semibold tracking-tight text-[var(--text)] sm:text-5xl"
+        class="text-balance text-5xl font-bold leading-[1.02] tracking-[-0.03em] text-[var(--ink)] sm:text-6xl lg:text-[68px]"
         itemprop="name"
       >
         {person.name}
       </h1>
-      <p
-        class="cv-masthead-role mt-1 text-lg text-[var(--text-muted)]"
-        itemprop="jobTitle"
-      >
+      <p class="cv-masthead-role hidden text-lg text-[var(--ink-muted)]" itemprop="jobTitle">
         {person.role}
       </p>
-      <ul
-        class="cv-masthead-contact mt-3 flex flex-wrap gap-x-2 gap-y-1 text-sm text-[var(--text-muted)]"
-        aria-label="Contact details"
-      >
-        {
-          contactItems.map((item) => (
-            <li>
-              <span class="sr-only">{item.label}: </span>
-              {item.href ? (
-                <a
-                  class="cv-print-visible-url link-hover"
-                  href={item.href}
-                  itemprop={item.itemprop}
-                >
-                  {item.value}
-                </a>
-              ) : (
-                <span itemprop={item.itemprop}>{item.value}</span>
-              )}
-            </li>
-          ))
-        }
-      </ul>
+      <p class="mt-4 max-w-[58ch] text-pretty text-lg leading-relaxed text-[var(--ink-muted)] print:hidden">
+        Twelve years of React and TypeScript, design systems and products of my own. {home.status.detail}
+      </p>
     </div>
   </div>
-  <div class="header-bleed-line"></div>
+
+  <ul class="cv-masthead-contact flex flex-wrap gap-2" aria-label="Contact details">
+    {
+      contactItems.map((item) => (
+        <li class:list={[item.printOnly && 'cv-print-only']}>
+          <span class="sr-only">{item.label}: </span>
+          {item.href ? (
+            <a class="chip link-chip cv-print-visible-url" href={item.href} itemprop={item.itemprop}>
+              {item.value}
+            </a>
+          ) : (
+            <span class="chip" itemprop={item.itemprop}>{item.value}</span>
+          )}
+        </li>
+      ))
+    }
+  </ul>
 </header>

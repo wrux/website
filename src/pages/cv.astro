@@ -6,51 +6,14 @@ import {
   cvHighlights,
   cvSkillGroups,
   education,
+  home,
   person,
   professionalPortfolio,
 } from '~/data/site';
 import { Icon } from 'astro-icon/components';
+import { formatISODate, formatTenure, sortJobs } from '~/lib/jobs';
 
-const jobs = await getCollection('jobs');
-
-const parseDate = (value: string) => {
-  const [day, month, year] = value.split('-').map(Number);
-  return new Date(Date.UTC(year, month - 1, day));
-};
-
-const formatMonthYear = (value: string) =>
-  new Intl.DateTimeFormat('en-GB', {
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(parseDate(value));
-
-const formatISODate = (value: string) =>
-  parseDate(value).toISOString().slice(0, 10);
-
-const formatTenure = (tenure: { from: string; to: string | null }) => {
-  const from = formatMonthYear(tenure.from);
-  const to = tenure.to ? formatMonthYear(tenure.to) : 'Present';
-  return `${from} – ${to}`;
-};
-
-const sortedJobs = [...jobs].sort((a, b) => {
-  const aTo = a.data.tenure.to
-    ? parseDate(a.data.tenure.to).getTime()
-    : Number.POSITIVE_INFINITY;
-  const bTo = b.data.tenure.to
-    ? parseDate(b.data.tenure.to).getTime()
-    : Number.POSITIVE_INFINITY;
-
-  if (aTo !== bTo) {
-    return bTo - aTo;
-  }
-
-  return (
-    parseDate(b.data.tenure.from).getTime() -
-    parseDate(a.data.tenure.from).getTime()
-  );
-});
+const sortedJobs = sortJobs(await getCollection('jobs'));
 
 const displayUrl = (url: string) =>
   url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
@@ -64,6 +27,7 @@ const contactItems = [
     value: person.location,
     href: null,
     itemprop: 'homeLocation',
+    printOnly: true,
   },
   {
     label: 'Email',
@@ -176,63 +140,80 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
   '\\u003c',
 );
 
-const sectionHeadingClass =
-  'flex items-center gap-2 text-lg font-semibold text-[var(--text)]';
+const atAGlance = [
+  { label: 'Experience', value: '12 years' },
+  { label: 'Own products', value: 'kacet, Banburyshire, blot.tools' },
+  { label: 'Latest launch', value: 'blot.tools, 2026' },
+  { label: 'Location', value: `${person.location}, remote-friendly` },
+];
+
 const bulletListClass =
-  'cv-bullets mt-3 max-w-prose list-disc space-y-2 pl-5 text-sm text-[var(--text-muted)]';
+  'cv-bullets mt-3 max-w-[70ch] list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-[var(--ink-muted)]';
 ---
 
 <Layout title={`CV | ${person.name}`} description={cvMetaDescription}>
-  <CvMasthead slot="header" contactItems={contactItems} />
-
   <script type="application/ld+json" set:html={cvStructuredDataJson} />
 
   <article
-    class="cv-document space-y-8"
+    class="cv-document grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:grid-flow-row-dense"
     itemscope
     itemtype="https://schema.org/Person"
   >
-    <section class="cv-section terminal-card p-6" aria-labelledby="cv-summary">
-      <h2 id="cv-summary" class={sectionHeadingClass}>
-        <Icon
-          name="lucide:file-text"
-          size={20}
-          class="text-[var(--accent)] print:text-black"
-        />
-        Summary
-      </h2>
+    <CvMasthead contactItems={contactItems} />
+
+    <aside class="tile tile-dark flex flex-col justify-between gap-8 print:hidden sm:col-span-1" aria-labelledby="cv-get-heading">
+      <div class="flex flex-col gap-2">
+        <h2 id="cv-get-heading" class="eyebrow text-[var(--ink-soft-on-dark)]">Get the CV</h2>
+        <p class="text-[15px] leading-snug text-[var(--ink-muted-on-dark)]">Two A4 pages with the same content as this page.</p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <button type="button" class="btn w-full justify-center" data-print>Save as PDF</button>
+        <a href={`mailto:${person.contact.email}`} class="btn btn-outline-light w-full justify-center">Email me</a>
+      </div>
+    </aside>
+
+    <section class="cv-section tile scroll-mt-5 sm:col-span-2 lg:col-span-3" id="cv-summary" aria-labelledby="cv-summary-heading">
+      <h2 id="cv-summary-heading" class="eyebrow">Summary</h2>
       <p
-        class="cv-summary mt-3 max-w-prose text-base leading-relaxed text-[var(--text-muted)]"
+        class="cv-summary mt-5 max-w-[70ch] text-pretty text-lg leading-relaxed text-[var(--ink)]"
         itemprop="description"
       >
         {person.summary}
       </p>
-      <h3
-        class="cv-subheading mt-5 text-sm font-semibold uppercase tracking-wide text-[var(--accent)]"
-      >
-        Highlights
-      </h3>
-      <ul class={bulletListClass}>
+    </section>
+
+    <section class="tile flex flex-col gap-6 print:hidden" aria-labelledby="cv-glance-heading">
+      <h2 id="cv-glance-heading" class="eyebrow">At a glance</h2>
+      <dl class="flex flex-col divide-y divide-[var(--rule)]">
+        {
+          atAGlance.map((item) => (
+            <div class="flex flex-col gap-0.5 py-3 first:pt-0 last:pb-0">
+              <dt class="text-[13px] text-[var(--ink-soft)]">{item.label}</dt>
+              <dd class="text-[15px] font-semibold text-[var(--ink)]">{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="cv-section cv-highlights-tile hidden print:block sm:col-span-2 lg:col-span-4" aria-labelledby="cv-highlights-heading">
+      <h2 id="cv-highlights-heading" class="cv-subheading eyebrow">Highlights</h2>
+      <ul class="cv-bullets cv-highlights mt-4 list-disc pl-5 text-[15px] text-[var(--ink-muted)]">
         {cvHighlights.map((item) => <li>{item}</li>)}
       </ul>
     </section>
 
-    <section class="cv-section terminal-card p-6" aria-labelledby="cv-skills">
-      <h2 id="cv-skills" class={sectionHeadingClass}>
-        <Icon
-          name="lucide:sparkles"
-          size={20}
-          class="text-[var(--accent)] print:text-black"
-        />
-        Skills
-      </h2>
-      <dl class="cv-skills mt-4 divide-y divide-[var(--rule)] text-sm">
+    <section class="cv-section tile scroll-mt-5 lg:col-start-4" id="cv-skills" aria-labelledby="cv-skills-heading">
+      <h2 id="cv-skills-heading" class="eyebrow">Skills</h2>
+      <dl class="cv-skills mt-5 flex flex-col gap-5">
         {
           cvSkillGroups.map((group) => (
-            <div class="cv-skill-row grid gap-1 py-2.5 first:pt-0 last:pb-0 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-5">
-              <dt class="font-semibold text-[var(--accent)]">{group.name}</dt>
-              <dd class="leading-relaxed text-[var(--text-muted)]">
-                {group.skills.join(', ')}
+            <div class="cv-skill-row flex flex-col gap-2">
+              <dt class="text-[15px] font-semibold text-[var(--ink)]">{group.name}</dt>
+              <dd class="cv-skill-chips flex flex-wrap gap-1.5">
+                {group.skills.map((skill) => (
+                  <span class="chip">{skill}</span>
+                ))}
               </dd>
             </div>
           ))
@@ -241,30 +222,22 @@ const bulletListClass =
     </section>
 
     <section
-      class="cv-section cv-experience terminal-card p-6"
-      aria-labelledby="cv-experience"
+      class="cv-section cv-experience tile scroll-mt-5 sm:col-span-2 lg:col-span-3 lg:row-span-2"
+      id="cv-experience"
+      aria-labelledby="cv-experience-heading"
     >
-      <h2 id="cv-experience" class={sectionHeadingClass}>
-        <Icon
-          name="lucide:briefcase"
-          size={20}
-          class="text-[var(--accent)] print:text-black"
-        />
-        Experience
-      </h2>
-      <ul class="cv-job-list mt-5 flex flex-col gap-6">
+      <h2 id="cv-experience-heading" class="eyebrow">Experience</h2>
+      <ul class="cv-job-list mt-5 flex flex-col">
         {
           sortedJobs.map((job) => (
-            <li class="cv-job terminal-item">
-              <div class="cv-job-head flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-                <h3 class="text-base font-semibold text-[var(--text)]">
-                  {job.data.title}
-                </h3>
-                <p class="cv-job-dates shrink-0 text-sm text-[var(--accent)]">
-                  {formatTenure(job.data.tenure)}
-                </p>
-              </div>
-              <p class="cv-job-meta text-sm text-[var(--text-muted)]">
+            <li class="cv-job">
+              <h3 class="cv-job-title text-lg font-bold tracking-tight text-[var(--ink)]">
+                {job.data.title}
+              </h3>
+              <p class="cv-job-dates text-[15px] tabular-nums text-[var(--ink)] lg:font-semibold">
+                {formatTenure(job.data.tenure)}
+              </p>
+              <p class="cv-job-meta text-[15px] text-[var(--ink-muted)]">
                 {job.data.company} · {job.data.location}
               </p>
               {job.data.description && (
@@ -281,57 +254,69 @@ const bulletListClass =
     </section>
 
     <section
-      class="cv-section cv-projects terminal-card p-6"
-      aria-labelledby="cv-projects"
+      class="cv-section cv-projects tile scroll-mt-5 sm:col-span-2 lg:col-span-4"
+      id="cv-projects"
+      aria-labelledby="cv-projects-heading"
     >
-      <h2 id="cv-projects" class={sectionHeadingClass}>
-        <Icon
-          name="lucide:folder-git-2"
-          size={20}
-          class="text-[var(--accent)] print:text-black"
-        />
-        Selected Work
-      </h2>
-      <ul class="cv-project-list mt-5 grid gap-4 md:grid-cols-2">
+      <h2 id="cv-projects-heading" class="eyebrow">Selected work</h2>
+      <ul class="cv-project-list mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {
-          professionalPortfolio.map((project) => (
+          professionalPortfolio.map((project, index) => (
             <li
-              class="cv-project terminal-item"
+              class:list={['cv-project flex flex-col gap-5', index === 0 && 'lg:col-span-2']}
               itemprop="workExample"
               itemscope
               itemtype="https://schema.org/CreativeWork"
             >
-              <div class="cv-project-head flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <h3
-                  class="text-base font-semibold text-[var(--text)]"
-                  itemprop="name"
-                >
-                  {project.name}
-                </h3>
-                {project.urls.map((url) => (
+              <div class="cv-project-head flex items-start justify-between gap-3">
+                <div class="flex min-w-0 flex-col gap-1">
+                  <span class="eyebrow print:hidden">{project.kind}</span>
+                  <h3
+                    class="text-xl font-bold tracking-tight text-[var(--ink)]"
+                    itemprop="name"
+                  >
+                    {project.name}
+                  </h3>
+                  <p class="flex flex-wrap gap-x-3 gap-y-1">
+                    {project.urls.map((url) => (
+                      <a
+                        href={url.href}
+                        target="_blank"
+                        rel="nofollow noreferrer"
+                        class="cv-project-link cv-print-visible-url link-hover text-sm text-[var(--accent)]"
+                        itemprop="url"
+                      >
+                        {url.label}
+                      </a>
+                    ))}
+                  </p>
+                </div>
+                {project.urls[0] && (
                   <a
-                    href={url.href}
+                    href={project.urls[0].href}
                     target="_blank"
                     rel="nofollow noreferrer"
-                    class="cv-project-link cv-print-visible-url link-hover text-sm text-[var(--text-muted)]"
-                    itemprop="url"
+                    class="cv-project-arrow flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--tile-bg)] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-white print:hidden"
+                    aria-label={`Open ${project.name}`}
                   >
-                    {url.label}
+                    <Icon name="lucide:arrow-up-right" size={18} />
                   </a>
-                ))}
+                )}
               </div>
               <p
-                class="cv-project-desc mt-2 text-sm text-[var(--text-muted)]"
+                class="cv-project-desc text-[15px] leading-relaxed text-[var(--ink-muted)]"
                 itemprop="description"
               >
                 {project.description}
               </p>
-              <p
-                class="cv-project-stack mt-2 text-xs uppercase tracking-wide text-[var(--accent)]"
+              <ul
+                class="cv-project-stack mt-auto flex flex-wrap gap-1.5"
                 aria-label={`${project.name} stack`}
               >
-                {project.skills.join(' · ')}
-              </p>
+                {project.skills.map((skill) => (
+                  <li class="chip chip-sm">{skill}</li>
+                ))}
+              </ul>
             </li>
           ))
         }
@@ -339,31 +324,22 @@ const bulletListClass =
     </section>
 
     <section
-      class="cv-section cv-education terminal-card p-6"
-      aria-labelledby="cv-education"
+      class="cv-section cv-education tile scroll-mt-5 lg:col-start-4"
+      id="cv-education"
+      aria-labelledby="cv-education-heading"
     >
-      <h2 id="cv-education" class={sectionHeadingClass}>
-        <Icon
-          name="lucide:graduation-cap"
-          size={20}
-          class="text-[var(--accent)] print:text-black"
-        />
-        Education
-      </h2>
-      <ul class="cv-edu-list mt-5 grid gap-5 sm:grid-cols-2">
+      <h2 id="cv-education-heading" class="eyebrow">Education</h2>
+      <ul class="cv-edu-list mt-5 flex flex-col gap-5">
         {
           education.map((school) => (
-            <li class="cv-edu terminal-item">
-              <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-                <h3 class="text-base font-semibold text-[var(--text)]">
-                  {school.degree}
-                </h3>
-                <p class="shrink-0 text-sm text-[var(--accent)]">{school.period}</p>
-              </div>
-              <p class="text-sm text-[var(--text-muted)]">
+            <li class="cv-edu flex flex-col gap-1">
+              <h3 class="text-lg font-bold tracking-tight text-[var(--ink)]">
+                {school.degree}
+              </h3>
+              <p class="text-[15px] text-[var(--ink-muted)]">
                 {school.institution} · {school.location}
               </p>
-              <p class="mt-1 text-sm text-[var(--text-muted)]">{school.summary}</p>
+              <p class="text-[15px] text-[var(--ink-muted)]">{school.summary} · <span class="tabular-nums">{school.period}</span></p>
             </li>
           ))
         }
@@ -371,3 +347,9 @@ const bulletListClass =
     </section>
   </article>
 </Layout>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-print]')
+    .forEach((el) => el.addEventListener('click', () => window.print()));
+</script>

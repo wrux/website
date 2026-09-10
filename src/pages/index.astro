@@ -1,86 +1,147 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
-import SocialIcon from '~/components/SocialIcon.astro';
-import { person, socialLinks } from '~/data/site';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { home, person } from '~/data/site';
+import { formatYearRange, sortJobs } from '~/lib/jobs';
+import portrait from '~/images/portrait.jpg';
 
-const homepageSummary =
-  'I work with teams that need dependable frontend delivery: clear interfaces, maintainable React systems, content-heavy sites, and product builds that keep moving after launch.';
+const jobs = sortJobs(await getCollection('jobs'));
 
-const homepageSocialLinks = socialLinks.filter(
-  (link) => link.href !== person.website,
-);
+const description = `${person.name}, ${person.role} in ${person.location}. ${home.intro}`;
 ---
 
-<Layout
-  title="Software Engineer & Freelancer Building Digital Products | wrux.com"
-  description="Software engineer and freelancer building digital products, including my own project Kacet. Focused on clean code, thoughtful design, and practical solutions."
->
-  <div class="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.15fr)]">
-    <section
-      class="terminal-card p-6 border-b-0 border-l-0 border-r-0 rounded-none"
-    >
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-      >
-        <Icon
-          name="lucide:file-text"
-          size={20}
-          class="text-[var(--accent)] print:text-black"
-        />
-        Summary
-      </h2>
-      <div class="max-w-prose">
-        <p class="mt-3 text-base leading-relaxed text-[var(--text-muted)]">
-          {homepageSummary}
-        </p>
-        <p class="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
-          {person.bio.split('callum.co.uk')[0]} on
-          <a href="https://callum.co.uk" target="_blank" class="link-underline"
-            >callum.co.uk</a
-          >.
-        </p>
+<Layout title={`${person.name} · ${person.role}`} description={description}>
+  <div class="bento grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[240px]">
+
+    <section class="tile flex flex-col justify-between gap-8 sm:col-span-2 lg:row-span-2 lg:p-9" aria-labelledby="intro">
+      <p class="eyebrow">{person.role} · {person.location}</p>
+      <div class="flex flex-col gap-4">
+        <h1 id="intro" class="text-balance text-5xl font-bold leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[68px]">
+          {home.headline}
+        </h1>
+        <p class="text-pretty text-base leading-relaxed text-[var(--ink-muted)] sm:text-lg">{home.intro}</p>
       </div>
     </section>
 
-    <div
-      class="terminal-card p-6 border-l-0 border-r-0 rounded-none lg:border-l"
-    >
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-      >
-        <Icon
-          name="lucide:globe"
-          size={20}
-          class="text-[var(--accent)] print:text-black"
-        />
-        Online
-      </h2>
-      <ul class="mt-4 flex flex-col gap-3 text-sm text-[var(--text-muted)]">
+    <figure class="tile relative min-h-[420px] overflow-hidden p-0 sm:min-h-0 lg:row-span-2">
+      <Image
+        src={portrait}
+        alt={`${person.name} standing in front of a painted mural`}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
+        class="pointer-events-none absolute inset-0 h-full w-full select-none object-cover object-[62%_60%] lg:object-[50%_30%]"
+        draggable="false"
+        loading="eager"
+      />
+    </figure>
+
+    <section class="tile flex flex-col justify-between gap-6" aria-labelledby="status">
+      <p id="status" class="eyebrow">Status</p>
+      <div class="flex flex-col gap-2">
+        <p class="flex items-center gap-2.5 text-[22px] font-bold tracking-tight">
+          <span class="inline-block h-2.5 w-2.5 rounded-full bg-[var(--ok)]" aria-hidden="true"></span>
+          {home.status.label}
+        </p>
+        <p class="text-[15px] leading-snug text-[var(--ink-muted)]">{home.status.detail}</p>
+      </div>
+    </section>
+
+    <a href={home.latest.href} target="_blank" rel="noreferrer" class="tile tile-link tile-dark flex flex-col justify-between gap-6">
+      <span class="flex items-center justify-between">
+        <span class="eyebrow text-[var(--ink-soft-on-dark)]">Latest launch</span>
+        <Icon name="lucide:arrow-up-right" size={20} class="shrink-0" />
+      </span>
+      <span class="flex flex-col gap-1.5">
+        <span class="text-[28px] font-bold tracking-tight">{home.latest.name}</span>
+        <span class="text-[15px] leading-snug text-[var(--ink-muted-on-dark)]">{home.latest.blurb}</span>
+      </span>
+    </a>
+
+    {
+      home.products.map((product) => (
+        <a href={product.href} target="_blank" rel="noreferrer" class="tile tile-link flex flex-col justify-between gap-6">
+          <span class="flex items-center justify-between">
+            <span class="eyebrow">Own product</span>
+            <Icon name="lucide:arrow-up-right" size={20} class="shrink-0" />
+          </span>
+          <span class="flex flex-col gap-1.5">
+            <span class="text-[26px] font-bold tracking-tight">{product.name}</span>
+            <span class="text-[15px] leading-snug text-[var(--ink-muted)]">{product.blurb}</span>
+          </span>
+        </a>
+      ))
+    }
+
+    <section class="tile flex flex-col justify-between gap-6 sm:col-span-2" aria-labelledby="client-work">
+      <div class="flex items-center justify-between">
+        <p id="client-work" class="eyebrow">Client work</p>
+        <a href="/cv#cv-projects" class="text-[13px] font-semibold text-[var(--accent)] link-hover">All work</a>
+      </div>
+      <ul class="flex flex-col gap-2.5 text-[15px]">
         {
-          homepageSocialLinks.map((link) => (
-            <li class="flex flex-col justify-between gap-3 min-w-0">
-              <span class="flex items-center gap-2">
-                <SocialIcon
-                  name={link.name}
-                  size={16}
-                  class="text-[var(--accent)] print:text-black shrink-0"
-                />
-                {link.label}
-              </span>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="nofollow noreferrer"
-                class="link-hover flex items-center gap-1.5 truncate min-w-0"
-                title={link.href}
-              >
-                <span class="truncate">{link.href}</span>
-              </a>
+          home.clientWork.map((item) => (
+            <li class="flex flex-col justify-between gap-0.5 sm:flex-row sm:gap-4">
+              {item.href ? (
+                <a href={item.href} target="_blank" rel="noreferrer" class="link-hover font-semibold">{item.name}</a>
+              ) : (
+                <span class="font-semibold">{item.name}</span>
+              )}
+              <span class="shrink-0 text-[var(--ink-soft)]">{item.meta}</span>
             </li>
           ))
         }
       </ul>
-    </div>
+    </section>
+
+    <section class="tile flex flex-col justify-between gap-6 sm:col-span-2" aria-labelledby="stack">
+      <p id="stack" class="eyebrow">Stack</p>
+      <ul class="flex flex-wrap gap-2">
+        {home.stack.map((item) => <li class="chip">{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="tile flex flex-col justify-between gap-6 sm:col-span-2" aria-labelledby="experience">
+      <div class="flex items-center justify-between">
+        <p id="experience" class="eyebrow">Experience</p>
+        <a href="/cv" class="text-[13px] font-semibold text-[var(--accent)] link-hover">Full CV</a>
+      </div>
+      <ul class="flex flex-col gap-2.5 text-[15px]">
+        {
+          jobs.map((job) => (
+            <li class="flex flex-col justify-between gap-0.5 sm:flex-row sm:gap-4">
+              <span class="font-semibold">{job.data.company} · {job.data.title.replace(/\s*\(Contract\)$/, '')}</span>
+              <span class="shrink-0 tabular-nums text-[var(--ink-soft)]">{formatYearRange(job.data.tenure)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="tile tile-accent flex flex-col justify-between gap-6 sm:col-span-2" aria-labelledby="contact">
+      <p id="contact" class="eyebrow text-white/70">Contact</p>
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <a href={`mailto:${person.contact.email}`} class="break-all text-2xl font-bold tracking-tight sm:text-[34px]">{person.contact.email}</a>
+        <div class="flex gap-2">
+          <a href={person.contact.github} target="_blank" rel="noreferrer" class="btn btn-outline-light">GitHub</a>
+          <a href={person.contact.linkedin} target="_blank" rel="noreferrer" class="btn btn-outline-light">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tile flex flex-col justify-between gap-6 sm:col-span-2" aria-labelledby="off-the-clock">
+      <p id="off-the-clock" class="eyebrow">Off the clock</p>
+      <ul class="grid gap-5 sm:grid-cols-3">
+        {
+          home.offTheClock.map((item) => (
+            <li class="flex flex-col gap-1">
+              <a href={item.href} target="_blank" rel="noreferrer" class="link-hover text-lg font-bold tracking-tight">{item.name}</a>
+              <span class="text-sm leading-snug text-[var(--ink-muted)]">{item.blurb}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </div>
 </Layout>

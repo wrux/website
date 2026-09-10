@@ -223,6 +223,7 @@ export const featuredProjects = [
 export const professionalPortfolio = [
   {
     name: 'kacet',
+    kind: 'Own product',
     subtitle: 'kacet.com',
     description:
       'Freelance marketplace with smart-contract settlement, built from concept to MVP: onboarding, marketplace and transaction flows on Next.js, TanStack Start and Supabase in a Turborepo monorepo.',
@@ -240,6 +241,7 @@ export const professionalPortfolio = [
   },
   {
     name: 'Banburyshire',
+    kind: 'Own product',
     subtitle: 'banburyshire.com',
     description:
       'Local guide and content platform I founded and run: Rust compiled to WebAssembly on Cloudflare Workers, a custom PostgreSQL backend and a bespoke design system. All client-side interactivity runs through sigmx, my own micro frontend library, in under 10 kB.',
@@ -259,6 +261,7 @@ export const professionalPortfolio = [
   },
   {
     name: 'blot.tools',
+    kind: 'Own product',
     subtitle: 'blot.tools',
     description:
       'Suite of privacy-focused web tools launched in 2026, currently an AI agent and an email relay. A TanStack Start web app backed by a Rust and WebAssembly worker backend.',
@@ -267,6 +270,7 @@ export const professionalPortfolio = [
   },
   {
     name: 'Triumph Motorcycles Parts Finder',
+    kind: 'Client work',
     subtitle: 'triumphmotorcycles.com',
     description:
       'Customer-facing parts discovery micro-frontend built at DEPT: React, TypeScript, Vite and styled-components over .NET catalogue APIs, embedded in the global Triumph site.',
@@ -287,6 +291,7 @@ export const professionalPortfolio = [
   },
   {
     name: 'Illinois Humanities',
+    kind: 'Client work',
     subtitle: 'ilhumanities.org',
     description:
       'Public Craft CMS platform for grants, programmes and community content for a state-wide cultural organisation, with accessibility and content structure treated as first-class requirements.',
@@ -295,6 +300,7 @@ export const professionalPortfolio = [
   },
   {
     name: 'Peggy Notebaert Nature Museum',
+    kind: 'Client work',
     subtitle: 'naturemuseum.org',
     description:
       'Content-rich Craft CMS frontend covering exhibitions, events and conservation research, with publishing workflows the museum’s own team maintains.',
@@ -303,18 +309,101 @@ export const professionalPortfolio = [
   },
   {
     name: 'First Lady & Cruise Chicago',
+    kind: 'Client work',
     subtitle: 'firstlady.com',
     description:
       'High-traffic tourism frontends for two Chicago river cruise brands, focused on conversion-oriented booking journeys and a content architecture that scales across sites.',
     urls: [{ label: 'firstlady.com', href: 'https://firstlady.com' }],
     skills: ['Craft CMS', 'Tailwind CSS', 'HTMX', 'Alpine.js'],
   },
-  {
-    name: 'Artist Assembly',
-    subtitle: 'artistassembly.org',
-    description:
-      'Event management and registration platform for a national artist fellowship programme, with a clear registration journey and animated storytelling pages.',
-    urls: [{ label: 'artistassembly.org', href: 'https://www.artistassembly.org/' }],
-    skills: ['Craft CMS', 'GSAP', 'Tailwind CSS', 'HTMX', 'Alpine.js'],
-  },
 ];
+
+/** Content for the bento home page. Short, specific, no filler. */
+export const home = {
+  headline: 'Hi, I’m Callum.',
+  intro:
+    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built design systems for Silentnight and bnn.de, shipped a React micro-frontend for Triumph Motorcycles, and launched three products of my own. Most of my work is React and TypeScript, with Rust when the bundle has to be small.',
+  status: {
+    label: 'Open to roles',
+    detail: 'Senior frontend, remote or Oxford.',
+  },
+  latest: {
+    name: 'blot.tools',
+    href: 'https://blot.tools/',
+    blurb:
+      'Privacy-focused web tools. TanStack Start on a Rust and WebAssembly worker backend.',
+  },
+  products: [
+    {
+      name: 'Banburyshire',
+      href: 'https://banburyshire.com/',
+      blurb:
+        'Rust compiled to WebAssembly on Cloudflare Workers. sigmx handles every interaction in under 10 kB.',
+    },
+    {
+      name: 'kacet',
+      href: 'https://kacet.com/',
+      blurb:
+        'Freelance marketplace with smart-contract settlement, concept to MVP.',
+    },
+  ],
+  clientWork: [
+    {
+      name: 'Illinois Humanities',
+      href: 'https://ilhumanities.org/',
+      meta: 'Cultural nonprofit · Craft CMS',
+    },
+    {
+      name: 'Peggy Notebaert Nature Museum',
+      href: 'https://naturemuseum.org/',
+      meta: 'Museum · Craft CMS',
+    },
+    {
+      name: 'First Lady & Cruise Chicago',
+      href: 'https://firstlady.com',
+      meta: 'Tourism · Craft CMS',
+    },
+    {
+      name: 'Triumph Motorcycles parts finder',
+      href: 'https://www.triumphmotorcycles.com/shop-accessories/parts-bike-selection',
+      meta: 'DEPT · React micro-frontend',
+    },
+    {
+      name: 'Silentnight design system',
+      href: null,
+      meta: 'DEPT · Component library',
+    },
+  ],
+  stack: [
+    'TypeScript',
+    'React',
+    'Next.js',
+    'Astro',
+    'TanStack Start',
+    'Rust',
+    'WebAssembly',
+    'Cloudflare Workers',
+    'PostgreSQL',
+    'Sanity',
+    'Craft CMS',
+    'Storybook',
+    'Tailwind CSS',
+  ],
+  offTheClock: [
+    {
+      name: 'callum.co.uk',
+      href: 'https://callum.co.uk/',
+      blurb: 'Travel notes, posted occasionally.',
+    },
+    {
+      name: 'manhole.gallery',
+      href: 'https://manhole.gallery/',
+      blurb: 'Manhole covers spotted around the world.',
+    },
+    {
+      name: 'perpetual.pizza',
+      href: 'https://perpetual.pizza/',
+      blurb: 'The never-ending pizza, a decade-old joke.',
+    },
+  ],
+};

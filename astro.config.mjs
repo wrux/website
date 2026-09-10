@@ -32,6 +32,7 @@ export default defineConfig({
           'globe',
           'sparkles',
           'link',
+          'arrow-up-right',
         ],
       },
     }),
