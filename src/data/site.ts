@@ -322,7 +322,7 @@ export const professionalPortfolio = [
 export const home = {
   headline: 'Hi, I’m Callum.',
   intro:
-    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built the Triumph Motorcycles parts finder and launched two products of my own, blot.tools and kacet. Most of my work is React and TypeScript, with Rust when the bundle has to be small.',
+    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built the Triumph Motorcycles parts finder and launched two products of my own, blot.tools and kacet. I’m confident working with React on highly interactive applications, static websites, and modern edge and serverless sites on Cloudflare Workers or Vercel Edge Functions.',
   status: {
     label: 'Open to roles',
     detail: 'Senior frontend, remote or Oxford.',
