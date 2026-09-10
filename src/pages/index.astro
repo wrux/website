@@ -6,6 +6,12 @@ import { getCollection } from 'astro:content';
 import { home, person } from '~/data/site';
 import { formatYearRange, sortJobs } from '~/lib/jobs';
 import portrait from '~/images/portrait.jpg';
+import brandBanburyshire from '~/images/brand-banburyshire.jpg';
+import brandKacet from '~/images/brand-kacet.jpg';
+
+const brandImages = { banburyshire: brandBanburyshire, kacet: brandKacet } as const;
+const brandStyle = (b: { overlay: string; fg: string; muted: string; accent: string }) =>
+  `--brand-overlay: ${b.overlay}; --brand-fg: ${b.fg}; --brand-muted: ${b.muted}; --brand-accent: ${b.accent};`;
 
 const jobs = sortJobs(await getCollection('jobs'));
 
@@ -48,27 +54,49 @@ const description = `${person.name}, ${person.role} in ${person.location}. ${hom
       </div>
     </section>
 
-    <a href={home.latest.href} target="_blank" rel="noreferrer" class="tile tile-link tile-dark flex flex-col justify-between gap-6">
-      <span class="flex items-center justify-between">
-        <span class="eyebrow text-[var(--ink-soft-on-dark)]">Latest launch</span>
+    <a
+      href={home.latest.href}
+      target="_blank"
+      rel="noreferrer"
+      class="tile tile-link tile-brand relative flex flex-col justify-between gap-6 overflow-hidden"
+      style={brandStyle(home.latest.brand)}
+    >
+      <span class="brand-motif" aria-hidden="true">{home.latest.brand.motif}</span>
+      <span class="relative flex items-center justify-between">
+        <span class="eyebrow brand-eyebrow">Latest launch</span>
         <Icon name="lucide:arrow-up-right" size={20} class="shrink-0" />
       </span>
-      <span class="flex flex-col gap-1.5">
+      <span class="relative flex flex-col gap-1.5">
         <span class="text-[28px] font-bold tracking-tight">{home.latest.name}</span>
-        <span class="text-[15px] leading-snug text-[var(--ink-muted-on-dark)]">{home.latest.blurb}</span>
+        <span class="text-[15px] leading-snug text-[var(--brand-muted)]">{home.latest.blurb}</span>
       </span>
     </a>
 
     {
       home.products.map((product) => (
-        <a href={product.href} target="_blank" rel="noreferrer" class="tile tile-link flex flex-col justify-between gap-6">
-          <span class="flex items-center justify-between">
-            <span class="eyebrow">Own product</span>
+        <a
+          href={product.href}
+          target="_blank"
+          rel="noreferrer"
+          class="tile tile-link tile-brand relative flex flex-col justify-between gap-6 overflow-hidden"
+          style={brandStyle(product.brand)}
+        >
+          <Image
+            src={brandImages[product.brand.image]}
+            alt=""
+            widths={[400, 800]}
+            sizes="(min-width: 1024px) 330px, (min-width: 640px) 50vw, 100vw"
+            class="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+            aria-hidden="true"
+          />
+          <span class="brand-overlay absolute inset-0" aria-hidden="true"></span>
+          <span class="relative flex items-center justify-between">
+            <span class="eyebrow brand-eyebrow">Own product</span>
             <Icon name="lucide:arrow-up-right" size={20} class="shrink-0" />
           </span>
-          <span class="flex flex-col gap-1.5">
+          <span class="relative flex flex-col gap-1.5">
             <span class="text-[26px] font-bold tracking-tight">{product.name}</span>
-            <span class="text-[15px] leading-snug text-[var(--ink-muted)]">{product.blurb}</span>
+            <span class="text-[15px] leading-snug text-[var(--brand-muted)]">{product.blurb}</span>
           </span>
         </a>
       ))

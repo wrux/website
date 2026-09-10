@@ -332,6 +332,14 @@ export const home = {
     href: 'https://blot.tools/',
     blurb:
       'Privacy-focused web tools. TanStack Start on a Rust and WebAssembly worker backend.',
+    /** Blot's warm black with its blurred serif "Nothing" motif, drawn in CSS. */
+    brand: {
+      motif: 'Nothing',
+      overlay: '#121110',
+      fg: '#ffffff',
+      muted: '#b8b4ad',
+      accent: '#ffffff',
+    },
   },
   products: [
     {
@@ -339,12 +347,28 @@ export const home = {
       href: 'https://banburyshire.com/',
       blurb:
         'Rust compiled to WebAssembly on Cloudflare Workers. sigmx handles every interaction in under 10 kB.',
+      /** Their own hero photograph, under an olive-to-transparent gradient. */
+      brand: {
+        image: 'banburyshire',
+        overlay: '#2f3a24',
+        fg: '#f3eddb',
+        muted: '#dfe2cf',
+        accent: '#e4d08a',
+      },
     },
     {
       name: 'kacet',
       href: 'https://kacet.com/',
       blurb:
         'Freelance marketplace with smart-contract settlement, concept to MVP.',
+      /** Their halftone hero field, under a black-to-transparent gradient. */
+      brand: {
+        image: 'kacet',
+        overlay: '#050505',
+        fg: '#ffffff',
+        muted: '#bdbdbd',
+        accent: '#3d7bff',
+      },
     },
   ],
   clientWork: [
