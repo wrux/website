@@ -1,14 +1,14 @@
 {
   "company": "DEPT®",
-  "location": "London, United Kingdom",
+  "location": "London, UK",
   "title": "Frontend Engineer",
   "tenure": {
     "from": "11-06-2021",
     "to": "10-06-2022"
   },
   "description": [
-    "Built React and TypeScript micro-frontends for enterprise product experiences including Triumph Motorcycles and Jotun, collaborating closely with backend teams on API integration and release delivery",
-    "Led development of Silentnight's design system and component library, defining reusable UI patterns that improved consistency, accessibility, and implementation speed",
-    "Translated design and product requirements into maintainable frontend architecture using Vite, styled-components, component state, and production-ready testing and review practices"
+    "Built the customer-facing Triumph Motorcycles parts finder as a React and TypeScript micro-frontend (Vite, styled-components) integrated with .NET catalogue APIs, and delivered further micro-frontends for Jotun",
+    "Led development of Silentnight’s design system and component library, defining the reusable UI patterns and accessibility standards the wider team built pages from",
+    "Worked with backend teams on API contracts and with product and QA on release delivery, code review and testing practices across enterprise client work"
   ]
 }

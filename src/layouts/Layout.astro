@@ -45,7 +45,9 @@ const { description, title } = Astro.props;
     <div
       class="container flex min-h-svh flex-col border-[var(--rule)] font-sans resume-terminal sm:max-w-xl sm:border-x md:max-w-3xl lg:max-w-5xl print:border-none"
     >
-      <Header />
+      <slot name="header">
+        <Header />
+      </slot>
 
       <main class="py-8 space-y-8 flex-1">
         <slot />

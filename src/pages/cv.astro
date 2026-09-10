@@ -1,9 +1,9 @@
 ---
 import Layout from '~/layouts/Layout.astro';
+import CvMasthead from '~/components/CvMasthead.astro';
 import { getCollection } from 'astro:content';
 import {
-  cvImpactHighlights,
-  cvProfile,
+  cvHighlights,
   cvSkillGroups,
   education,
   person,
@@ -19,7 +19,7 @@ const parseDate = (value: string) => {
 };
 
 const formatMonthYear = (value: string) =>
-  new Intl.DateTimeFormat('en-US', {
+  new Intl.DateTimeFormat('en-GB', {
     month: 'short',
     year: 'numeric',
     timeZone: 'UTC',
@@ -31,7 +31,7 @@ const formatISODate = (value: string) =>
 const formatTenure = (tenure: { from: string; to: string | null }) => {
   const from = formatMonthYear(tenure.from);
   const to = tenure.to ? formatMonthYear(tenure.to) : 'Present';
-  return `${from} — ${to}`;
+  return `${from} – ${to}`;
 };
 
 const sortedJobs = [...jobs].sort((a, b) => {
@@ -52,48 +52,48 @@ const sortedJobs = [...jobs].sort((a, b) => {
   );
 });
 
+const displayUrl = (url: string) =>
+  url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+
+const displayPhone = (phone: string) =>
+  phone.replace(/^\+44(\d{4})(\d{6})$/, '+44 $1 $2');
+
 const contactItems = [
   {
-    label: 'Website',
-    value: person.website,
-    href: person.website,
-    itemprop: 'url',
-    microformatClass: 'u-url',
-  },
-  {
-    label: 'Blog',
-    value: person.blog,
-    href: person.blog,
-    itemprop: 'sameAs',
-    microformatClass: 'u-url',
+    label: 'Location',
+    value: person.location,
+    href: null,
+    itemprop: 'homeLocation',
   },
   {
     label: 'Email',
     value: person.contact.email,
     href: person.contact.email ? `mailto:${person.contact.email}` : null,
     itemprop: 'email',
-    microformatClass: 'u-email',
   },
   {
     label: 'Phone',
-    value: person.contact.phone,
+    value: person.contact.phone ? displayPhone(person.contact.phone) : '',
     href: person.contact.phone ? `tel:${person.contact.phone}` : null,
     itemprop: 'telephone',
-    microformatClass: 'p-tel',
+  },
+  {
+    label: 'Website',
+    value: displayUrl(person.website),
+    href: person.website,
+    itemprop: 'url',
   },
   {
     label: 'LinkedIn',
-    value: person.contact.linkedin,
+    value: displayUrl(person.contact.linkedin),
     href: person.contact.linkedin,
     itemprop: 'sameAs',
-    microformatClass: 'u-url',
   },
   {
     label: 'GitHub',
-    value: person.contact.github,
+    value: displayUrl(person.contact.github),
     href: person.contact.github,
     itemprop: 'sameAs',
-    microformatClass: 'u-url',
   },
 ].filter((item) => item.value);
 
@@ -104,49 +104,21 @@ const sameAs = [
   person.blog,
 ].filter(Boolean);
 
-const cvProfileFacts = [
-  {
-    label: 'Target roles',
-    value: cvProfile.targetRoles.join(', '),
-  },
-  {
-    label: 'Experience',
-    value: `${cvProfile.yearsExperience} in frontend and product web development`,
-  },
-  {
-    label: 'Primary stack',
-    value: 'TypeScript, React, Next.js, Astro, Tailwind CSS, Vite',
-  },
-  {
-    label: 'Delivery focus',
-    value:
-      'Design systems, product UI, CMS platforms, e-commerce, accessibility, performance',
-  },
-];
-
-const groupedSkills = cvSkillGroups.flatMap((group) => group.skills);
-
 const cvKnowsAbout = [
   ...new Set([
     ...person.skills,
-    ...groupedSkills,
-    ...cvProfile.targetRoles,
-    ...cvProfile.keywords,
+    ...cvSkillGroups.flatMap((group) => group.skills),
   ]),
 ];
 
-const cvMetaDescription = [
-  person.summary,
-  `Target roles: ${cvProfile.targetRoles.join(', ')}.`,
-  `Core skills: ${cvProfile.keywords.join(', ')}.`,
-].join(' ');
+const cvMetaDescription = `${person.name}, ${person.role} in ${person.location}. ${person.summary}`;
 
 const cvStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: person.name,
   jobTitle: person.role,
-  description: cvProfile.parserSummary,
+  description: person.summary,
   url: person.website,
   email: person.contact.email || undefined,
   telephone: person.contact.phone || undefined,
@@ -174,8 +146,6 @@ const cvStructuredData = {
   hasOccupation: {
     '@type': 'Occupation',
     name: person.role,
-    occupationalCategory: cvProfile.targetRoles,
-    responsibilities: cvProfile.focus,
     skills: cvKnowsAbout,
   },
   workExample: professionalPortfolio.map((project) => ({
@@ -205,324 +175,199 @@ const cvStructuredDataJson = JSON.stringify(cvStructuredData).replace(
   /</g,
   '\\u003c',
 );
+
+const sectionHeadingClass =
+  'flex items-center gap-2 text-lg font-semibold text-[var(--text)]';
+const bulletListClass =
+  'cv-bullets mt-3 max-w-prose list-disc space-y-2 pl-5 text-sm text-[var(--text-muted)]';
 ---
 
-<Layout
-  title={`CV | ${person.name}`}
-  description={cvMetaDescription}
->
+<Layout title={`CV | ${person.name}`} description={cvMetaDescription}>
+  <CvMasthead slot="header" contactItems={contactItems} />
+
   <script type="application/ld+json" set:html={cvStructuredDataJson} />
 
   <article
-    class="cv-document h-card space-y-8"
+    class="cv-document space-y-8"
     itemscope
     itemtype="https://schema.org/Person"
   >
-    <section
-      class="cv-print-section terminal-card p-6"
-      aria-label="CV contact details"
-    >
-      <h2
-        class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-      >
+    <section class="cv-section terminal-card p-6" aria-labelledby="cv-summary">
+      <h2 id="cv-summary" class={sectionHeadingClass}>
         <Icon
-          name="lucide:contact"
+          name="lucide:file-text"
           size={20}
           class="text-[var(--accent)] print:text-black"
         />
-        Contact
+        Summary
       </h2>
-      <div
-        class="cv-contact-list mt-4 grid gap-3 text-sm text-[var(--text-muted)] sm:grid-cols-2"
+      <p
+        class="cv-summary mt-3 max-w-prose text-base leading-relaxed text-[var(--text-muted)]"
+        itemprop="description"
       >
-        <p>
-          <span class="font-medium text-[var(--accent)]">Name</span>
-          <span class="p-name block" itemprop="name">{person.name}</span>
-        </p>
-        <p>
-          <span class="font-medium text-[var(--accent)]">Role</span>
-          <span class="p-job-title block" itemprop="jobTitle">{person.role}</span>
-        </p>
-        <p>
-          <span class="font-medium text-[var(--accent)]">Location</span>
-          <span
-            class="block"
-            itemprop="address"
-            itemscope
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <span class="p-locality" itemprop="addressLocality"
-              >{person.location}</span
-            >
-          </span>
-        </p>
-        {
-          contactItems.map((item) => (
-            <p>
-              <span class="font-medium text-[var(--accent)]">{item.label}</span>
-              <a
-                class:list={[
-                  'cv-print-visible-url block link-hover break-all sm:break-normal',
-                  item.microformatClass,
-                ]}
-                href={item.href ?? undefined}
-                itemprop={item.itemprop}
-              >
-                {item.value}
-              </a>
-            </p>
-          ))
-        }
-      </div>
+        {person.summary}
+      </p>
+      <h3
+        class="cv-subheading mt-5 text-sm font-semibold uppercase tracking-wide text-[var(--accent)]"
+      >
+        Highlights
+      </h3>
+      <ul class={bulletListClass}>
+        {cvHighlights.map((item) => <li>{item}</li>)}
+      </ul>
     </section>
 
-    <section class="cv-print-page space-y-8">
-      <div class="cv-print-section terminal-card p-6">
-        <h2
-          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-        >
-          <Icon
-            name="lucide:file-text"
-            size={20}
-            class="text-[var(--accent)] print:text-black"
-          />
-          Professional Summary
-        </h2>
-        <div class="cv-summary-content max-w-prose">
-          <p class="mt-3 text-base leading-relaxed text-[var(--text-muted)]">
-            {person.summary}
-          </p>
-          <dl
-            class="mt-4 grid gap-3 text-sm text-[var(--text-muted)] sm:grid-cols-2"
-            aria-label="Senior frontend software engineer profile facts"
-          >
-            {
-              cvProfileFacts.map((fact) => (
-                <div>
-                  <dt class="font-medium text-[var(--accent)]">
-                    {fact.label}
-                  </dt>
-                  <dd>{fact.value}</dd>
-                </div>
-              ))
-            }
-          </dl>
-          <ul
-            class="mt-4 max-w-prose list-disc space-y-2 pl-5 text-sm text-[var(--text-muted)]"
-            aria-label="Senior frontend software engineer profile focus"
-          >
-            {cvProfile.focus.map((item) => <li>{item}</li>)}
-          </ul>
-        </div>
-      </div>
-
-      <div class="cv-print-section terminal-card p-6">
-        <h2
-          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-        >
-          <Icon
-            name="lucide:sparkles"
-            size={20}
-            class="text-[var(--accent)] print:text-black"
-          />
-          Selected Impact
-        </h2>
-        <ul class="mt-5 max-w-prose list-disc space-y-2 pl-5 text-sm text-[var(--text-muted)]">
-          {cvImpactHighlights.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
-
-      <div class="cv-print-section terminal-card p-6">
-        <h2
-          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-        >
-          <Icon
-            name="lucide:sparkles"
-            size={20}
-            class="text-[var(--accent)] print:text-black"
-          />
-          Technical Skills
-        </h2>
+    <section class="cv-section terminal-card p-6" aria-labelledby="cv-skills">
+      <h2 id="cv-skills" class={sectionHeadingClass}>
+        <Icon
+          name="lucide:sparkles"
+          size={20}
+          class="text-[var(--accent)] print:text-black"
+        />
+        Skills
+      </h2>
+      <dl class="cv-skills mt-4 divide-y divide-[var(--rule)] text-sm">
         {
           cvSkillGroups.map((group) => (
-            <p
-              class="cv-print-only cv-print-line mt-5 text-sm text-[var(--text-muted)] first:mt-0"
-              aria-label={`${group.name} skills for resume parsing`}
-            >
-              {group.name}: {group.skills.join(', ')}
-            </p>
+            <div class="cv-skill-row grid gap-1 py-2.5 first:pt-0 last:pb-0 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-5">
+              <dt class="font-semibold text-[var(--accent)]">{group.name}</dt>
+              <dd class="leading-relaxed text-[var(--text-muted)]">
+                {group.skills.join(', ')}
+              </dd>
+            </div>
           ))
         }
-        <div
-          class="cv-print-hide mt-5 divide-y divide-[var(--rule)] text-sm"
-          aria-label="Core software engineering skills grouped by category"
-        >
-          {
-            cvSkillGroups.map((group) => (
-              <section class="grid gap-2 py-3 first:pt-0 last:pb-0 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-5">
-                <h3 class="text-sm font-semibold text-[var(--accent)]">
-                  {group.name}
-                </h3>
-                <p class="leading-relaxed text-[var(--text-muted)]">
-                  {group.skills.join(', ')}
-                </p>
-              </section>
-            ))
-          }
-        </div>
-      </div>
+      </dl>
+    </section>
 
-      <div class="cv-print-section cv-work-experience terminal-card p-6">
-        <h2
-          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-        >
-          <Icon
-            name="lucide:briefcase"
-            size={20}
-            class="text-[var(--accent)] print:text-black"
-          />
-          Work Experience
-        </h2>
-        <ul class="cv-work-list mt-6 flex flex-col gap-5">
-          {
-            sortedJobs.map((job) => (
-              <li class="terminal-item">
+    <section
+      class="cv-section cv-experience terminal-card p-6"
+      aria-labelledby="cv-experience"
+    >
+      <h2 id="cv-experience" class={sectionHeadingClass}>
+        <Icon
+          name="lucide:briefcase"
+          size={20}
+          class="text-[var(--accent)] print:text-black"
+        />
+        Experience
+      </h2>
+      <ul class="cv-job-list mt-5 flex flex-col gap-6">
+        {
+          sortedJobs.map((job) => (
+            <li class="cv-job terminal-item">
+              <div class="cv-job-head flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                 <h3 class="text-base font-semibold text-[var(--text)]">
                   {job.data.title}
                 </h3>
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <p class="text-sm text-[var(--text-muted)]">
-                    {job.data.company} · {job.data.location}
-                  </p>
-                  <p class="text-sm text-[var(--accent)]">
-                    {formatTenure(job.data.tenure)}
-                  </p>
-                </div>
-                {
-                  job.data.description && (
-                    <ul class="mt-3 max-w-prose list-disc space-y-2 pl-5 text-sm text-[var(--text-muted)]">
-                      {job.data.description.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  )
-                }
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+                <p class="cv-job-dates shrink-0 text-sm text-[var(--accent)]">
+                  {formatTenure(job.data.tenure)}
+                </p>
+              </div>
+              <p class="cv-job-meta text-sm text-[var(--text-muted)]">
+                {job.data.company} · {job.data.location}
+              </p>
+              {job.data.description && (
+                <ul class={bulletListClass}>
+                  {job.data.description.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
 
-      <div class="cv-print-section cv-education terminal-card p-6">
-        <h2
-          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-        >
-          <Icon
-            name="lucide:graduation-cap"
-            size={20}
-            class="text-[var(--accent)] print:text-black"
-          />
-          Education
-        </h2>
-        <ul class="mt-6 flex flex-col gap-5">
-          {
-            education.map((school) => (
-              <li class="terminal-item">
+    <section
+      class="cv-section cv-projects terminal-card p-6"
+      aria-labelledby="cv-projects"
+    >
+      <h2 id="cv-projects" class={sectionHeadingClass}>
+        <Icon
+          name="lucide:folder-git-2"
+          size={20}
+          class="text-[var(--accent)] print:text-black"
+        />
+        Selected Work
+      </h2>
+      <ul class="cv-project-list mt-5 grid gap-4 md:grid-cols-2">
+        {
+          professionalPortfolio.map((project) => (
+            <li
+              class="cv-project terminal-item"
+              itemprop="workExample"
+              itemscope
+              itemtype="https://schema.org/CreativeWork"
+            >
+              <div class="cv-project-head flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3
+                  class="text-base font-semibold text-[var(--text)]"
+                  itemprop="name"
+                >
+                  {project.name}
+                </h3>
+                {project.urls.map((url) => (
+                  <a
+                    href={url.href}
+                    target="_blank"
+                    rel="nofollow noreferrer"
+                    class="cv-project-link cv-print-visible-url link-hover text-sm text-[var(--text-muted)]"
+                    itemprop="url"
+                  >
+                    {url.label}
+                  </a>
+                ))}
+              </div>
+              <p
+                class="cv-project-desc mt-2 text-sm text-[var(--text-muted)]"
+                itemprop="description"
+              >
+                {project.description}
+              </p>
+              <p
+                class="cv-project-stack mt-2 text-xs uppercase tracking-wide text-[var(--accent)]"
+                aria-label={`${project.name} stack`}
+              >
+                {project.skills.join(' · ')}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section
+      class="cv-section cv-education terminal-card p-6"
+      aria-labelledby="cv-education"
+    >
+      <h2 id="cv-education" class={sectionHeadingClass}>
+        <Icon
+          name="lucide:graduation-cap"
+          size={20}
+          class="text-[var(--accent)] print:text-black"
+        />
+        Education
+      </h2>
+      <ul class="cv-edu-list mt-5 grid gap-5 sm:grid-cols-2">
+        {
+          education.map((school) => (
+            <li class="cv-edu terminal-item">
+              <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                 <h3 class="text-base font-semibold text-[var(--text)]">
                   {school.degree}
                 </h3>
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <p class="text-sm text-[var(--text-muted)]">
-                    {school.institution} · {school.location}
-                  </p>
-                  <p class="text-sm text-[var(--accent)]">{school.period}</p>
-                </div>
-                <p class="mt-3 text-sm text-[var(--text-muted)]">{school.summary}</p>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+                <p class="shrink-0 text-sm text-[var(--accent)]">{school.period}</p>
+              </div>
+              <p class="text-sm text-[var(--text-muted)]">
+                {school.institution} · {school.location}
+              </p>
+              <p class="mt-1 text-sm text-[var(--text-muted)]">{school.summary}</p>
+            </li>
+          ))
+        }
+      </ul>
     </section>
-
-    <aside class="cv-print-page space-y-8">
-      <section class="cv-print-section cv-print-flow terminal-card p-6">
-        <h2
-          class="flex items-center gap-2 text-lg font-semibold text-[var(--text)]"
-        >
-          <Icon
-            name="lucide:folder-git-2"
-            size={20}
-            class="text-[var(--accent)] print:text-black"
-          />
-          Professional Portfolio
-        </h2>
-        <ul class="cv-portfolio-list mt-5 flex flex-col gap-4">
-          {
-            professionalPortfolio.map((project) => (
-              <li
-                class="cv-portfolio-item terminal-item"
-                itemprop="workExample"
-                itemscope
-                itemtype="https://schema.org/CreativeWork"
-              >
-                <div class="cv-portfolio-heading">
-                  <h3
-                    class="text-base font-semibold text-[var(--text)]"
-                    itemprop="name"
-                  >
-                    {project.name}
-                  </h3>
-                  {
-                    project.subtitle && (
-                      <p class="mt-1 text-sm font-medium text-[var(--text-muted)]">
-                        {project.subtitle}
-                      </p>
-                    )
-                  }
-                  <ul
-                    class="cv-portfolio-tags cv-print-hide mt-3 flex flex-wrap gap-1.5 text-[11px] uppercase tracking-wide text-[var(--accent)]"
-                    aria-label={`${project.name} project skills`}
-                  >
-                    {project.skills.map((skill) => (
-                      <li>{skill}</li>
-                    ))}
-                  </ul>
-                  <p class="cv-print-only cv-print-line cv-portfolio-skills-csv">
-                    Skills: {project.skills.join(', ')}
-                  </p>
-                </div>
-                <div class="cv-portfolio-body">
-                  <p
-                    class="mt-2 text-sm text-[var(--text-muted)]"
-                    itemprop="description"
-                  >
-                    {project.description}
-                  </p>
-                  <ul
-                    class="cv-portfolio-links mt-3 flex flex-wrap gap-2 text-sm"
-                  >
-                    {project.urls.map((url) => (
-                      <li>
-                        <a
-                          href={url.href}
-                          target="_blank"
-                          rel="nofollow noreferrer"
-                          class="cv-print-visible-url link-hover break-all sm:break-normal"
-                          itemprop="url"
-                        >
-                          <span class="cv-screen-only">{url.label}</span>
-                          <span class="cv-print-only">{url.href}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </aside>
   </article>
 </Layout>

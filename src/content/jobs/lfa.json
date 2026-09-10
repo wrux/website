@@ -1,14 +1,14 @@
 {
   "company": "LFA Machines",
-  "location": "Oxford, United Kingdom",
+  "location": "Oxford, UK",
   "title": "Full Stack Developer",
   "tenure": {
     "from": "11-06-2014",
     "to": "11-06-2019"
   },
   "description": [
-    "Built and maintained Magento 2 e-commerce experiences, improving customer-facing reliability, product discovery, and feature delivery across the sales funnel",
-    "Led development of an internal Laravel ERP and manufacturing platform that became a core company product for operations, stock, and production workflows",
-    "Worked directly with business stakeholders to translate operational requirements into practical software, balancing frontend usability, backend data modelling, and long-term maintainability"
+    "Led development of an internal Laravel ERP and manufacturing platform covering operations, stock and production workflows, which became the company’s core operational system",
+    "Built and maintained the Magento 2 e-commerce storefront, improving product discovery, reliability and feature delivery across the sales funnel",
+    "Worked directly with the business owners and operations staff to turn requirements into working software, balancing usability, data modelling and long-term maintainability"
   ]
 }

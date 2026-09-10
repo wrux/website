@@ -167,64 +167,38 @@
     display: none;
   }
 
-  .cv-portfolio-item {
-    display: grid;
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-    gap: 1.15rem 1.65rem;
-    position: relative;
-    padding: 1.45rem 0;
-    border-top: 1px solid var(--rule);
+  .cv-masthead-contact li + li::before {
+    content: '·';
+    margin-right: 0.5rem;
+    color: var(--text-soft);
   }
 
-  .cv-portfolio-item:first-child {
-    border-top: none;
-    padding-top: 0;
+  .cv-project {
+    border: 1px solid var(--rule);
+    background: var(--panel-bg);
+    padding: 1.1rem 1.2rem;
   }
 
-  .cv-portfolio-body p {
-    max-width: 76ch;
-  }
-
-  .cv-portfolio-tags {
-    margin-top: 0.75rem;
-  }
-
-  .cv-portfolio-tags li {
-    border: 1px solid rgba(126, 226, 196, 0.22);
-    background: rgba(126, 226, 196, 0.08);
-    padding: 0.15rem 0.45rem;
-  }
-
-  .cv-portfolio-links {
-    margin-top: 0.85rem;
-  }
-
-  .cv-portfolio-links a {
-    display: inline-flex;
-  }
-
-  @media (max-width: 47.999rem) {
-    .cv-portfolio-item {
-      display: block;
-    }
+  .cv-project-desc {
+    max-width: 60ch;
   }
 }
 
 @media print {
   @page {
     size: A4;
-    margin: 13mm 12mm 15mm;
+    margin: 12mm 12mm 14mm;
   }
 
   html {
-    font-size: 11px;
+    font-size: 12.5px;
   }
 
   body {
     background: #ffffff;
     color: #000000;
-    font-size: 8.8pt;
-    line-height: 1.34;
+    font-size: 9pt;
+    line-height: 1.32;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -237,47 +211,108 @@
     padding: 0 !important;
   }
 
-  .resume-terminal > main {
-    padding: 0 !important;
-    margin-top: 0.14in !important;
-  }
-
   .resume-terminal {
     color: #000000;
-    line-height: 1.34;
+    line-height: 1.32;
   }
 
   .resume-terminal * {
     color: #000000 !important;
     border-color: #000000 !important;
+    text-shadow: none !important;
   }
 
-  .terminal-panel-header {
-    margin: 0 !important;
+  .resume-terminal > main {
     padding: 0 !important;
-    border-bottom: 1.4pt solid #000000 !important;
+    margin-top: 0.15in !important;
   }
 
-  .terminal-panel-header > div:not(.header-bleed-line) {
-    gap: 0.02in !important;
-    padding-block: 0 0.12in !important;
+  /* Hide decorative icons, but keep the masthead logo. */
+  .resume-terminal svg {
+    display: none !important;
+  }
+
+  .resume-terminal svg.cv-masthead-logo {
+    display: block !important;
+    font-size: 0.7in !important;
+  }
+
+  /* Masthead: logo, name, role, one contact line. */
+  header.cv-masthead {
+    margin: 0 !important;
+    padding: 0 0 0.1in !important;
+    border: none !important;
+    border-bottom: 1.4pt solid #000000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .cv-masthead-inner {
+    gap: 0.2in !important;
+    padding: 0 !important;
   }
 
   .resume-terminal h1 {
     margin: 0 !important;
-    font-size: 22pt;
+    font-size: 23pt;
     line-height: 1;
-    letter-spacing: 0 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .cv-masthead-role {
+    margin-top: 0.04in !important;
+    font-size: 10.5pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .cv-masthead-contact {
+    margin-top: 0.07in !important;
+    gap: 0.02in 0.09in !important;
+    font-size: 8.4pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .cv-masthead-contact li + li::before {
+    margin-right: 0.09in;
+  }
+
+  /* Section chrome. */
+  .terminal-panel,
+  .terminal-card,
+  .terminal-item,
+  .cv-project {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .cv-document {
+    display: block;
+  }
+
+  .cv-document > .cv-section + .cv-section {
+    margin-top: 0.13in !important;
+    padding-top: 0.1in !important;
+    border-top: 0.8pt solid #000000 !important;
+  }
+
+  .cv-section {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .cv-section > h2 + * {
+    break-before: avoid;
+    page-break-before: avoid;
   }
 
   .resume-terminal h2 {
     display: block !important;
-    margin: 0 0 0.07in !important;
-    padding-bottom: 0 !important;
-    border-bottom: none !important;
+    margin: 0 0 0.06in !important;
     font-size: 8.6pt;
     line-height: 1.15;
-    letter-spacing: 0.055em !important;
+    letter-spacing: 0.06em !important;
     text-transform: uppercase;
     break-after: avoid;
     page-break-after: avoid;
@@ -285,190 +320,168 @@
 
   .resume-terminal h3 {
     margin: 0 !important;
-    font-size: 9.2pt;
+    font-size: 9.6pt;
     line-height: 1.25;
   }
 
   .resume-terminal p,
   .resume-terminal li,
-  .resume-terminal a {
+  .resume-terminal a,
+  .resume-terminal dd {
     line-height: 1.3;
   }
 
-  .resume-terminal svg {
-    display: none !important;
-  }
-
-  .cv-print-section h2 svg {
-    display: none !important;
-  }
-
-  .cv-document {
-    display: block;
-  }
-
-  .cv-document > * + * {
-    margin-top: 0.12in !important;
-  }
-
-  /* Strip the “terminal” chrome for print */
-  .terminal-panel,
-  .terminal-card,
-  .terminal-item {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .cv-document > .cv-print-section:first-child {
-    padding-top: 0 !important;
-    border-top: none !important;
-  }
-
-  .cv-document > .cv-print-section:first-child h2 {
-    display: none !important;
-  }
-
-  .cv-contact-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.045in 0.18in !important;
-    padding-bottom: 0.09in;
-    border-bottom: 0.7pt solid #000000;
-  }
-
-  .cv-contact-list p {
-    display: grid;
-    grid-template-columns: 0.64in minmax(0, 1fr);
-    column-gap: 0.06in;
-    margin: 0 !important;
-  }
-
-  .cv-contact-list p > span:first-child {
-    font-size: 6.8pt !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.045em !important;
-    text-transform: uppercase;
-  }
-
-  .cv-summary-content dl {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.055in 0.18in !important;
-    margin-top: 0.08in !important;
-  }
-
-  .cv-summary-content dt {
-    font-size: 7pt !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.04em !important;
-    text-transform: uppercase;
-  }
-
-  .cv-summary-content dd {
-    margin: 0 !important;
-  }
-
-  .cv-print-page:not(:last-child) {
-    break-after: auto;
-    page-break-after: auto;
-  }
-
-  .cv-document > aside.cv-print-page {
-    break-before: page;
-    page-break-before: always;
-  }
-
-  .cv-print-section {
-    padding-top: 0 !important;
-    border-top: none !important;
-    break-inside: auto;
-    page-break-inside: auto;
-  }
-
-  .cv-print-page > .cv-print-section + .cv-print-section,
-  .cv-document > aside.cv-print-page .cv-print-section {
-    margin-top: 0.18in !important;
-    padding-top: 0.13in !important;
-    border-top: 0.8pt solid #000000 !important;
-  }
-
-  .cv-print-page > .cv-print-section:first-child {
+  .cv-summary {
     margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
+    max-width: none !important;
+    font-size: 9.4pt !important;
+    line-height: 1.36 !important;
   }
 
-  .cv-document > aside.cv-print-page .cv-print-section {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
+  .cv-subheading {
+    margin-top: 0.14in !important;
+    font-size: 7.4pt !important;
+    letter-spacing: 0.06em !important;
   }
 
-  .cv-print-flow {
-    break-inside: auto;
-    page-break-inside: auto;
+  .cv-bullets {
+    margin-top: 0.05in !important;
+    max-width: none !important;
+    padding-left: 0.16in !important;
+    gap: 0 !important;
   }
 
-  .cv-print-section ul {
-    margin-top: 0.07in !important;
-    gap: 0.055in !important;
+  .cv-bullets > li + li {
+    margin-top: 0.035in !important;
   }
 
-  .cv-print-section p {
-    margin-top: 0.045in !important;
-  }
-
-  .cv-print-section li {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  .cv-print-section li::marker {
+  .cv-bullets li::marker {
     color: #000000;
   }
 
-  .cv-print-section > h2 + * {
-    break-before: avoid;
-    page-break-before: avoid;
+  /* Skills: one "Group: a, b, c" line per group. */
+  .cv-skills {
+    margin-top: 0 !important;
   }
 
-  .cv-work-experience {
-    break-inside: auto;
-    page-break-inside: auto;
+  .cv-skills > .cv-skill-row {
+    display: block !important;
+    padding: 0 !important;
+    border: none !important;
   }
 
-  .cv-work-list > li,
-  .cv-education .terminal-item {
+  .cv-skills > .cv-skill-row + .cv-skill-row {
+    margin-top: 0.03in !important;
+  }
+
+  .cv-skill-row dt,
+  .cv-skill-row dd {
+    display: inline !important;
+    font-size: 8.6pt !important;
+  }
+
+  .cv-skill-row dt::after {
+    content: ': ';
+  }
+
+  /* Experience. */
+  .cv-job-list {
+    margin-top: 0 !important;
+    gap: 0 !important;
+  }
+
+  .cv-job {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  .cv-work-list > li + li {
-    margin-top: 0.105in !important;
-    padding-top: 0.105in !important;
-    border-top: 0.7pt solid #000000 !important;
+  .cv-job + .cv-job {
+    margin-top: 0.09in !important;
+    padding-top: 0.09in !important;
+    border-top: 0.6pt solid #000000 !important;
   }
 
-  .cv-education ul {
+  .cv-job-head {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
+    justify-content: space-between !important;
+    gap: 0.2in !important;
+  }
+
+  .cv-job-dates,
+  .cv-job-meta {
+    font-size: 8.6pt !important;
+  }
+
+  .cv-job-meta {
+    margin-top: 0.01in !important;
+  }
+
+  /* Selected work: two columns, compact. */
+  .cv-project-list {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.08in 0.2in !important;
+    gap: 0.09in 0.24in !important;
+    margin-top: 0 !important;
   }
 
-  .cv-education .terminal-item {
-    margin: 0 !important;
+  .cv-project {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-project-head {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.08in !important;
+  }
+
+  .cv-project-link {
+    font-size: 8pt !important;
+  }
+
+  .cv-project-desc {
+    margin-top: 0.02in !important;
+    max-width: none !important;
+    font-size: 8.4pt !important;
+  }
+
+  .cv-project-stack {
+    margin-top: 0.02in !important;
+    font-size: 7.2pt !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+  }
+
+  /* Education. */
+  .cv-edu-list {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.08in 0.24in !important;
+    margin-top: 0 !important;
+  }
+
+  .cv-edu {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-edu > div {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+  }
+
+  .cv-edu p {
+    margin-top: 0.01in !important;
+    font-size: 8.6pt !important;
   }
 
   .cv-print-only {
     display: inline !important;
-  }
-
-  .cv-print-line {
-    display: block !important;
-    margin-top: 0.035in !important;
-    color: #000000 !important;
-    font-size: 7.6pt !important;
-    line-height: 1.24 !important;
   }
 
   .cv-print-hide,
@@ -476,82 +489,6 @@
     display: none !important;
   }
 
-  .cv-summary-content {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  .cv-summary-content > p:first-child {
-    margin-top: 0 !important;
-    font-size: 9.1pt !important;
-    line-height: 1.36 !important;
-  }
-
-  .cv-summary-content > ul {
-    margin-top: 0.075in !important;
-  }
-
-  .cv-print-section .rounded-full {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-
-  .cv-portfolio-list {
-    gap: 0 !important;
-  }
-
-  .cv-portfolio-item {
-    display: grid;
-    grid-template-columns: 2.1in minmax(0, 1fr);
-    gap: 0.045in 0.2in;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    padding: 0.105in 0 0 !important;
-    border-top: 0.7pt solid #000000 !important;
-  }
-
-  .cv-portfolio-heading {
-    min-width: 0;
-  }
-
-  .cv-portfolio-item:first-child {
-    padding-top: 0 !important;
-    border-top: none !important;
-  }
-
-  .cv-portfolio-item + .cv-portfolio-item {
-    margin-top: 0.105in !important;
-  }
-
-  .cv-portfolio-skills-csv {
-    margin-top: 0.035in !important;
-    color: #000000 !important;
-    font-size: 7.3pt !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0 !important;
-    text-transform: none !important;
-  }
-
-  .cv-portfolio-item ul {
-    margin-top: 0.06in !important;
-    gap: 0.04in 0.12in !important;
-  }
-
-  .cv-portfolio-item .cv-portfolio-links {
-    margin-top: 0.07in !important;
-  }
-
-  .cv-portfolio-links {
-    display: none !important;
-  }
-
-  .cv-portfolio-links a {
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
-  }
-
-  /* Remove bleed lines / decorative dividers in print */
   .terminal-divider,
   .header-bleed-line {
     display: none;
@@ -561,15 +498,5 @@
     color: #000000;
     text-decoration: none;
     overflow-wrap: anywhere;
-  }
-
-  a::after {
-    content: ' (' attr(href) ')';
-    font-size: 0.85em;
-    color: #000000;
-  }
-
-  .cv-print-visible-url::after {
-    content: none;
   }
 }

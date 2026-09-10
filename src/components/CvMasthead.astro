@@ -1,0 +1,65 @@
+---
+import Logo from '~/components/Logo.astro';
+import { person } from '~/data/site';
+
+export interface ContactItem {
+  label: string;
+  value: string;
+  href: string | null;
+  itemprop?: string;
+}
+
+export interface Props {
+  contactItems: ContactItem[];
+}
+
+const { contactItems } = Astro.props;
+---
+
+<header class="terminal-panel terminal-panel-header cv-masthead">
+  <div class="header-bleed-line"></div>
+  <div class="cv-masthead-inner flex items-center gap-5 py-6 sm:gap-7 lg:py-10">
+    <Logo
+      class="cv-masthead-logo text-7xl text-primary terminal-glow shrink-0 sm:text-8xl"
+      aria-hidden="true"
+    />
+    <div class="min-w-0">
+      <h1
+        class="text-4xl font-semibold tracking-tight text-[var(--text)] sm:text-5xl"
+        itemprop="name"
+      >
+        {person.name}
+      </h1>
+      <p
+        class="cv-masthead-role mt-1 text-lg text-[var(--text-muted)]"
+        itemprop="jobTitle"
+      >
+        {person.role}
+      </p>
+      <ul
+        class="cv-masthead-contact mt-3 flex flex-wrap gap-x-2 gap-y-1 text-sm text-[var(--text-muted)]"
+        aria-label="Contact details"
+      >
+        {
+          contactItems.map((item) => (
+            <li>
+              <span class="sr-only">{item.label}: </span>
+              {item.href ? (
+                <a
+                  class="cv-print-visible-url link-hover"
+                  href={item.href}
+                  itemprop={item.itemprop}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <span itemprop={item.itemprop}>{item.value}</span>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="header-bleed-line"></div>
+</header>
