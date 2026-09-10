@@ -1,14 +1,14 @@
 {
   "company": "Transom Design",
-  "location": "Seattle, USA",
-  "title": "Frontend Engineer",
+  "location": "Seattle, USA (remote)",
+  "title": "Frontend Engineer (Contract)",
   "tenure": {
     "from": "11-06-2022",
     "to": "11-06-2023"
   },
   "description": [
-    "Built Sanity and Next.js sites with React, TypeScript-oriented frontend architecture, reusable components, and editorial workflows for content-rich client platforms",
-    "Maintained and migrated legacy codebases to Sanity, reducing technical debt and making future content and product updates easier to ship",
-    "Collaborated with designers, content teams, and stakeholders to turn visual direction and information architecture into performant, accessible web experiences"
+    "Built Sanity and Next.js sites in React and TypeScript for content-rich client platforms, with reusable components and editorial workflows designed alongside the content teams who use them",
+    "Migrated legacy client codebases to Sanity, cutting technical debt and making content and product changes cheaper and safer to ship",
+    "Worked directly with designers and client stakeholders to turn visual direction and information architecture into fast, accessible pages"
   ]
 }

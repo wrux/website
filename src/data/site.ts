@@ -3,7 +3,7 @@ export const sourceUrl = 'https://github.com/wrux/website';
 
 export const person = {
   name: 'Callum Bonnyman',
-  role: 'Senior Frontend Software Engineer',
+  role: 'Senior Frontend Engineer',
   location: 'Oxford, UK',
   website: 'https://wrux.com',
   blog: 'https://callum.co.uk',
@@ -14,11 +14,9 @@ export const person = {
     github: 'https://github.com/wrux',
   },
   summary:
-    'Senior Frontend Software Engineer with 10+ years of experience building product-focused web platforms, React and Next.js applications, design systems, and content-rich sites. Strong in TypeScript, component architecture, frontend performance, accessibility, CMS/e-commerce delivery, and taking products from ambiguous briefs to maintainable production releases.',
+    'Senior Frontend Engineer with 12 years shipping production web products, including client work for Triumph Motorcycles, Jotun and Silentnight at DEPT and three products of my own built from idea to production. I specialise in React and TypeScript codebases that stay maintainable: design systems and component libraries, content platforms on Next.js, Sanity and Craft CMS, and turning a rough brief into a shipped MVP. Comfortable owning the frontend end to end, from architecture and tooling through accessibility, performance and release, working closely with designers, backend engineers and stakeholders.',
   bio: 'When I’m not coding, I enjoy exploring new tech and traveling the world while posting occasionally on callum.co.uk.',
   skills: [
-    'Frontend engineering',
-    'Product engineering',
     'TypeScript',
     'JavaScript',
     'React',
@@ -27,88 +25,44 @@ export const person = {
     'HTML',
     'CSS',
     'Tailwind CSS',
-    'Vite',
     'Node.js',
-    'Frontend architecture',
-    'UI architecture',
     'Design systems',
     'Component libraries',
     'Storybook',
-    'Design tokens',
     'Accessibility',
     'Web performance',
-    'Responsive design',
     'Micro-frontends',
     'Turborepo',
     'TanStack Start',
     'React Query',
     'GraphQL',
     'REST APIs',
-    'HTMX',
-    'Alpine.js',
-    'Datastar',
-    'Vercel',
     'Supabase',
     'Sanity',
     'Craft CMS',
-    'Content platforms',
-    'E-commerce',
-    'Technical leadership',
-    'Cross-functional collaboration',
-    'Problem solving',
-    'Critical thinking',
-    'Attention to detail',
-    'Flexibility',
-  ],
-};
-
-export const cvProfile = {
-  yearsExperience: '10+ years',
-  targetRoles: [
-    'Senior Frontend Software Engineer',
-    'Senior Frontend Engineer',
-    'Frontend Platform Engineer',
-    'Design Systems Engineer',
-    'Product Engineer',
-  ],
-  focus: [
-    'Frontend web development with React, Next.js, Astro, TypeScript, Tailwind CSS, Vite, and modern component architecture.',
-    'Design systems, reusable component libraries, design tokens, accessibility, responsive UI, and product-quality interface engineering.',
-    'Product engineering across marketplaces, content platforms, catalog sites, e-commerce, CMS migrations, and long-lived web applications.',
-    'Cross-functional delivery with design, product, backend, content, and stakeholder teams from discovery through launch and iteration.',
-  ],
-  keywords: [
-    'senior frontend software engineer',
-    'frontend engineer',
-    'React developer',
-    'Next.js developer',
-    'TypeScript engineer',
-    'design systems engineer',
-    'component library',
-    'frontend architecture',
-    'product engineer',
-    'web performance',
-    'accessibility',
-    'CMS platform',
-    'Sanity',
-    'Craft CMS',
     'Vercel',
+    'Rust',
+    'WebAssembly',
+    'Cloudflare Workers',
   ],
-  parserSummary:
-    'Candidate profile: Senior Frontend Software Engineer with 10+ years of frontend web development experience. Primary strengths include TypeScript, React, Next.js, design systems, component libraries, frontend architecture, product engineering, accessibility, performance, CMS platforms, e-commerce, and cross-functional delivery.',
 };
 
-export const cvImpactHighlights = [
-  '10+ years delivering frontend and full-stack web products across freelance, agency, e-commerce, CMS, and product environments.',
-  'Led and contributed to design systems and component libraries for brands and platforms including Silentnight and bnn.de.',
-  'Built production React and TypeScript product experiences for Triumph Motorcycles, Jotun, kacet, Banburyshire, and content-rich client platforms.',
-  'Delivered web platforms using Next.js, Astro, Sanity, Craft CMS, Tailwind CSS, Vite, Vercel, and reusable frontend architecture.',
-  'Comfortable translating ambiguous product, content, and design requirements into maintainable interfaces with clear delivery trade-offs.',
+/**
+ * The three or four strongest, most concrete pieces of evidence on the CV.
+ * These sit directly under the summary so a reader gets them in the first
+ * ten seconds. Keep them specific: named brands, named systems, real scope.
+ */
+export const cvHighlights = [
+  'Led Silentnight’s design system and component library at DEPT, and built the bnn.de design system at netzstrategen, giving both teams one shared, accessible component set to ship pages from.',
+  'Built the Triumph Motorcycles parts finder, a customer-facing React and TypeScript micro-frontend integrated with .NET catalogue APIs, live on triumphmotorcycles.com.',
+  'Took kacet.com, a freelance marketplace, from concept to a deployable MVP: Next.js and TanStack Start in a Turborepo monorepo with Supabase, Storybook and Vercel.',
+  'Built banburyshire.com in Rust compiled to WebAssembly on Cloudflare Workers, with a custom PostgreSQL backend and a bespoke design system; all client-side interactivity runs through sigmx, my own micro frontend library, in under 10 kB.',
+  'Over five years at LFA Machines, led development of the Laravel ERP and manufacturing platform that ran the company’s operations, stock and production, alongside its Magento 2 storefront.',
 ];
 
 export const cvSkillGroups = [
   {
-    name: 'Frontend development',
+    name: 'Core',
     skills: [
       'TypeScript',
       'JavaScript',
@@ -118,58 +72,62 @@ export const cvSkillGroups = [
       'HTML',
       'CSS',
       'Tailwind CSS',
-      'Vite',
+      'styled-components',
+      'Node.js',
+      'Rust (WebAssembly)',
     ],
   },
   {
-    name: 'Architecture and systems',
+    name: 'Architecture & tooling',
     skills: [
-      'Frontend architecture',
-      'UI architecture',
       'Design systems',
       'Component libraries',
       'Design tokens',
       'Storybook',
-      'Turborepo',
+      'Turborepo monorepos',
       'Micro-frontends',
+      'sigmx (own micro frontend library)',
+      'Vite',
     ],
   },
   {
-    name: 'Product engineering',
+    name: 'Data & platforms',
     skills: [
-      'Product engineering',
-      'Marketplace products',
-      'Content platforms',
-      'E-commerce',
-      'SEO-aware content architecture',
-      'Responsive design',
-      'Accessibility',
-      'Web performance',
-    ],
-  },
-  {
-    name: 'Data, APIs, and platforms',
-    skills: [
-      'Node.js',
-      'GraphQL',
-      'REST APIs',
+      'REST and GraphQL APIs',
       'React Query',
       'TanStack Start',
       'Supabase',
+      'PostgreSQL',
       'Sanity',
       'Craft CMS',
+      'WordPress',
+      'Magento 2',
+      'Laravel',
       'Vercel',
+      'Cloudflare Workers',
     ],
   },
   {
-    name: 'Collaboration',
+    name: 'Quality',
     skills: [
-      'Technical leadership',
-      'Cross-functional collaboration',
-      'Design collaboration',
-      'Backend collaboration',
-      'Stakeholder communication',
-      'Problem solving',
+      'Accessibility',
+      'Web performance',
+      'Responsive design',
+      'SEO-aware content architecture',
+      'Incremental static regeneration',
+    ],
+  },
+  {
+    name: 'Also used',
+    skills: [
+      'HTMX',
+      'Alpine.js',
+      'GSAP',
+      'Datastar',
+      'PHP',
+      '.NET API integration',
+      'Resend',
+      'shadcn/ui',
     ],
   },
 ];
@@ -258,79 +216,68 @@ export const featuredProjects = [
   },
 ];
 
+/**
+ * Selected work shown on the CV. One sentence each: what it is, what I did,
+ * why it mattered. The stack list is what a reader would want to confirm.
+ */
 export const professionalPortfolio = [
   {
+    name: 'kacet',
+    kind: 'Own product',
+    subtitle: 'kacet.com',
+    description:
+      'Freelance marketplace with smart-contract settlement, built from concept to MVP: onboarding, marketplace and transaction flows on Next.js, TanStack Start and Supabase in a Turborepo monorepo.',
+    urls: [{ label: 'kacet.com', href: 'https://kacet.com/' }],
+    skills: [
+      'Next.js',
+      'TanStack Start',
+      'TypeScript',
+      'Supabase',
+      'Turborepo',
+      'Storybook',
+      'Tailwind CSS',
+      'Vercel',
+    ],
+  },
+  {
     name: 'Banburyshire',
+    kind: 'Own product',
     subtitle: 'banburyshire.com',
     description:
-      'Founder and developer of a local guide and content platform built as a product: React and TypeScript frontend, Next.js architecture, Sanity content model, reusable UI components, SEO-focused information architecture, and Vercel delivery.',
+      'Local guide and content platform I founded and run: Rust compiled to WebAssembly on Cloudflare Workers, a custom PostgreSQL backend and a bespoke design system. All client-side interactivity runs through sigmx, my own micro frontend library, in under 10 kB.',
     urls: [
-      {
-        label: 'banburyshire.com',
-        href: 'https://banburyshire.com/',
-      },
+      { label: 'banburyshire.com', href: 'https://banburyshire.com/' },
+      { label: 'github.com/wrux/sigmx', href: 'https://github.com/wrux/sigmx' },
     ],
     skills: [
-      'React',
-      'TypeScript',
-      'Next.js',
-      'Turborepo',
-      'Sanity.io',
-      'Vite',
-      'React Query',
-      'TanStack',
-      'Convex',
-      'Resend',
-      'shadcn/ui',
-      'Tailwind CSS',
-      'Storybook',
-      'Vercel',
+      'Rust',
+      'WebAssembly',
+      'Cloudflare Workers',
+      'PostgreSQL',
+      'sigmx',
       'Design systems',
       'SEO',
     ],
   },
   {
-    name: 'kacet',
-    subtitle: 'kacet.com',
+    name: 'blot.tools',
+    kind: 'Own product',
+    subtitle: 'blot.tools',
     description:
-      'Architecting a product MVP for a crypto freelance marketplace, focusing on TypeScript frontend architecture, reusable UI patterns, onboarding flows, marketplace interactions, Supabase-backed workflows, and secure transaction-oriented product design.',
-    urls: [
-      {
-        label: 'kacet.com',
-        href: 'https://kacet.com/',
-      },
-    ],
-    skills: [
-      'React',
-      'TypeScript',
-      'Next.js',
-      'Turborepo',
-      'Sanity.io',
-      'Vite',
-      'TanStack Start',
-      'Supabase',
-      'Resend',
-      'shadcn/ui',
-      'Tailwind CSS',
-      'Storybook',
-      'Vercel',
-      'Product engineering',
-      'Marketplace product',
-    ],
+      'Suite of privacy-focused web tools launched in 2026, currently an AI agent and an email relay. A TanStack Start web app backed by a Rust and WebAssembly worker backend.',
+    urls: [{ label: 'blot.tools', href: 'https://blot.tools/' }],
+    skills: ['TanStack Start', 'React', 'TypeScript', 'Rust', 'WebAssembly'],
   },
   {
     name: 'Triumph Motorcycles Parts Finder',
+    kind: 'Client work',
     subtitle: 'triumphmotorcycles.com',
     description:
-      'At DEPT, built a customer-facing React and TypeScript micro-frontend for motorcycle parts discovery, using Vite and styled-components with .NET API integration for catalogue data and product selection flows.',
+      'Customer-facing parts discovery micro-frontend built at DEPT: React, TypeScript, Vite and styled-components over .NET catalogue APIs, embedded in the global Triumph site.',
     urls: [
       {
-        label: 'Landing page',
+        label: 'triumphmotorcycles.com',
         href: 'https://www.triumphmotorcycles.com/shop-accessories/parts-bike-selection',
-      },
-      {
-        label: 'React app',
-        href: 'https://www.triumphmotorcycles.com/shop-accessories/parts-bike-selection/parts-finder?&catalogPageId=25639&modelId=ZJ1&bikeId=f1f4c466-75be-439c-9f05-92c3c6e8a1d0',
       },
     ],
     skills: [
@@ -339,90 +286,148 @@ export const professionalPortfolio = [
       'Vite',
       'styled-components',
       'Micro-frontends',
-      'API integration',
       '.NET APIs',
-      'Component architecture',
     ],
   },
   {
     name: 'Illinois Humanities',
+    kind: 'Client work',
     subtitle: 'ilhumanities.org',
     description:
-      'Designed and developed a public-facing Craft CMS platform for grants, programs, and community content, improving accessibility, content structure, and maintainability for a state-wide cultural organisation.',
-    urls: [
-      {
-        label: 'ilhumanities.org',
-        href: 'https://ilhumanities.org/',
-      },
-    ],
-    skills: [
-      'Craft CMS',
-      'Tailwind CSS',
-      'HTMX',
-      'Alpine.js',
-      'Accessibility',
-      'Content architecture',
-    ],
+      'Public Craft CMS platform for grants, programmes and community content for a state-wide cultural organisation, with accessibility and content structure treated as first-class requirements.',
+    urls: [{ label: 'ilhumanities.org', href: 'https://ilhumanities.org/' }],
+    skills: ['Craft CMS', 'Tailwind CSS', 'HTMX', 'Alpine.js', 'Accessibility'],
   },
   {
     name: 'Peggy Notebaert Nature Museum',
+    kind: 'Client work',
     subtitle: 'naturemuseum.org',
     description:
-      "Modernised the museum's digital presence with a content-rich Craft CMS frontend, improving UX, storytelling, event discovery, and maintainable publishing workflows for conservation research and public programs.",
-    urls: [
-      {
-        label: 'naturemuseum.org',
-        href: 'https://naturemuseum.org/',
-      },
-    ],
-    skills: [
-      'Craft CMS',
-      'Tailwind CSS',
-      'HTMX',
-      'Alpine.js',
-      'UX',
-      'Content platforms',
-    ],
+      'Content-rich Craft CMS frontend covering exhibitions, events and conservation research, with publishing workflows the museum’s own team maintains.',
+    urls: [{ label: 'naturemuseum.org', href: 'https://naturemuseum.org/' }],
+    skills: ['Craft CMS', 'Tailwind CSS', 'HTMX', 'Alpine.js'],
   },
   {
     name: 'First Lady & Cruise Chicago',
+    kind: 'Client work',
     subtitle: 'firstlady.com',
     description:
-      "Delivered high-performance web frontends for Chicago river cruise brands, focusing on conversion-oriented booking journeys, scalable content architecture, responsive UI, and reliable delivery for high-traffic tourism sites.",
-    urls: [
-      {
-        label: 'firstlady.com',
-        href: 'https://firstlady.com',
-      },
-    ],
-    skills: [
-      'Craft CMS',
-      'Tailwind CSS',
-      'HTMX',
-      'Alpine.js',
-      'Conversion optimisation',
-      'Responsive design',
-    ],
-  },
-  {
-    name: 'Artist Assembly',
-    subtitle: 'artistassembly.org',
-    description:
-      'Built a centralised event management and registration platform for national artist fellows, creating a clear user journey, maintainable frontend components, and dependable workflows for high-profile cultural convenings.',
-    urls: [
-      {
-        label: 'artistassembly.org',
-        href: 'https://www.artistassembly.org/',
-      },
-    ],
-    skills: [
-      'Craft CMS',
-      'GSAP',
-      'Tailwind CSS',
-      'HTMX',
-      'Alpine.js',
-      'Event platforms',
-      'Frontend components',
-    ],
+      'High-traffic tourism frontends for two Chicago river cruise brands, focused on conversion-oriented booking journeys and a content architecture that scales across sites.',
+    urls: [{ label: 'firstlady.com', href: 'https://firstlady.com' }],
+    skills: ['Craft CMS', 'Tailwind CSS', 'HTMX', 'Alpine.js'],
   },
 ];
+
+/** Content for the bento home page. Short, specific, no filler. */
+export const home = {
+  headline: 'Hi, I’m Callum.',
+  intro:
+    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built design systems for Silentnight and bnn.de, shipped a React micro-frontend for Triumph Motorcycles, and launched three products of my own. Most of my work is React and TypeScript, with Rust when the bundle has to be small.',
+  status: {
+    label: 'Open to roles',
+    detail: 'Senior frontend, remote or Oxford.',
+  },
+  latest: {
+    name: 'blot.tools',
+    href: 'https://blot.tools/',
+    blurb:
+      'Privacy-focused web tools. TanStack Start on a Rust and WebAssembly worker backend.',
+    /** Blot's warm black with its blurred serif "Nothing" motif, drawn in CSS. */
+    brand: {
+      motif: 'Nothing',
+      overlay: '#121110',
+      fg: '#ffffff',
+      muted: '#b8b4ad',
+      accent: '#ffffff',
+    },
+  },
+  products: [
+    {
+      name: 'Banburyshire',
+      href: 'https://banburyshire.com/',
+      blurb:
+        'Rust compiled to WebAssembly on Cloudflare Workers. sigmx handles every interaction in under 10 kB.',
+      /** Their own hero photograph, under an olive-to-transparent gradient. */
+      brand: {
+        image: 'banburyshire',
+        overlay: '#2f3a24',
+        fg: '#f3eddb',
+        muted: '#dfe2cf',
+        accent: '#e4d08a',
+      },
+    },
+    {
+      name: 'kacet',
+      href: 'https://kacet.com/',
+      blurb:
+        'Freelance marketplace with smart-contract settlement, concept to MVP.',
+      /** Their halftone hero field, under a black-to-transparent gradient. */
+      brand: {
+        image: 'kacet',
+        overlay: '#050505',
+        fg: '#ffffff',
+        muted: '#bdbdbd',
+        accent: '#3d7bff',
+      },
+    },
+  ],
+  clientWork: [
+    {
+      name: 'Illinois Humanities',
+      href: 'https://ilhumanities.org/',
+      meta: 'Cultural nonprofit · Craft CMS',
+    },
+    {
+      name: 'Peggy Notebaert Nature Museum',
+      href: 'https://naturemuseum.org/',
+      meta: 'Museum · Craft CMS',
+    },
+    {
+      name: 'First Lady & Cruise Chicago',
+      href: 'https://firstlady.com',
+      meta: 'Tourism · Craft CMS',
+    },
+    {
+      name: 'Triumph Motorcycles parts finder',
+      href: 'https://www.triumphmotorcycles.com/shop-accessories/parts-bike-selection',
+      meta: 'DEPT · React micro-frontend',
+    },
+    {
+      name: 'Silentnight design system',
+      href: null,
+      meta: 'DEPT · Component library',
+    },
+  ],
+  stack: [
+    'TypeScript',
+    'React',
+    'Next.js',
+    'Astro',
+    'TanStack Start',
+    'Rust',
+    'WebAssembly',
+    'Cloudflare Workers',
+    'PostgreSQL',
+    'Sanity',
+    'Craft CMS',
+    'Storybook',
+    'Tailwind CSS',
+  ],
+  offTheClock: [
+    {
+      name: 'callum.co.uk',
+      href: 'https://callum.co.uk/',
+      blurb: 'Travel notes, posted occasionally.',
+    },
+    {
+      name: 'manhole.gallery',
+      href: 'https://manhole.gallery/',
+      blurb: 'Manhole covers spotted around the world.',
+    },
+    {
+      name: 'perpetual.pizza',
+      href: 'https://perpetual.pizza/',
+      blurb: 'The never-ending pizza, a decade-old joke.',
+    },
+  ],
+};

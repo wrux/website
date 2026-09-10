@@ -1,15 +1,15 @@
 {
   "company": "Freelance",
-  "location": "Remote",
+  "location": "Remote, based in Oxford, UK",
   "title": "Senior Frontend Engineer",
   "tenure": {
     "from": "12-06-2022",
     "to": null
   },
   "description": [
-    "Partner with founders, agencies, and product teams to ship production React, Next.js, Astro, Craft CMS, and Sanity web products with maintainable frontend architecture",
-    "Developed kacet.com from concept to production using React, TypeScript, Tailwind CSS, Vite, TanStack tools, Supabase, and Vercel, driving the marketplace product to a deployable MVP",
-    "Built content-heavy catalog and marketing platforms with reusable components, editorial workflows, SEO-ready structure, and pragmatic design system patterns",
-    "Implemented Next.js incremental static regeneration and product page architecture to keep content fresh while preserving frontend performance"
+    "Founded and built kacet.com, a freelance marketplace, from concept to a deployable MVP: Next.js and TanStack Start apps in a Turborepo monorepo, Supabase for auth and data, a Storybook-documented component library, Resend for transactional email, deployed on Vercel",
+    "Founded banburyshire.com, a local guide and content platform: Rust compiled to WebAssembly on Cloudflare Workers, a custom PostgreSQL backend, a bespoke design system, and sigmx, my own micro frontend library, handling all client-side interactivity in under 10 kB",
+    "Ship production React, Next.js, Astro, Sanity and Craft CMS builds for founders, agencies and product teams, typically owning the frontend from architecture through to launch",
+    "Build content-heavy catalogue and marketing platforms with reusable component sets, editorial workflows and SEO-ready structure so non-technical editors can publish without engineering help"
   ]
 }

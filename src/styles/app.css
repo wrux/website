@@ -1,38 +1,28 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Inter Variable', 'Inter', 'sans-serif';
+  --font-sans: 'Manrope Variable', 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'SFMono-Regular', 'Cascadia Code', 'Consolas', 'monospace';
-  --color-primary: #7ee2c4;
 }
 
 :root {
-  --page-bg: #070a0f;
-  --panel-bg: rgba(12, 22, 28, 0.92);
-  --panel-bg-soft: rgba(15, 31, 37, 0.72);
-  --text: #f4f7f5;
-  --text-muted: #b7c8c0;
-  --text-soft: #8fa39a;
-  --accent: #7ee2c4;
-  --accent-strong: #b8f5de;
-  --rule: rgba(126, 226, 196, 0.22);
-  --rule-strong: rgba(184, 245, 222, 0.42);
+  color-scheme: light;
+  --page-bg: #e9e8e3;
+  --tile-bg: #ffffff;
+  --tile-bg-soft: #f0f0ec;
+  --ink: #17181a;
+  --ink-muted: #4c4e54;
+  --ink-soft: #7b7d82;
+  --ink-muted-on-dark: #c4c6cc;
+  --ink-soft-on-dark: #9b9ea6;
+  --rule: #e6e5df;
+  --accent: #3457d5;
+  --ok: #2fa56b;
+  --radius-tile: 24px;
 }
 
 @utility container {
-  @apply mx-auto px-4 sm:px-8 print:px-0;
-}
-
-.header-bleed-line {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(126, 226, 196, 0.5),
-    transparent
-  );
+  @apply mx-auto w-full max-w-[1440px] px-4 sm:px-8 lg:px-16 print:px-0;
 }
 
 @layer base {
@@ -41,171 +31,209 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: var(--rule);
+  }
+
+  body {
+    line-height: 1.5;
   }
 }
 
 @layer utilities {
-  .octagon {
-    clip-path: polygon(
-      30% 0%,
-      70% 0%,
-      100% 30%,
-      100% 70%,
-      70% 100%,
-      30% 100%,
-      0% 70%,
-      0% 30%
+  .tile {
+    background: var(--tile-bg);
+    border-radius: var(--radius-tile);
+    padding: 28px;
+    min-width: 0;
+  }
+
+  .tile-dark {
+    background: var(--ink);
+    color: #ffffff;
+  }
+
+  .tile-accent {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  /* Product tiles: the brand's own imagery under a gradient, palette via inline variables. */
+  .tile-brand {
+    background: var(--brand-overlay);
+    color: var(--brand-fg);
+  }
+
+  .brand-motif {
+    position: absolute;
+    right: 0.1em;
+    top: -0.18em;
+    font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+    font-size: 84px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #d6d1c8;
+    opacity: 0.55;
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .eyebrow.eyebrow-light {
+    color: #ffffff;
+  }
+
+  .eyebrow.brand-eyebrow {
+    color: #ffffff;
+    text-shadow: 0 1px 8px color-mix(in oklab, var(--brand-overlay) 70%, transparent);
+  }
+
+  .brand-overlay {
+    background: linear-gradient(
+      to top,
+      var(--brand-overlay) 0%,
+      color-mix(in oklab, var(--brand-overlay) 82%, transparent) 42%,
+      color-mix(in oklab, var(--brand-overlay) 22%, transparent) 72%,
+      color-mix(in oklab, var(--brand-overlay) 62%, transparent) 100%
     );
+  }
+
+  .tile-link {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .tile-link:hover,
+  .tile-link:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(23, 24, 26, 0.08);
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .chip {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--tile-bg-soft);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: var(--tile-bg);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    background: var(--ink);
+    color: #ffffff;
+  }
+
+  .btn-active {
+    background: var(--tile-bg-soft);
+  }
+
+  .btn-dark {
+    background: var(--ink);
+    color: #ffffff;
+  }
+
+  .btn-dark:hover,
+  .btn-dark:focus-visible {
+    background: var(--accent);
+  }
+
+  .btn-outline-light {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .btn-outline-light:hover,
+  .btn-outline-light:focus-visible {
+    background: #ffffff;
+    color: var(--accent);
   }
 
   .link-hover {
     text-decoration-line: underline;
-    text-decoration-color: currentColor;
+    text-decoration-color: transparent;
     text-decoration-thickness: 0.08em;
     text-underline-offset: 0.22em;
-    transition: text-decoration-thickness 150ms ease;
+    transition: text-decoration-color 150ms ease;
   }
 
   .link-hover:hover,
-  .link-hover:focus {
-    text-decoration-thickness: 0.12em;
-  }
-
-  .link-underline {
-    text-decoration-line: underline;
+  .link-hover:focus-visible {
     text-decoration-color: currentColor;
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.22em;
-    transition: text-decoration-thickness 150ms ease;
-  }
-
-  .link-underline:hover,
-  .link-underline:focus {
-    text-decoration-thickness: 0.12em;
-  }
-
-  .link-box {
-    position: relative;
-
-    .link-overlay:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
-
-    a:not(.link-overlay) {
-      position: relative;
-      z-index: 2;
-    }
-  }
-
-  .resume-terminal {
-    color: var(--text);
-    line-height: 1.58;
-  }
-
-  .terminal-panel {
-    @apply p-8;
-
-    border: 1px solid var(--rule);
-    background: linear-gradient(
-      180deg,
-      rgba(13, 23, 30, 0.98),
-      rgba(7, 12, 18, 0.98)
-    );
-    box-shadow: 0 0 0 1px rgba(126, 226, 196, 0.08),
-      0 22px 70px rgba(0, 0, 0, 0.34);
-  }
-
-  .terminal-panel-header {
-    @apply border-none shadow-none print:mx-0 py-0;
-
-    background: linear-gradient(
-      180deg,
-      rgba(13, 23, 30, 0.98),
-      rgba(7, 12, 18, 0.98)
-    );
-    margin-inline: -1rem;
-    padding-inline: 1rem;
-  }
-
-  @media (min-width: 40rem) {
-    .terminal-panel-header {
-      margin-inline: -2rem;
-      padding-inline: 2rem;
-    }
-  }
-
-  .terminal-card {
-    border: 1px solid var(--rule);
-    background: var(--panel-bg-soft);
-  }
-
-  .terminal-divider {
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(126, 226, 196, 0.48),
-      transparent
-    );
-  }
-
-  .terminal-prompt {
-    font-family: var(--font-mono);
-    white-space: pre-wrap;
-    letter-spacing: 0;
-  }
-
-  .terminal-glow {
-    text-shadow: 0 0 18px rgba(126, 226, 196, 0.2);
   }
 
   .cv-print-only {
     display: none;
   }
 
-  .cv-portfolio-item {
+  .chip-sm {
+    font-size: 12px;
+    padding: 5px 10px;
+    background: var(--tile-bg);
+  }
+
+  .cv-project {
+    background: var(--tile-bg-soft);
+    border-radius: 20px;
+    padding: 1.5rem;
+  }
+
+  .link-chip:hover,
+  .link-chip:focus-visible {
+    background: var(--ink);
+    color: #ffffff;
+  }
+
+  /* Experience: title, dates, company, bullets in source order; laid out as a
+     timeline with a left rail on large screens, and as a print head row on paper. */
+  .cv-job {
     display: grid;
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-    gap: 1.15rem 1.65rem;
-    position: relative;
-    padding: 1.45rem 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'title' 'dates' 'meta' 'bullets';
+    row-gap: 0.25rem;
+  }
+
+  .cv-job-title { grid-area: title; }
+  .cv-job-dates { grid-area: dates; }
+  .cv-job-meta { grid-area: meta; }
+  .cv-job > .cv-bullets { grid-area: bullets; }
+
+  .cv-job + .cv-job {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--rule);
   }
 
-  .cv-portfolio-item:first-child {
-    border-top: none;
-    padding-top: 0;
-  }
+  @media (min-width: 64rem) {
+    .cv-job {
+      grid-template-columns: 13rem minmax(0, 1fr);
+      grid-template-areas: 'dates title' 'meta bullets';
+      column-gap: 2rem;
+      row-gap: 0.25rem;
+    }
 
-  .cv-portfolio-body p {
-    max-width: 76ch;
-  }
-
-  .cv-portfolio-tags {
-    margin-top: 0.75rem;
-  }
-
-  .cv-portfolio-tags li {
-    border: 1px solid rgba(126, 226, 196, 0.22);
-    background: rgba(126, 226, 196, 0.08);
-    padding: 0.15rem 0.45rem;
-  }
-
-  .cv-portfolio-links {
-    margin-top: 0.85rem;
-  }
-
-  .cv-portfolio-links a {
-    display: inline-flex;
-  }
-
-  @media (max-width: 47.999rem) {
-    .cv-portfolio-item {
-      display: block;
+    .cv-job-meta {
+      align-self: start;
     }
   }
 }
@@ -213,18 +241,18 @@
 @media print {
   @page {
     size: A4;
-    margin: 13mm 12mm 15mm;
+    margin: 12mm 12mm 14mm;
   }
 
   html {
-    font-size: 11px;
+    font-size: 12.5px;
   }
 
   body {
     background: #ffffff;
     color: #000000;
-    font-size: 8.8pt;
-    line-height: 1.34;
+    font-size: 9pt;
+    line-height: 1.32;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -237,324 +265,430 @@
     padding: 0 !important;
   }
 
-  .resume-terminal > main {
-    padding: 0 !important;
-    margin-top: 0.14in !important;
-  }
-
-  .resume-terminal {
+  .site {
     color: #000000;
-    line-height: 1.34;
+    line-height: 1.32;
   }
 
-  .resume-terminal * {
+  .site * {
     color: #000000 !important;
     border-color: #000000 !important;
+    text-shadow: none !important;
   }
 
-  .terminal-panel-header {
-    margin: 0 !important;
+  .site > main {
     padding: 0 !important;
-    border-bottom: 1.4pt solid #000000 !important;
+    margin-top: 0 !important;
   }
 
-  .terminal-panel-header > div:not(.header-bleed-line) {
-    gap: 0.02in !important;
-    padding-block: 0 0.12in !important;
+  .cv-document {
+    margin-top: 0.15in !important;
   }
 
-  .resume-terminal h1 {
-    margin: 0 !important;
-    font-size: 22pt;
-    line-height: 1;
-    letter-spacing: 0 !important;
+  /* Hide decorative icons, but keep the masthead logo. */
+  .site svg {
+    display: none !important;
   }
 
-  .resume-terminal h2 {
+  .site .cv-masthead-logo {
     display: block !important;
-    margin: 0 0 0.07in !important;
-    padding-bottom: 0 !important;
-    border-bottom: none !important;
-    font-size: 8.6pt;
-    line-height: 1.15;
-    letter-spacing: 0.055em !important;
-    text-transform: uppercase;
-    break-after: avoid;
-    page-break-after: avoid;
+    font-size: 0.7in !important;
   }
 
-  .resume-terminal h3 {
+  /* Masthead: logo, name, role, one contact line. */
+  header.cv-masthead {
     margin: 0 !important;
-    font-size: 9.2pt;
-    line-height: 1.25;
+    border-radius: 0 !important;
+    padding: 0 0 0.1in !important;
+    border: none !important;
+    border-bottom: 1.4pt solid #000000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
-  .resume-terminal p,
-  .resume-terminal li,
-  .resume-terminal a {
-    line-height: 1.3;
+  .cv-masthead-inner {
+    gap: 0.2in !important;
+    padding: 0 !important;
   }
 
-  .resume-terminal svg {
-    display: none !important;
+  .site h1 {
+    margin: 0 !important;
+    font-size: 23pt;
+    line-height: 1;
+    letter-spacing: -0.01em !important;
   }
 
-  .cv-print-section h2 svg {
-    display: none !important;
+  .cv-masthead-role {
+    margin-top: 0.04in !important;
+    font-size: 10.5pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .cv-masthead-contact {
+    margin-top: 0.07in !important;
+    gap: 0.02in 0.09in !important;
+    font-size: 8.4pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .cv-masthead-contact li + li::before {
+    content: '·';
+    margin-right: 0.09in;
+  }
+
+  .cv-masthead-contact .chip {
+    display: inline !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+  }
+
+  .cv-masthead-role,
+  img.cv-masthead-logo {
+    display: block !important;
+  }
+
+  .cv-masthead-inner {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  .cv-highlights-tile {
+    display: block !important;
+  }
+
+  .cv-project-stack {
+    display: inline !important;
+  }
+
+  .cv-project-stack .chip {
+    display: inline !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+  }
+
+  .cv-project-stack .chip::after {
+    content: ' · ';
+  }
+
+  .cv-project-stack .chip:last-child::after {
+    content: '';
+  }
+
+  .cv-project-head > div {
+    display: contents;
+  }
+
+  /* Section chrome. */
+  .tile,
+  .cv-project {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
   }
 
   .cv-document {
     display: block;
   }
 
-  .cv-document > * + * {
-    margin-top: 0.12in !important;
+  .cv-document {
+    gap: 0 !important;
   }
 
-  /* Strip the “terminal” chrome for print */
-  .terminal-panel,
-  .terminal-card,
-  .terminal-item {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .cv-document > .cv-print-section:first-child {
-    padding-top: 0 !important;
-    border-top: none !important;
-  }
-
-  .cv-document > .cv-print-section:first-child h2 {
-    display: none !important;
-  }
-
-  .cv-contact-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.045in 0.18in !important;
-    padding-bottom: 0.09in;
-    border-bottom: 0.7pt solid #000000;
-  }
-
-  .cv-contact-list p {
-    display: grid;
-    grid-template-columns: 0.64in minmax(0, 1fr);
-    column-gap: 0.06in;
-    margin: 0 !important;
-  }
-
-  .cv-contact-list p > span:first-child {
-    font-size: 6.8pt !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.045em !important;
-    text-transform: uppercase;
-  }
-
-  .cv-summary-content dl {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.055in 0.18in !important;
-    margin-top: 0.08in !important;
-  }
-
-  .cv-summary-content dt {
-    font-size: 7pt !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.04em !important;
-    text-transform: uppercase;
-  }
-
-  .cv-summary-content dd {
-    margin: 0 !important;
-  }
-
-  .cv-print-page:not(:last-child) {
-    break-after: auto;
-    page-break-after: auto;
-  }
-
-  .cv-document > aside.cv-print-page {
-    break-before: page;
-    page-break-before: always;
-  }
-
-  .cv-print-section {
-    padding-top: 0 !important;
-    border-top: none !important;
-    break-inside: auto;
-    page-break-inside: auto;
-  }
-
-  .cv-print-page > .cv-print-section + .cv-print-section,
-  .cv-document > aside.cv-print-page .cv-print-section {
-    margin-top: 0.18in !important;
-    padding-top: 0.13in !important;
+  .cv-document > .cv-section + .cv-section {
+    margin-top: 0.13in !important;
+    padding-top: 0.1in !important;
     border-top: 0.8pt solid #000000 !important;
   }
 
-  .cv-print-page > .cv-print-section:first-child {
-    margin-top: 0 !important;
+  .cv-document > .cv-section.cv-highlights-tile {
+    margin-top: 0.06in !important;
     padding-top: 0 !important;
     border-top: none !important;
   }
 
-  .cv-document > aside.cv-print-page .cv-print-section {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
+  .cv-highlights-tile h2 {
+    margin-bottom: 0 !important;
+    font-size: 7.4pt !important;
   }
 
-  .cv-print-flow {
+  .cv-skills {
+    gap: 0 !important;
+  }
+
+  .cv-edu-list {
+    gap: 0.08in 0.24in !important;
+  }
+
+  .cv-edu {
+    gap: 0 !important;
+  }
+
+  .cv-section {
     break-inside: auto;
     page-break-inside: auto;
   }
 
-  .cv-print-section ul {
-    margin-top: 0.07in !important;
-    gap: 0.055in !important;
-  }
-
-  .cv-print-section p {
-    margin-top: 0.045in !important;
-  }
-
-  .cv-print-section li {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  .cv-print-section li::marker {
-    color: #000000;
-  }
-
-  .cv-print-section > h2 + * {
+  .cv-section > h2 + * {
     break-before: avoid;
     page-break-before: avoid;
   }
 
-  .cv-work-experience {
-    break-inside: auto;
-    page-break-inside: auto;
+  .site h2 {
+    display: block !important;
+    margin: 0 0 0.06in !important;
+    font-size: 8.6pt;
+    line-height: 1.15;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase;
+    break-after: avoid;
+    page-break-after: avoid;
   }
 
-  .cv-work-list > li,
-  .cv-education .terminal-item {
+  .site h3 {
+    margin: 0 !important;
+    font-size: 9.6pt;
+    line-height: 1.25;
+  }
+
+  .site p,
+  .site li,
+  .site a,
+  .site dd {
+    line-height: 1.3;
+  }
+
+  .cv-summary {
+    margin-top: 0 !important;
+    max-width: none !important;
+    font-size: 9.4pt !important;
+    line-height: 1.36 !important;
+  }
+
+  .cv-subheading {
+    margin-top: 0.14in !important;
+    font-size: 7.4pt !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .cv-bullets {
+    margin-top: 0.05in !important;
+    max-width: none !important;
+    padding-left: 0.16in !important;
+    gap: 0 !important;
+  }
+
+  .cv-bullets > li + li {
+    margin-top: 0.035in !important;
+  }
+
+  .cv-bullets li::marker {
+    color: #000000;
+  }
+
+  /* Skills: one "Group: a, b, c" line per group. */
+  .cv-skills {
+    margin-top: 0 !important;
+  }
+
+  .cv-skills > .cv-skill-row {
+    display: block !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .cv-skills > .cv-skill-row + .cv-skill-row {
+    margin-top: 0.03in !important;
+  }
+
+  .cv-skill-row dt,
+  .cv-skill-row dd {
+    display: inline !important;
+    font-size: 8.6pt !important;
+  }
+
+  .cv-skill-row dt::after {
+    content: ': ';
+  }
+
+  /* Experience. */
+  .cv-job-list {
+    margin-top: 0 !important;
+    gap: 0 !important;
+  }
+
+  .cv-job {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  .cv-work-list > li + li {
-    margin-top: 0.105in !important;
-    padding-top: 0.105in !important;
-    border-top: 0.7pt solid #000000 !important;
+  .cv-job + .cv-job {
+    margin-top: 0.09in !important;
+    padding-top: 0.09in !important;
+    border-top: 0.6pt solid #000000 !important;
   }
 
-  .cv-education ul {
+  .cv-job {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-areas: 'title dates' 'meta meta' 'bullets bullets' !important;
+    column-gap: 0.2in !important;
+    row-gap: 0 !important;
+    align-items: baseline;
+  }
+
+  .cv-job-dates,
+  .cv-job-meta {
+    font-size: 8.6pt !important;
+    font-weight: 400 !important;
+  }
+
+  .cv-job-meta {
+    margin-top: 0.01in !important;
+  }
+
+  .cv-masthead-actions,
+  .cv-nav {
+    display: none !important;
+  }
+
+  .cv-summary-grid {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+
+  .cv-bullets,
+  .cv-highlights {
+    font-size: 8.4pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .cv-highlights {
+    display: block !important;
+    list-style: disc !important;
+    margin-top: 0.05in !important;
+    padding-left: 0.16in !important;
+  }
+
+  .cv-highlights > li {
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .cv-highlights > li + li {
+    margin-top: 0.035in !important;
+  }
+
+  .cv-project {
+    gap: 0.03in !important;
+  }
+
+  .cv-project-stack {
+    margin-top: 0 !important;
+  }
+
+  .cv-skill-chips {
+    display: inline !important;
+  }
+
+  .cv-skill-chips .chip {
+    display: inline !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+  }
+
+  .cv-skill-chips .chip::after {
+    content: ', ';
+  }
+
+  .cv-skill-chips .chip:last-child::after {
+    content: '';
+  }
+
+  .cv-project-head {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.08in !important;
+  }
+
+  .cv-project-head p {
+    display: contents;
+  }
+
+  /* Selected work: two columns, compact. */
+  .cv-project-list {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.08in 0.2in !important;
+    gap: 0.09in 0.24in !important;
+    margin-top: 0 !important;
   }
 
-  .cv-education .terminal-item {
-    margin: 0 !important;
+  .cv-project {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-project-link {
+    font-size: 8pt !important;
+  }
+
+  .cv-project-desc {
+    margin-top: 0.02in !important;
+    max-width: none !important;
+    font-size: 8.4pt !important;
+  }
+
+  .cv-project-stack {
+    margin-top: 0.02in !important;
+    font-size: 7.2pt !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+  }
+
+  /* Education. */
+  .cv-edu-list {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.08in 0.24in !important;
+    margin-top: 0 !important;
+  }
+
+  .cv-edu {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-edu > div {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+  }
+
+  .cv-edu p {
+    margin-top: 0.01in !important;
+    font-size: 8.6pt !important;
   }
 
   .cv-print-only {
     display: inline !important;
   }
 
-  .cv-print-line {
-    display: block !important;
-    margin-top: 0.035in !important;
-    color: #000000 !important;
-    font-size: 7.6pt !important;
-    line-height: 1.24 !important;
-  }
-
   .cv-print-hide,
   .cv-screen-only {
     display: none !important;
-  }
-
-  .cv-summary-content {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  .cv-summary-content > p:first-child {
-    margin-top: 0 !important;
-    font-size: 9.1pt !important;
-    line-height: 1.36 !important;
-  }
-
-  .cv-summary-content > ul {
-    margin-top: 0.075in !important;
-  }
-
-  .cv-print-section .rounded-full {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-
-  .cv-portfolio-list {
-    gap: 0 !important;
-  }
-
-  .cv-portfolio-item {
-    display: grid;
-    grid-template-columns: 2.1in minmax(0, 1fr);
-    gap: 0.045in 0.2in;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    padding: 0.105in 0 0 !important;
-    border-top: 0.7pt solid #000000 !important;
-  }
-
-  .cv-portfolio-heading {
-    min-width: 0;
-  }
-
-  .cv-portfolio-item:first-child {
-    padding-top: 0 !important;
-    border-top: none !important;
-  }
-
-  .cv-portfolio-item + .cv-portfolio-item {
-    margin-top: 0.105in !important;
-  }
-
-  .cv-portfolio-skills-csv {
-    margin-top: 0.035in !important;
-    color: #000000 !important;
-    font-size: 7.3pt !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0 !important;
-    text-transform: none !important;
-  }
-
-  .cv-portfolio-item ul {
-    margin-top: 0.06in !important;
-    gap: 0.04in 0.12in !important;
-  }
-
-  .cv-portfolio-item .cv-portfolio-links {
-    margin-top: 0.07in !important;
-  }
-
-  .cv-portfolio-links {
-    display: none !important;
-  }
-
-  .cv-portfolio-links a {
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
-  }
-
-  /* Remove bleed lines / decorative dividers in print */
-  .terminal-divider,
-  .header-bleed-line {
-    display: none;
   }
 
   a {
@@ -563,13 +697,20 @@
     overflow-wrap: anywhere;
   }
 
-  a::after {
-    content: ' (' attr(href) ')';
-    font-size: 0.85em;
-    color: #000000;
+  /* The masthead is a grid item now; keep its print rule ahead of the tile reset. */
+  .cv-document > header.cv-masthead {
+    margin: 0 0 0.15in 0 !important;
+    padding: 0 0 0.1in 0 !important;
+    gap: 0.06in !important;
+    border: none !important;
+    border-bottom: 1.4pt solid #000000 !important;
   }
 
-  .cv-print-visible-url::after {
-    content: none;
+  .cv-project-head {
+    justify-content: flex-start !important;
+  }
+
+  .cv-project-list > li:first-child {
+    grid-column: span 2;
   }
 }

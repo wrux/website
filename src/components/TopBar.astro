@@ -1,0 +1,17 @@
+---
+import Logo from '~/components/Logo.astro';
+import { person } from '~/data/site';
+
+const isCv = Astro.url.pathname.replace(/\/$/, '') === '/cv';
+---
+
+<header class="flex items-center justify-between gap-4 py-6 print:hidden">
+  <a href="/" class="flex items-center gap-3 text-[var(--ink)]">
+    <Logo class="text-[34px] shrink-0" aria-hidden="true" />
+    <span class="hidden text-[15px] font-semibold sm:inline">{person.name}</span>
+  </a>
+  <nav class="flex gap-2" aria-label="Site">
+    <a href="/cv" class:list={['btn whitespace-nowrap', isCv && 'btn-active']} aria-current={isCv ? 'page' : undefined}>CV</a>
+    <a href={`mailto:${person.contact.email}`} class="btn btn-dark whitespace-nowrap">Get in touch</a>
+  </nav>
+</header>

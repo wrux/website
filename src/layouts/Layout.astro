@@ -1,9 +1,9 @@
 ---
-import '@fontsource-variable/inter';
+import '@fontsource-variable/manrope';
 import '~/styles/app.css';
-// Import the critical Latin font file for preloading
-import interLatinFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import Header from '~/components/Header.astro';
+// Preload the critical Latin font file for iOS Safari.
+import manropeLatinFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import TopBar from '~/components/TopBar.astro';
 import { person, sourceUrl } from '~/data/site';
 
 export interface Props {
@@ -20,10 +20,9 @@ const { description, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
-    {/* Preload critical font file for iOS Safari */}
     <link
       rel="preload"
-      href={interLatinFont}
+      href={manropeLatinFont}
       as="font"
       type="font/woff2"
       crossorigin="anonymous"
@@ -34,30 +33,27 @@ const { description, title } = Astro.props;
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#7ee2c4" />
-    <meta name="msapplication-TileColor" content="#070a0f" />
-    <meta name="theme-color" content="#070a0f" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#17181a" />
+    <meta name="msapplication-TileColor" content="#e9e8e3" />
+    <meta name="theme-color" content="#e9e8e3" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="w-full overflow-x-clip bg-[var(--page-bg)] text-[var(--text)] antialiased">
-    <div
-      class="container flex min-h-svh flex-col border-[var(--rule)] font-sans resume-terminal sm:max-w-xl sm:border-x md:max-w-3xl lg:max-w-5xl print:border-none"
-    >
-      <Header />
+  <body class="w-full overflow-x-clip bg-[var(--page-bg)] text-[var(--ink)] antialiased">
+    <div class="site container flex min-h-svh flex-col font-sans">
+      <TopBar />
 
-      <main class="py-8 space-y-8 flex-1">
+      <main class="flex-1 space-y-5 pb-10 pt-2">
         <slot />
       </main>
 
       <footer class="print:hidden">
-        <div class="header-bleed-line"></div>
         <div
-          class="flex flex-col items-center justify-center gap-2 px-8 py-6 text-sm text-[var(--text-soft)] sm:flex-row sm:gap-4"
+          class="flex flex-col items-center justify-center gap-2 px-2 py-8 text-sm text-[var(--ink-soft)] sm:flex-row sm:gap-4"
         >
           <span>&copy; {new Date().getFullYear()} {person.name}</span>
-          <span>&middot;</span>
+          <span class="hidden sm:inline">&middot;</span>
           <a
             href={sourceUrl}
             target="_blank"
