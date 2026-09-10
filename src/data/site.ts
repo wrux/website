@@ -322,7 +322,7 @@ export const professionalPortfolio = [
 export const home = {
   headline: 'Hi, I’m Callum.',
   intro:
-    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built the bnn.de design system, shipped a React micro-frontend for Triumph Motorcycles, and launched three products of my own. Most of my work is React and TypeScript, with Rust when the bundle has to be small.',
+    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built the Triumph Motorcycles parts finder and launched two products of my own, blot.tools and kacet. Most of my work is React and TypeScript, with Rust when the bundle has to be small.',
   status: {
     label: 'Open to roles',
     detail: 'Senior frontend, remote or Oxford.',
