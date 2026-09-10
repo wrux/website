@@ -14,7 +14,7 @@ export const person = {
     github: 'https://github.com/wrux',
   },
   summary:
-    'Senior Frontend Engineer with 12 years shipping production web products, including client work for Triumph Motorcycles, Jotun and Silentnight at DEPT and three products of my own built from idea to production. I specialise in React and TypeScript codebases that stay maintainable: design systems and component libraries, content platforms on Next.js, Sanity and Craft CMS, and turning a rough brief into a shipped MVP. Comfortable owning the frontend end to end, from architecture and tooling through accessibility, performance and release, working closely with designers, backend engineers and stakeholders.',
+    'Senior Frontend Engineer with 12 years shipping production web products in React and TypeScript. At DEPT I built the Triumph Motorcycles parts finder micro-frontend and led Silentnight’s design system, and since 2022 I have taken three products of my own, kacet, Banburyshire and blot.tools, from idea to production. I specialise in codebases that stay maintainable: design systems and component libraries, content platforms on Next.js, Sanity and Craft CMS, and turning a rough brief into a shipped MVP. I own the frontend end to end, from architecture and tooling through accessibility, performance and release, working closely with designers, backend engineers and stakeholders.',
   bio: 'When I’m not coding, I enjoy exploring new tech and traveling the world while posting occasionally on callum.co.uk.',
   skills: [
     'TypeScript',

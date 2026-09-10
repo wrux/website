@@ -7,7 +7,7 @@
     "to": "11-06-2023"
   },
   "description": [
-    "Built Sanity and Next.js sites in React and TypeScript for content-rich client platforms, with reusable components and editorial workflows designed alongside the content teams who use them",
+    "Built Sanity and Next.js sites in React and TypeScript for content-rich client platforms, creating reusable components and editorial workflows with the content teams, which enabled faster content publishing and reduced maintenance effort",
     "Migrated legacy client codebases to Sanity, cutting technical debt and making content and product changes cheaper and safer to ship",
     "Worked directly with designers and client stakeholders to turn visual direction and information architecture into fast, accessible pages"
   ]
