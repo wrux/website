@@ -78,6 +78,10 @@
     user-select: none;
   }
 
+  .eyebrow.eyebrow-light {
+    color: #ffffff;
+  }
+
   .eyebrow.brand-eyebrow {
     color: #ffffff;
     text-shadow: 0 1px 8px color-mix(in oklab, var(--brand-overlay) 70%, transparent);
