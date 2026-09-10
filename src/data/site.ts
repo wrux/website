@@ -14,7 +14,7 @@ export const person = {
     github: 'https://github.com/wrux',
   },
   summary:
-    'Senior Frontend Engineer with 12 years shipping production web products in React and TypeScript. At DEPT I built the Triumph Motorcycles parts finder micro-frontend and led Silentnight’s design system, and since 2022 I have taken three products of my own, kacet, Banburyshire and blot.tools, from idea to production. I specialise in codebases that stay maintainable: design systems and component libraries, content platforms on Next.js, Sanity and Craft CMS, and turning a rough brief into a shipped MVP. I own the frontend end to end, from architecture and tooling through accessibility, performance and release, working closely with designers, backend engineers and stakeholders.',
+    'Senior Frontend Engineer with 12 years shipping production web products in React and TypeScript. At DEPT I built the Triumph Motorcycles parts finder micro-frontend, and since 2022 I have taken three products of my own, kacet, Banburyshire and blot.tools, from idea to production. I specialise in codebases that stay maintainable: design systems and component libraries, content platforms on Next.js, Sanity and Craft CMS, and turning a rough brief into a shipped MVP. I own the frontend end to end, from architecture and tooling through accessibility, performance and release, working closely with designers, backend engineers and stakeholders.',
   bio: 'When I’m not coding, I enjoy exploring new tech and traveling the world while posting occasionally on callum.co.uk.',
   skills: [
     'TypeScript',
@@ -53,7 +53,7 @@ export const person = {
  * ten seconds. Keep them specific: named brands, named systems, real scope.
  */
 export const cvHighlights = [
-  'Led Silentnight’s design system and component library at DEPT, and built the bnn.de design system at netzstrategen, giving both teams one shared, accessible component set to ship pages from.',
+  'Built and expanded the bnn.de design system and component library at netzstrategen, giving the team one shared, accessible component set to ship pages from.',
   'Built the Triumph Motorcycles parts finder, a customer-facing React and TypeScript micro-frontend integrated with .NET catalogue APIs, live on triumphmotorcycles.com.',
   'Took kacet.com, a freelance marketplace, from concept to a deployable MVP: Next.js and TanStack Start in a Turborepo monorepo with Supabase, Storybook and Vercel.',
   'Built banburyshire.com in Rust compiled to WebAssembly on Cloudflare Workers, with a custom PostgreSQL backend and a bespoke design system; all client-side interactivity runs through sigmx, my own micro frontend library, in under 10 kB.',
@@ -322,7 +322,7 @@ export const professionalPortfolio = [
 export const home = {
   headline: 'Hi, I’m Callum.',
   intro:
-    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built design systems for Silentnight and bnn.de, shipped a React micro-frontend for Triumph Motorcycles, and launched three products of my own. Most of my work is React and TypeScript, with Rust when the bundle has to be small.',
+    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built the bnn.de design system, shipped a React micro-frontend for Triumph Motorcycles, and launched three products of my own. Most of my work is React and TypeScript, with Rust when the bundle has to be small.',
   status: {
     label: 'Open to roles',
     detail: 'Senior frontend, remote or Oxford.',
@@ -391,11 +391,6 @@ export const home = {
       name: 'Triumph Motorcycles parts finder',
       href: 'https://www.triumphmotorcycles.com/shop-accessories/parts-bike-selection',
       meta: 'DEPT · React micro-frontend',
-    },
-    {
-      name: 'Silentnight design system',
-      href: null,
-      meta: 'DEPT · Component library',
     },
   ],
   stack: [

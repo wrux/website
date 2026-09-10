@@ -8,7 +8,6 @@
   },
   "description": [
     "Built the customer-facing Triumph Motorcycles parts finder as a React and TypeScript micro-frontend using Vite and styled-components, integrated with .NET catalogue APIs, and delivered additional micro-frontends for Jotun, enabling customers to locate parts more quickly and improving the navigation experience",
-    "Led development of Silentnight’s design system and component library, defining the reusable UI patterns and accessibility standards the wider team built pages from",
     "Worked with backend teams on API contracts and with product and QA on release delivery, code review and testing practices across enterprise client work"
   ]
 }
