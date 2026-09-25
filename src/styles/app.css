@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@media not (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 @theme {
   --font-sans: 'Manrope Variable', 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'SFMono-Regular', 'Cascadia Code', 'Consolas', 'monospace';
@@ -61,21 +67,6 @@
   .tile-brand {
     background: var(--brand-overlay);
     color: var(--brand-fg);
-  }
-
-  .brand-motif {
-    position: absolute;
-    right: 0.1em;
-    top: -0.18em;
-    font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-    font-size: 84px;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: #d6d1c8;
-    opacity: 0.55;
-    filter: blur(5px);
-    pointer-events: none;
-    user-select: none;
   }
 
   .eyebrow.eyebrow-light {

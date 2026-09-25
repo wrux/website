@@ -45,11 +45,12 @@ const description = `${person.name}, ${person.role} in ${person.location}. ${hom
 
     <section class="tile flex flex-col justify-between gap-6" aria-labelledby="status">
       <p id="status" class="eyebrow">Status</p>
-      <div class="flex flex-col gap-2">
-        <p class="flex items-center gap-2.5 text-[22px] font-bold tracking-tight">
-          <span class="inline-block h-2.5 w-2.5 rounded-full bg-[var(--ok)]" aria-hidden="true"></span>
-          {home.status.label}
-        </p>
+      <div class="flex flex-col items-start gap-2">
+        <span class="relative mb-1 flex h-2.5 w-2.5" aria-hidden="true">
+          <span class="absolute inset-0 rounded-full ring-2 ring-[var(--ok)] motion-safe:animate-ping motion-safe:[animation-duration:2.5s]"></span>
+          <span class="relative h-2.5 w-2.5 rounded-full bg-[var(--ok)]"></span>
+        </span>
+        <p class="text-[22px] font-bold tracking-tight">{home.status.label}</p>
         <p class="text-[15px] leading-snug text-[var(--ink-muted)]">{home.status.detail}</p>
       </div>
     </section>
@@ -61,9 +62,20 @@ const description = `${person.name}, ${person.role} in ${person.location}. ${hom
       class="tile tile-link tile-brand relative flex flex-col justify-between gap-6 overflow-hidden"
       style={brandStyle(home.latest.brand)}
     >
-      <span class="brand-motif" aria-hidden="true">{home.latest.brand.motif}</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="-20 0 224 200"
+        class="pointer-events-none absolute -right-2 -top-5 h-40 w-auto text-white opacity-20"
+        aria-hidden="true"
+      >
+        <g fill="none" stroke="currentColor" stroke-width="40" stroke-linecap="butt">
+          <path d="M0 0V60C0 100 24 100 24 140V200"></path>
+          <path d="M80 0V60C80 100 104 100 104 140V200"></path>
+          <path d="M160 0V60C160 100 184 100 184 140V200"></path>
+        </g>
+      </svg>
       <span class="relative flex items-center justify-between">
-        <span class="eyebrow brand-eyebrow">Latest launch</span>
+        <span class="eyebrow brand-eyebrow">My agency</span>
         <Icon name="lucide:arrow-up-right" size={20} class="shrink-0" />
       </span>
       <span class="relative flex flex-col gap-1.5">
@@ -148,9 +160,11 @@ const description = `${person.name}, ${person.role} in ${person.location}. ${hom
     </section>
 
     <section class="tile tile-accent flex flex-col justify-between gap-6 sm:col-span-2" aria-labelledby="contact">
-      <p id="contact" class="eyebrow eyebrow-light">Contact</p>
+      <p id="contact" class="eyebrow eyebrow-light">Work with me</p>
       <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <a href={`mailto:${person.contact.email}`} class="break-all text-2xl font-bold tracking-tight sm:text-[34px]">{person.contact.email}</a>
+        <a href={home.latest.href} target="_blank" rel="noreferrer" class="text-2xl font-bold leading-tight tracking-tight sm:text-[30px]">
+          Start a project at Cherwell Studio
+        </a>
         <div class="flex gap-2">
           <a href={person.contact.github} target="_blank" rel="noreferrer" class="btn btn-outline-light">GitHub</a>
           <a href={person.contact.linkedin} target="_blank" rel="noreferrer" class="btn btn-outline-light">LinkedIn</a>

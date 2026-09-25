@@ -322,22 +322,20 @@ export const professionalPortfolio = [
 export const home = {
   headline: 'Hi, I’m Callum.',
   intro:
-    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’ve built the Triumph Motorcycles parts finder and launched two products of my own, blot.tools and kacet. I’m confident working with React on highly interactive applications, static websites, and modern edge and serverless sites on Cloudflare Workers or Vercel Edge Functions.',
+    'I’m a senior frontend engineer in Oxford with twelve years of experience. I run Cherwell Studio, my web agency for businesses that need a clearer, more effective website or digital product. This site is my personal profile and CV; for project enquiries, head to Cherwell Studio.',
   status: {
-    label: 'Open to roles',
-    detail: 'Senior frontend, remote or Oxford.',
+    label: 'Available for projects',
+    detail: 'Taking on client work through Cherwell Studio.',
   },
   latest: {
-    name: 'blot.tools',
-    href: 'https://blot.tools/',
+    name: 'Cherwell Studio',
+    href: 'https://cherwell.studio/',
     blurb:
-      'Privacy-focused web tools. TanStack Start on a Rust and WebAssembly worker backend.',
-    /** Blot's warm black with its blurred serif "Nothing" motif, drawn in CSS. */
+      'Websites and digital products that make businesses work better.',
     brand: {
-      motif: 'Nothing',
-      overlay: '#121110',
+      overlay: '#111827',
       fg: '#ffffff',
-      muted: '#b8b4ad',
+      muted: '#d1d5db',
       accent: '#ffffff',
     },
   },
