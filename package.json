@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^11.0.10",
     "@fontsource-variable/manrope": "^5.3.0",
     "@iconify-json/lucide": "^1.2.131",
     "@tailwindcss/vite": "^4.3.3",
@@ -20,5 +19,8 @@
   },
   "overrides": {
     "path-to-regexp": "6.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.158.0"
   }
 }
