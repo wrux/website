@@ -232,7 +232,7 @@
 @media print {
   @page {
     size: A4;
-    margin: 12mm 12mm 14mm;
+    margin: 10mm 12mm 11mm;
   }
 
   html {
@@ -394,8 +394,8 @@
   }
 
   .cv-document > .cv-section + .cv-section {
-    margin-top: 0.13in !important;
-    padding-top: 0.1in !important;
+    margin-top: 0.1in !important;
+    padding-top: 0.08in !important;
     border-top: 0.8pt solid #000000 !important;
   }
 
@@ -460,24 +460,29 @@
     margin-top: 0 !important;
     max-width: none !important;
     font-size: 9.4pt !important;
-    line-height: 1.36 !important;
+    line-height: 1.32 !important;
   }
 
   .cv-subheading {
-    margin-top: 0.14in !important;
+    margin-top: 0.08in !important;
     font-size: 7.4pt !important;
     letter-spacing: 0.06em !important;
   }
 
   .cv-bullets {
-    margin-top: 0.05in !important;
+    margin-top: 0.03in !important;
     max-width: none !important;
     padding-left: 0.16in !important;
     gap: 0 !important;
   }
 
+  /* Neutralise the screen space-y-2 margins so print spacing is set here. */
+  .cv-bullets > li {
+    margin-block: 0 !important;
+  }
+
   .cv-bullets > li + li {
-    margin-top: 0.035in !important;
+    margin-top: 0.03in !important;
   }
 
   .cv-bullets li::marker {
@@ -496,7 +501,7 @@
   }
 
   .cv-skills > .cv-skill-row + .cv-skill-row {
-    margin-top: 0.03in !important;
+    margin-top: 0.02in !important;
   }
 
   .cv-skill-row dt,
@@ -521,8 +526,8 @@
   }
 
   .cv-job + .cv-job {
-    margin-top: 0.09in !important;
-    padding-top: 0.09in !important;
+    margin-top: 0.07in !important;
+    padding-top: 0.07in !important;
     border-top: 0.6pt solid #000000 !important;
   }
 
@@ -574,11 +579,15 @@
   }
 
   .cv-highlights > li + li {
-    margin-top: 0.035in !important;
+    margin-top: 0.02in !important;
   }
 
   .cv-project {
     gap: 0.03in !important;
+  }
+
+  .cv-project-list {
+    gap: 0.1in 0.24in !important;
   }
 
   .cv-project-stack {

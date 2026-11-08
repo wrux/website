@@ -7,9 +7,9 @@ import { home, person } from '~/data/site';
 import { formatYearRange, sortJobs } from '~/lib/jobs';
 import portrait from '~/images/portrait.jpg';
 import brandBanburyshire from '~/images/brand-banburyshire.jpg';
-import brandKacet from '~/images/brand-kacet.jpg';
+import brandCotswolds from '~/images/brand-cotswolds.jpg';
 
-const brandImages = { banburyshire: brandBanburyshire, kacet: brandKacet } as const;
+const brandImages = { banburyshire: brandBanburyshire, cotswolds: brandCotswolds } as const;
 const brandStyle = (b: { overlay: string; fg: string; muted: string; accent: string }) =>
   `--brand-overlay: ${b.overlay}; --brand-fg: ${b.fg}; --brand-muted: ${b.muted}; --brand-accent: ${b.accent};`;
 
@@ -19,7 +19,7 @@ const description = `${person.name}, ${person.role} in ${person.location}. ${hom
 ---
 
 <Layout title={`${person.name} · ${person.role}`} description={description}>
-  <div class="bento grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[240px]">
+  <div class="bento grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(240px,auto)]">
 
     <section class="tile flex flex-col justify-between gap-8 sm:col-span-2 lg:row-span-2 lg:p-9" aria-labelledby="intro">
       <p class="eyebrow">{person.role} · {person.location}</p>

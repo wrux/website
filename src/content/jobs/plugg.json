@@ -1,0 +1,14 @@
+{
+  "company": "plugg",
+  "location": "Shoreditch, London, UK",
+  "title": "Software Engineer",
+  "tenure": {
+    "from": "01-09-2026",
+    "to": null
+  },
+  "description": [
+    "Build member-facing features across plugg’s Next.js web app and React Native mobile app: a free membership for 18–25 year olds to discover brands, products and experiences through trusted creators, with member-only offers",
+    "Work in React on both web and native, keeping offers, creator picks and the member experience consistent across platforms",
+    "Ship and run the web app on serverless hosting, taking features from implementation through to release"
+  ]
+}

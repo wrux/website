@@ -322,7 +322,7 @@ export const professionalPortfolio = [
 export const home = {
   headline: 'Hi, I’m Callum.',
   intro:
-    'I’m a senior frontend engineer in Oxford with twelve years of experience. I run Cherwell Studio, my web agency for businesses that need a clearer, more effective website or digital product. This site is my personal profile and CV; for project enquiries, head to Cherwell Studio.',
+    'I’m a senior frontend engineer in Oxford with twelve years of experience. I’m currently a software engineer at plugg, and I also run Cherwell Studio, my web agency for businesses that need a clearer, more effective website or digital product. This site is my personal profile and CV; for project enquiries, head to Cherwell Studio.',
   status: {
     label: 'Available for projects',
     detail: 'Taking on client work through Cherwell Studio.',
@@ -355,17 +355,17 @@ export const home = {
       },
     },
     {
-      name: 'kacet',
-      href: 'https://kacet.com/',
+      name: 'Cotswolds Info',
+      href: 'https://cotswolds.info/',
       blurb:
-        'Freelance marketplace with smart-contract settlement, concept to MVP.',
-      /** Their halftone hero field, under a black-to-transparent gradient. */
+        'Tourist guide to the Cotswolds: villages, market towns, gardens and stately homes.',
+      /** Their Snowshill village photograph, under a deep wold-green gradient. */
       brand: {
-        image: 'kacet',
-        overlay: '#050505',
-        fg: '#ffffff',
-        muted: '#bdbdbd',
-        accent: '#3d7bff',
+        image: 'cotswolds',
+        overlay: '#1f2d1c',
+        fg: '#fbf8ee',
+        muted: '#dde3cf',
+        accent: '#a8ba92',
       },
     },
   ],
